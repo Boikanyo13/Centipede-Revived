@@ -1,0 +1,8 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+const auto ORIGINAL_SCREEN_WIDTH = 540.0f;
+const auto ORIGINAL_SCREEN_HEIGHT = 640.0f;
+
+
+#endif // CONSTANTS_H
