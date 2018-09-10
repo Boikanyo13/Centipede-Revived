@@ -71,9 +71,26 @@ void Player::Move(){
         
 }
 
+
+void Player::Shoot(){
+    
+    lazershots.push_back(LazerShot{sf::Color::Red,sf::Vector2f(3.0f,7.0f), 0.6f});
+    lazershots[noOfLazerShots].Load(body_.getPosition());
+    noOfLazerShots++;
+    
+
+}
+
 void Player::Draw(sf::RenderWindow & window){
      
      window.draw(body_);
+     
+      for(auto i = 0; i < noOfLazerShots; i++){          
+
+           lazershots[i].Fire();
+           lazershots[i].Draw(window);
+         }
+         
      
 }
 

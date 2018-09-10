@@ -2,7 +2,8 @@
 #define PLAYER_H
 #include <SFML/Graphics.hpp>
 #include "constants.h"
-#include <memory>
+#include "LazerShot.h"
+
 
 
 class Player
@@ -14,6 +15,8 @@ public:
     void Move();
     //Draw the player on the window
     void Draw(sf::RenderWindow& window);
+    //Shoot LazerShots from Player
+     void Shoot();
     //Set moving speed of player
     void setSpeed(float speed);
     //Set size of player
@@ -27,6 +30,8 @@ public:
 private:
     sf::RectangleShape body_;
     float speed_;
+    std::vector<LazerShot> lazershots;
+    int noOfLazerShots;
   
 };
 

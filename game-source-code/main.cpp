@@ -9,7 +9,7 @@ int main(){
     auto window = std::make_unique<sf::RenderWindow>(sf::VideoMode(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT),"Centipede Revived", sf::Style::Default);
     sf::Texture playertexture;
     playertexture.loadFromFile("ship.png");
-    
+    auto shoot = false;
     auto player = std::make_unique<Player>(&playertexture,0.5f);
     
      while(window->isOpen()){
@@ -34,7 +34,21 @@ int main(){
                       window->setSize(sf::Vector2u(window->getSize().y, 1080.0f));
                       }
                 }
+                //Shoot?
+               if(event.type ==sf::Event::KeyPressed){
+            
+                    if(event.key.code== sf::Keyboard::Space) shoot = true;
+                }
+   
+             
+                
+                     
+        
          }
+         
+         //Player wants to shoot
+         if(shoot) player->Shoot();
+         shoot = false;
          
          player->Move();
          player->Draw(*window);
