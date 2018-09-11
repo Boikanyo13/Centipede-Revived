@@ -12,8 +12,15 @@ Csegment::Csegment(sf::Texture* texture,sf::Vector2f InitPosition, sf::Vector2f 
     up_ = false;
 }
 
+void Csegment::Entrance(){
+
+        body_.move(0.0f,speed_);
+}    
+
 void Csegment::Move(){
     
+  if(body_.getPosition().y <= body_.getSize().y){  Entrance(); }
+   else{
     
    //Move segment  one row up or down if it is at right boundry
     if(body_.getPosition().x >= (ORIGINAL_SCREEN_WIDTH  - body_.getSize().x)){
@@ -36,7 +43,9 @@ void Csegment::Move(){
     else body_.move(-speed_, 0.0f);
     
     if(body_.getPosition().y >= (ORIGINAL_SCREEN_HEIGHT -body_.getSize().y/2.0f)) up_ = true;
-    else if (body_.getPosition().y <= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)) up_ = false;
+   else if (body_.getPosition().y <= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)) up_ = false;
+    
+    }
     
     }
 

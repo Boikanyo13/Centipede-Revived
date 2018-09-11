@@ -74,7 +74,7 @@ void Player::Move(){
 
 void Player::Shoot(){
     
-    lazershots.push_back(LazerShot{sf::Color::Yellow,sf::Vector2f(3.0f,7.0f), 0.1f});
+    lazershots.push_back(LazerShot{sf::Color::Yellow,sf::Vector2f(3.0f,7.0f), 0.5f});
     lazershots[noOfLazerShots].Load(body_.getPosition());
     noOfLazerShots++;
     

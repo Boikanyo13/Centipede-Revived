@@ -20,6 +20,8 @@ public:
     ~Csegment();
     
 private:
+     //Called when centipede enters screen
+     void Entrance();
      sf::RectangleShape body_;
      float speed_;
      //Check for foward movement
