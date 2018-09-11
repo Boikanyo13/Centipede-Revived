@@ -13,7 +13,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
-
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Centipede.h"
 
     auto START_POSTION = sf::Vector2f(280.0f,620.0f);
     float speed = 0.5f;
@@ -283,3 +283,12 @@ TEST_CASE("Check if Centipede segment changes direction at turn"){
     
     
     }
+    
+    //Centipede Tests
+    
+    TEST_CASE("Check if length of centipede corresponds to the number of segments ")
+    {
+        auto centipede = Centipede{nullptr, 10, speed};
+        CHECK(centipede.getLength() == 10);
+        
+        }
