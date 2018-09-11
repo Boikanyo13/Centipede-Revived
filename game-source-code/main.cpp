@@ -1,6 +1,7 @@
 #include <SFML\Graphics.hpp>
 #include "Player.h"
 #include "Constants.h"
+#include "Csegment.h"
 #include <memory>
 
 int main(){
@@ -10,7 +11,13 @@ int main(){
     sf::Texture playertexture;
     playertexture.loadFromFile("ship.png");
     auto shoot = false;
-    auto player = std::make_unique<Player>(&playertexture,0.5f);
+    auto player = std::make_unique<Player>(&playertexture,0.2f);
+    
+    sf::Texture centiTexture;
+    centiTexture.loadFromFile("head.png");
+    
+    
+    auto unityCenti = std::make_unique<Csegment>(&centiTexture,sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2.0f,0.0f),sf::Vector2f(CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE), 0.1f);
     
      while(window->isOpen()){
         
@@ -40,9 +47,6 @@ int main(){
                     if(event.key.code== sf::Keyboard::Space) shoot = true;
                 }
    
-             
-                
-                     
         
          }
          
@@ -50,8 +54,10 @@ int main(){
          if(shoot) player->Shoot();
          shoot = false;
          
+         unityCenti->Move();
          player->Move();
          player->Draw(*window);
+         unityCenti->Draw(*window);
          window->display();
          window->clear();
          

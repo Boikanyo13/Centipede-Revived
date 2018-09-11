@@ -3,7 +3,7 @@
 
 Player::Player(sf::Texture* texture, float speed):speed_(speed){
      
-     auto size = sf::Vector2f(20.0f,20.0f);
+     auto size = sf::Vector2f(PLAYER_X_SIZE,PLAYER_Y_SIZE);
      body_.setTexture(texture);
      body_.setSize(size);
      body_.setOrigin(size/2.0f);
@@ -74,7 +74,7 @@ void Player::Move(){
 
 void Player::Shoot(){
     
-    lazershots.push_back(LazerShot{sf::Color::Red,sf::Vector2f(3.0f,7.0f), 0.6f});
+    lazershots.push_back(LazerShot{sf::Color::Yellow,sf::Vector2f(3.0f,7.0f), 0.1f});
     lazershots[noOfLazerShots].Load(body_.getPosition());
     noOfLazerShots++;
     

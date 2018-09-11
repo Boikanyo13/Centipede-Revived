@@ -3,9 +3,16 @@
 #include <windows.h>
 
 #include <SFML\Graphics.hpp>
+/*
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
+#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"*/
+
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
 
 
     auto START_POSTION = sf::Vector2f(280.0f,620.0f);
@@ -208,5 +215,71 @@ TEST_CASE("Check if LazerShot is fired"){
     auto movement = sf::Vector2f(0.0f,speed);
   
     CHECK(L1.getPosition()==initialPos-movement);
+    
+    }
+    
+    
+/* Csegment TESTS*/
+
+TEST_CASE("Check if Csegment is on the set Initialised Position"){
+    
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2, 0.0f);
+    
+    auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
+    
+    CHECK(Cs1.getPosition()==initialPos);
+    
+    }
+    
+TEST_CASE("Check if Csegment moves"){
+    
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2, 0.0f);
+    auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
+    
+    
+    Cs1.Move();
+    
+    //Expected Movement is foward due to the nature of its position
+    auto movement = sf::Vector2f(speed, 0.0f);
+    
+    CHECK(Cs1.getPosition()==initialPos+movement);
+    
+    }
+    
+TEST_CASE("Check if Centipede segment moves one row down at boundary"){
+    
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE/2.0f, 0.0f);
+    auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
+    
+    Cs1.Move();
+   
+    //Expected movement at boundary is one row down
+    auto Y_movement = 20.0f;
+    
+    CHECK(Cs1.getPosition().y==Y_movement);
+         
+
+    }
+    
+TEST_CASE("Check if Centipede segment changes direction at turn"){
+    
+   
+      
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE, 0.0f);
+    auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
+    
+    Cs1.Move();
+    
+    //Position at turn
+    auto posAtTurn = Cs1.getPosition();
+     
+    //Move after turn
+    Cs1.Move();
+    
+    //Expected movement is to the opposite direction
+    auto movement = -sf::Vector2f(speed, 0.0f);
+    
+    CHECK(Cs1.getPosition()==posAtTurn + movement);
+    
     
     }
