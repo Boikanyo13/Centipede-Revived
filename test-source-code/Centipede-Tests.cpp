@@ -14,6 +14,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Centipede.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\SplashScreen.h"
 
     auto START_POSTION = sf::Vector2f(280.0f,620.0f);
     float speed = 0.5f;
@@ -202,7 +203,7 @@ TEST_CASE("Check if LazerShot is loaded to the Player"){
         L1.Load(P1.getPosition());
       
         CHECK(L1.getPosition()==P1.getPosition());
-}
+    }
 
 TEST_CASE("Check if LazerShot is fired"){
     
@@ -233,7 +234,7 @@ TEST_CASE("Check if Csegment is on the set Initialised Position"){
     
 TEST_CASE("Check if Csegment moves"){
     
-    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2, 0.0f);
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2.0f, 40.0f);
     auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
     
     
@@ -248,13 +249,14 @@ TEST_CASE("Check if Csegment moves"){
     
 TEST_CASE("Check if Centipede segment moves one row down at boundary"){
     
-    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE/2.0f, 0.0f);
+    auto Cs1_Ycoord = 40.0f;
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE/2.0f,Cs1_Ycoord);
     auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
     
     Cs1.Move();
    
     //Expected movement at boundary is one row down
-    auto Y_movement = 20.0f;
+    auto Y_movement = CENTIPEDE_Y_SIZE + Cs1_Ycoord;
     
     CHECK(Cs1.getPosition().y==Y_movement);
          
@@ -264,8 +266,9 @@ TEST_CASE("Check if Centipede segment moves one row down at boundary"){
 TEST_CASE("Check if Centipede segment changes direction at turn"){
     
    
-      
-    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE, 0.0f);
+    auto Cs1_Ycoord = 40.0f;
+    //Initial Position at boundary
+    auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH-CENTIPEDE_X_SIZE,Cs1_Ycoord);
     auto Cs1 = Csegment{nullptr,initialPos,sf::Vector2f{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},speed};
     
     Cs1.Move();
@@ -286,9 +289,11 @@ TEST_CASE("Check if Centipede segment changes direction at turn"){
     
     //Centipede Tests
     
-    TEST_CASE("Check if length of centipede corresponds to the number of segments ")
-    {
-        auto centipede = Centipede{nullptr, 10, speed};
-        CHECK(centipede.getLength() == 10);
+TEST_CASE("Check if length of centipede corresponds to the number of segments "){
         
-        }
+    auto centipede = Centipede{nullptr, 10, speed};
+    CHECK(centipede.getLength() == 10);
+        
+    }
+        
+

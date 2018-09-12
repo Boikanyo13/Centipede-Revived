@@ -3,23 +3,37 @@
 #include "Constants.h"
 #include "Csegment.h"
 #include "Centipede.h"
+#include "SplashScreen.h"
 #include <memory>
 
 int main(){
     
-  
-    auto window = std::make_unique<sf::RenderWindow>(sf::VideoMode(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT),"Centipede Revived", sf::Style::Default);
-    sf::Texture playertexture;
-    playertexture.loadFromFile("ship.png");
-    auto shoot = false;
-    auto player = std::make_unique<Player>(&playertexture,0.5f);
+  //Game Window
+    auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT),"Centipede Revived", sf::Style::Default);
     
+    //Game Textures
     sf::Texture centiTexture;
     centiTexture.loadFromFile("centi2.png");
+    sf::Texture playertexture;
+    playertexture.loadFromFile("ship.png");
     
+    //Game objects
+     auto player = std::make_unique<Player>(&playertexture,0.5f);
+     auto splashscreen = std::make_unique<SplashScreen>(*window);
+     auto centipede = std::make_unique<Centipede>(&centiTexture,10, 0.5f);
     
-    auto centipede = std::make_unique<Centipede>(&centiTexture,10, 0.5f);
+    //Game Booleans
+     auto isPlaying = false;
+     auto shoot = false;
+     auto leftClick = false;
+     auto openingWindow = true;
     
+     auto aspectRatioX  = 1.0f;
+     auto aspectRatioY = 1.0f;
+    
+   
+    
+   
      while(window->isOpen()){
         
         sf::Event event;
@@ -31,6 +45,10 @@ int main(){
             
             //Ensure window is not resized above boundaries
             if(event.type==sf::Event::Resized){
+                
+                //Set aspectRation when window is resized
+                aspectRatioX = ORIGINAL_SCREEN_WIDTH/window->getSize().x;
+                aspectRatioY = ORIGINAL_SCREEN_HEIGHT/window->getSize().y;
                 
                   //Above Boundary?
                   if(window->getSize().x >= 1920.0f){
@@ -47,23 +65,62 @@ int main(){
             
                     if(event.key.code== sf::Keyboard::Space) shoot = true;
                 }
+                
+                if(event.type == sf::Event::MouseButtonPressed){
+                    if (event.mouseButton.button == sf::Mouse::Left)
+                        leftClick = true;
+                        
+                }
    
         
          }
          
-         //Player wants to shoot
-         if(shoot) player->Shoot();
-         shoot = false;
+         //Display Opening window
+         if(openingWindow)
+         {
+             splashscreen->OpeningScreen();
+             window->display();
+             window->clear();
+             isPlaying = false;
+             }
          
-         centipede->Move();
-         player->Move();
-         player->Draw(*window);
-         centipede->Draw(*window);
-         window->display();
-         window->clear();
+         //Check user input
+         if(leftClick){
+             
+             openingWindow = false;
+             //Get mouse coordinates
+             sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
+             //return the flag for the button selected
+             auto ButtonNum = splashscreen->DetectButton(mousePos,aspectRatioY, aspectRatioX );
+             
+             //User wants to play
+             if(ButtonNum == 1){ isPlaying = true;}
+             
+              }
+              
+              
+              
+             //user is playong
+               if(isPlaying){             
+                    //Player wants to shoot
+                    if(shoot) player->Shoot();
+                    shoot = false;
+         
+                    centipede->Move();
+                    player->Move();
+                    player->Draw(*window);
+                    centipede->Draw(*window);
+                    window->display();
+                    window->clear();
+               }
+             
+         
+         }
+         
+
          
          
-     }
+     
     
     return EXIT_SUCCESS;
 

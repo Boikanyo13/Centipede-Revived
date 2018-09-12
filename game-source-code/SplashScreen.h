@@ -8,7 +8,7 @@ class SplashScreen
 public:
     
     
-    SplashScreen(sf::RenderWindow& window);
+    SplashScreen(sf::RenderWindow& window):window_(window){}
     ~SplashScreen();
     //Draws the opening screen 
     void OpeningScreen();
@@ -28,8 +28,8 @@ private:
    float a, b, c,d;    //start button
    float e,f,g,h;      //help button
    float q,r,y,t;      //back button
-   sf::Font gamefont;
-   sf::Text gametext;
+   sf::Font gameFont;
+   sf::Text gameText;
   
 
 };
