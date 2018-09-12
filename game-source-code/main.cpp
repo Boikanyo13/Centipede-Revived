@@ -5,13 +5,13 @@
 #include "Centipede.h"
 #include "SplashScreen.h"
 #include <memory>
+#include <SFML/Audio.hpp>
 
 int main(){
     
   //Game Window
     auto window = std::make_shared<sf::RenderWindow>(sf::VideoMode(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT),"Centipede Revived", sf::Style::Default);
     
-    //Game Textures
     sf::Texture centiTexture;
     centiTexture.loadFromFile("centi2.png");
     sf::Texture playertexture;
@@ -21,6 +21,7 @@ int main(){
      auto player = std::make_unique<Player>(&playertexture,0.5f);
      auto splashscreen = std::make_unique<SplashScreen>(*window);
      auto centipede = std::make_unique<Centipede>(&centiTexture,10, 0.5f);
+   
     
     //Game Booleans
      auto isPlaying = false;
@@ -33,9 +34,11 @@ int main(){
      auto aspectRatioX  = 1.0f;
      auto aspectRatioY = 1.0f;
     
-   
-    
-   
+     //Game Sound
+      sf::SoundBuffer LazerSound;
+      LazerSound.loadFromFile("Laser.wav");   
+      sf::Sound lazersound(LazerSound);
+      
      while(window->isOpen()){
         
         sf::Event event;
@@ -129,11 +132,13 @@ int main(){
              //user is playong
               else if(isPlaying){             
                     //Player wants to shoot
-                    if(shoot) player->Shoot();
+                    if(shoot){ player->Shoot();
                     shoot = false;
-         
+                    lazersound.play();
+                    }
                     centipede->Move();
                     player->Move();
+                    
                     player->Draw(*window);
                     centipede->Draw(*window);
                     window->display();
