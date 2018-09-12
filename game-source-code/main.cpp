@@ -27,6 +27,8 @@ int main(){
      auto shoot = false;
      auto leftClick = false;
      auto openingWindow = true;
+     auto help =  false;
+     auto back = false;
     
      auto aspectRatioX  = 1.0f;
      auto aspectRatioY = 1.0f;
@@ -82,6 +84,7 @@ int main(){
              window->display();
              window->clear();
              isPlaying = false;
+             back = false;
              }
          
          //Check user input
@@ -96,12 +99,35 @@ int main(){
              //User wants to play
              if(ButtonNum == 1){ isPlaying = true;}
              
+             //User needs help
+              if(ButtonNum == 2){ help = true;}
+              
+              //User wants to go back to Opening window
+               if(ButtonNum == 3){ back = true;}
+                  
+              leftClick = false;
+             
               }
               
-              
+              //Display instructions
+              if(help){
+                   
+                   
+                  splashscreen->HelpScreen();
+                  window->display();
+                  window->clear();
+                  isPlaying = false;
+                  
+                  if(back){
+                     help = false;
+                 openingWindow = true;
+                  }
+                
+                  
+              }
               
              //user is playong
-               if(isPlaying){             
+              else if(isPlaying){             
                     //Player wants to shoot
                     if(shoot) player->Shoot();
                     shoot = false;

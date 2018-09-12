@@ -25,12 +25,13 @@ void SplashScreen::OpeningScreen()
     auto helpButton = Button{sf::Vector2f(100.0f, 50.0f)};
     helpButton.setPosition(220,420);
     helpButton.setTexture(&helpTexture);
+     std::tie(e,f,g,h) = ButtonDimension(helpButton);
     
     //GameFont
     gameFont.loadFromFile("basson.ttf");
     gameText.setFont(gameFont);
-    gameText.setCharacterSize(45);
-    gameText.setPosition(100,200);
+    gameText.setCharacterSize(60);
+    gameText.setPosition(130,140);
     gameText.setString("Centipede \nRevived!");
     gameText.setFillColor(sf::Color::Red);
     
@@ -51,6 +52,32 @@ std::tuple <float, float, float, float> SplashScreen::ButtonDimension(Button but
     return std::make_tuple(a,b,c,d);
     
 }
+
+ void SplashScreen::HelpScreen()
+ {
+     //Back button
+     buttonTexture backTexture;
+    backTexture.loadFromFile("back.png");
+    auto backButton = Button{sf::Vector2f(100.0f, 50.0f)};
+    backButton.setPosition(220,450);
+    backButton.setTexture(&backTexture);
+    std::tie(q,r,y,t) = ButtonDimension(backButton);
+    
+    //Text for instructions
+    gameText.setFillColor(sf::Color::White);
+    gameText.setCharacterSize(40);
+    gameText.setPosition(100,150);
+    gameText.setString("Instructions" );
+    window_.draw(gameText);
+    
+    gameText.setCharacterSize(15);
+    gameText.setPosition(40, 200);
+    gameText.setString("\n To Shoot: space \n \n Move Up: Up Arrow \n \n Move Down: Down Arrow \n \n Move Left: Left Arrow \n \n Move Right: Right Arrow");
+    window_.draw(gameText);
+    window_.draw(backButton);
+     
+     
+     }
 
 int SplashScreen::DetectButton(sf::Vector2i mousePos, float aspectRatioY, float aspectRatioX) 
 {
@@ -77,7 +104,7 @@ int SplashScreen::DetectButton(sf::Vector2i mousePos, float aspectRatioY, float 
                if( (aspectRatioX*mousePos.x >= q)   && (aspectRatioX*mousePos.x <= r))  {
                     if((aspectRatioY*mousePos.y >= y) && (aspectRatioY*mousePos.y <= t)) {
                         
-                        return backButtonFlag  ;    //back button
+                        return backButtonFlag ;    //back button
                         }
                }
  return 0;
