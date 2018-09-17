@@ -15,6 +15,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Centipede.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\SplashScreen.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameTypes.cpp"
 
     auto START_POSTION = sf::Vector2f(280.0f,620.0f);
     float speed = 0.5f;
@@ -297,3 +298,32 @@ TEST_CASE("Check if length of centipede corresponds to the number of segments ")
     }
         
 
+    //Vector2D Tests
+    
+TEST_CASE("Check is x and y are set correctly"){
+    
+    auto Vector2D = vector2D{6.0f,10.0f};
+    CHECK(Vector2D.x() == 6.0f);
+    CHECK(Vector2D.y() == 10.0f);
+}
+
+TEST_CASE("Check if operator + returns correct answer"){
+    
+    auto Vector2D_1 = vector2D{6.0f,10.0f};
+    auto Vector2D_2 = vector2D{12.0f,3.0f};
+    auto answer(Vector2D_1 + Vector2D_2 ); 
+    
+    CHECK(answer.x() == 18.0f);
+    CHECK(answer.y() == 13.0f); 
+}
+
+TEST_CASE("Check if operator - returns correct answer"){
+    
+    
+    auto Vector2D_1 = vector2D{18.0f,10.0f};
+    auto Vector2D_2 = vector2D{12.0f,3.0f};
+    auto answer(Vector2D_1 - Vector2D_2 ); 
+    
+    CHECK(answer.x() == 6.0f);
+    CHECK(answer.y() == 7.0f); 
+}
