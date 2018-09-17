@@ -1,38 +1,23 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-#include <SFML/Graphics.hpp>
 #include "constants.h"
-#include "LazerShot.h"
+#include "GameObject.h"
 
 
-
-class Player
-{
+class Player: public GameObject{
 public:
-
-    Player(sf::Texture* texture, float speed);
-    //Move the player across the window
-    void Move();
-    //Draw the player on the window
-    void Draw(sf::RenderWindow& window);
-    //Shoot LazerShots from Player
-     void Shoot();
-    //Set moving speed of player
-    void setSpeed(float speed);
-    //Set size of player
-    void setSize(const sf::Vector2f& size);
-    //Set texture of player
-    void setTexture(sf::Texture* texture);
-    //Check position of player
-    sf::Vector2f getPosition();
-    ~Player();
-
+    
+    Player(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
+    virtual void Move(Direction direction) override;
+    virtual ~Player();
+    
 private:
-    sf::RectangleShape body_;
-    float speed_;
-    std::vector<LazerShot> lazershots;
-    int noOfLazerShots;
-  
+   void moveLeft();
+   void moveRight();
+   void moveUp();
+   void moveDown();
+
 };
+
 
 #endif // PLAYER_H
