@@ -14,6 +14,7 @@ public:
     void setSpeed(float speed);
     //set the object ID
     void setObjectID(ObjectID oID);
+    //Indicate current state of object in the game(dead or alive?)
     void updateState(State state);
     //Move the object in the window
     virtual void Move(Direction direction) = 0;
