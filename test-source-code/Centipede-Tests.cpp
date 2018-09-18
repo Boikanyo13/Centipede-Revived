@@ -276,7 +276,7 @@ TEST_CASE("Check if length of centipede corresponds to the number of segments ")
 
     //Vector2D Tests
     
-TEST_CASE("Check is x and y are set correctly"){
+TEST_CASE("Check if x and y are set correctly"){
     
     auto Vector2D = vector2D{6.0f,10.0f};
     CHECK(Vector2D.x() == 6.0f);

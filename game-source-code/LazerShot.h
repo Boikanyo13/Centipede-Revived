@@ -1,27 +1,18 @@
 #ifndef LAZERSHOT_H
 #define LAZERSHOT_H
-#include <SFML/Graphics.hpp>
-#include "constants.h"
+#include "GameObject.h"
 
-class LazerShot
-{
+class LazerShot: public GameObject{
+
 public:
-   
-    LazerShot(sf::Color color, sf::Vector2f size, float speed);
-    //Load the Player with the lazershot
-    void Load(const sf::Vector2f& pos);
-    //Fire the lazershot at a target
-    void Fire();
-    //Draw the lazershot on the screen
-    void Draw(sf::RenderWindow & window);
-    //Get position of the LazerShot
-    sf::Vector2f getPosition() const;
-    ~LazerShot();
-    
+    LazerShot(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
+    virtual void Move(Direction direction) override;
+    void Load(const vector2D& pos);
+    virtual ~LazerShot();
+
 private:
-   sf::RectangleShape body_;
-   float speed_;
 
 };
+
 
 #endif // LAZERSHOT_H
