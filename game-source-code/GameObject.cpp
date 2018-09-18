@@ -1,14 +1,43 @@
 #include "GameObject.h"
 
-GameObject::GameObject(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):size_{size},position_{position}{
-    
-    speed_ = speed;
-    
-    }
+GameObject::GameObject(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
+size_{size},
+speed_{speed},
+objectID_{objectid}
+{
+ 
+   if(objectid != ObjectID::CENTIPEDE){
+      if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+        throw ObjectOutOfBounds{};
+        }
+       else{position_=position;}
+      }
+  else if(position.x() < 0 || position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+           throw ObjectOutOfBounds{};
+     }
+   else{
+          position_=position;
+       }
+  }
     
 void GameObject::setPosition(const vector2D& position){
+     
+    //Ensure that objects are within the screen bounds 
     
-    position_ = position;
+    //Check, for LazerShots and Centipede vertical position is allowed to be < 0 
+    if((objectID_ != ObjectID::CENTIPEDE) ||(objectID_ != ObjectID::BULLET)){
+      if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+        throw ObjectOutOfBounds{};
+        }
+        else{position_ = position;}
+      }
+   else if(position.x() < 0 || position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+           throw ObjectOutOfBounds{};
+     }
+   else{
+          position_=position;
+       }
+
     }
  
 void GameObject::setSize(const vector2D& size){

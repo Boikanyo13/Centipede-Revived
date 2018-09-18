@@ -3,12 +3,14 @@
 #include <windows.h>
 
 #include <SFML\Graphics.hpp>
-/*
+
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
-#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"*/
+#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameTypes.h"
 
+/*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -16,9 +18,9 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Centipede.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\SplashScreen.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameTypes.cpp"
-
-    auto START_POSTION = sf::Vector2f(280.0f,620.0f);
-    float speed = 0.5f;
+*/
+   
+    float speed = 1.5f;
     
     /*
      * SCREEN WIDTH = 540.0f
@@ -29,173 +31,147 @@
 
 TEST_CASE("Check if player is at starting position"){
     
-    auto P1 = Player{nullptr,speed};
-    
-    CHECK(P1.getPosition()==START_POSTION);
+    auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+    CHECK( P1.getPosition() == PLAYER_START_POSTION);
     
     }
     
-TEST_CASE("Check Left Movement"){
+TEST_CASE("Player cannot be set outside of the game grid"){
     
-      auto P1 = Player{nullptr,speed};
-      
+    auto position = vector2D{ORIGINAL_SCREEN_WIDTH + 1.0f,ORIGINAL_SCREEN_HEIGHT + 1.0f};
+    
+    //Constructor
+    CHECK_THROWS_AS(auto P1 = Player(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position,speed, ObjectID::PLAYER),ObjectOutOfBounds);
+    
+    auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION,speed, ObjectID::PLAYER};
+    
+    //setPostion method
+    CHECK_THROWS_AS(P1.setPosition(position),ObjectOutOfBounds);
+}
+
+ 
+TEST_CASE("Player moves to the left direction"){
+    
+      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+ 
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(speed,0.0f);
+      auto movement = vector2D(speed,0.0f);
+    
+      P1.Move(Direction::LEFT);
       
-      //Simulate the press down of the LEFT ARROW key
-      keybd_event(VK_LEFT,0xcb,0,0);
+      CHECK(P1.getPosition() == (PLAYER_START_POSTION - movement));
       
-      P1.Move();
+    }
+    
+TEST_CASE("Player moves to the right direction"){
+    
+      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+ 
+      //Expected Distance to be moved
+      auto movement = vector2D(speed,0.0f);
+    
+      P1.Move(Direction::RIGHT);
       
-      //Simulate the release of the LEFT ARROW key
-      keybd_event(VK_LEFT,0xcb,KEYEVENTF_KEYUP,0);
-      CHECK(P1.getPosition() == (START_POSTION - movement));
+      CHECK(P1.getPosition() == (PLAYER_START_POSTION + movement));
+    }
+    
+TEST_CASE("Player moves up"){
+    
+      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+ 
+      //Expected Distance to be moved
+      auto movement = vector2D(0.0f,speed);
+    
+      P1.Move(Direction::UP);
+      
+      CHECK(P1.getPosition() == (PLAYER_START_POSTION - movement));
     
     }
 
-TEST_CASE("Check Right Movement"){
+TEST_CASE("Player moves down"){
     
-      auto P1 = Player{nullptr,speed};
-      
+      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+ 
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(speed,0.0f);
+      auto movement = vector2D(0.0f,speed);
+    
+      P1.Move(Direction::DOWN);
       
-      //Simulate the press down of the RIGHT ARROW key
-      keybd_event(VK_RIGHT,0xcd,0,0);
-      
-      P1.Move();
-      
-      //Simulate the release of the RIGHT ARROW key
-      keybd_event(VK_RIGHT,0xcd,KEYEVENTF_KEYUP,0);
-      CHECK(P1.getPosition() == (START_POSTION + movement));
+      CHECK(P1.getPosition() == (PLAYER_START_POSTION + movement));
     
     }
     
-TEST_CASE("Check Up Movement"){
-    
-      auto P1 = Player{nullptr,speed};
-      
-      //Expected Distance to be moved
-      auto movement = sf::Vector2f(0.0f,speed);
-      
-      //Simulate the press down of the UP ARROW key
-      keybd_event(VK_UP,0xc8,0,0);
-      
-      P1.Move();
-      
-      //Simulate the release of the UP ARROW key
-      keybd_event(VK_UP,0xc8,KEYEVENTF_KEYUP,0);
-      CHECK(P1.getPosition() == (START_POSTION - movement));
-    
-    }
-
-TEST_CASE("Check Down Movement"){
-    
-      auto P1 = Player{nullptr,speed};
-      
-      //Expected Distance to be moved
-      auto movement = sf::Vector2f(0.0f,speed);
-      
-      //Simulate the press down of the DOWN ARROW key
-      keybd_event(VK_DOWN,0xd0,0,0);
-      
-      P1.Move();
-      
-      //Simulate the release of the DOWN ARROW key
-      keybd_event(VK_DOWN,0xd0,KEYEVENTF_KEYUP,0);
-      CHECK(P1.getPosition() == (START_POSTION + movement));
-    
-    }
-    
+   
 TEST_CASE("Player does not go over Left window boundry"){
        
       auto newSpeed = 2*ORIGINAL_SCREEN_WIDTH;
-      auto P1 = Player{nullptr,newSpeed};
-      
+    
+     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
       
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(newSpeed,0.0f);
+      auto movement = vector2D{newSpeed,0.0f};
       
-      //Simulate the press down of the LEFT ARROW key
-      keybd_event(VK_LEFT,0xcb,0,0);
+      P1.Move(Direction::LEFT);
       
-      P1.Move();
-      
-      //Simulate the release of the LEFT ARROW key
-      keybd_event(VK_LEFT,0xcb,KEYEVENTF_KEYUP,0);
-      CHECK_FALSE(P1.getPosition() == (START_POSTION - movement) );
-      CHECK(P1.getPosition().x > 0);
+      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION - movement) );
+      CHECK(P1.getPosition().x() > 0);
     
     }
-    
+
+  
 TEST_CASE("Player does not go over Right window boundry"){
     
       auto newSpeed = 2*ORIGINAL_SCREEN_WIDTH;
-      auto P1 = Player{nullptr,newSpeed};
+    
+     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
       
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(newSpeed,0.0f);
+      auto movement = vector2D{newSpeed,0.0f};
       
-      //Simulate the press down of the RIGHT ARROW key
-      keybd_event(VK_RIGHT,0xcd,0,0);
+      P1.Move(Direction::RIGHT);
       
-      P1.Move();
-      
-      //Simulate the release of the RIGHT ARROW key
-      keybd_event(VK_RIGHT,0xcd,KEYEVENTF_KEYUP,0);
-      
-      CHECK_FALSE(P1.getPosition() == (START_POSTION + movement));
-      CHECK(P1.getPosition().x < ORIGINAL_SCREEN_WIDTH);
+      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION + movement) );
+      CHECK(P1.getPosition().x() < ORIGINAL_SCREEN_WIDTH);
       
     }
-    
+
 TEST_CASE("Player does not go over Up window boundry"){
+       
+     auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
     
-      auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
-      auto P1 = Player{nullptr,newSpeed};
+     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
       
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(0.0f,newSpeed);
+      auto movement = vector2D{0.0f,newSpeed};
       
-      //Simulate the press down of the UP ARROW key
-      keybd_event(VK_UP,0xc8,0,0);
+      P1.Move(Direction::UP);
       
-      P1.Move();
-      
-      //Simulate the release of the UP ARROW key
-      keybd_event(VK_UP,0xc8,KEYEVENTF_KEYUP,0);
-      CHECK_FALSE(P1.getPosition() == (START_POSTION - movement));
-      CHECK(P1.getPosition().y > 0);
+      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION - movement) );
+      CHECK(P1.getPosition().y() > 0);
     
-    }
+}
     
-    
+
 TEST_CASE("Player does not go over Down window boundry"){
     
-      auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
-      auto P1 = Player{nullptr,newSpeed};
- 
+     auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
+    
+     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
       
       //Expected Distance to be moved
-      auto movement = sf::Vector2f(0.0f,newSpeed);
+      auto movement = vector2D{0.0f,newSpeed};
       
-      //Simulate the press down of the DOWN ARROW key
-      keybd_event(VK_DOWN,0xd0,0,0);
+      P1.Move(Direction::UP);
       
-      P1.Move();
-      
-      //Simulate the release of the DOWN ARROW key
-      keybd_event(VK_DOWN,0xd0,KEYEVENTF_KEYUP,0);
-      
-      CHECK_FALSE(P1.getPosition() == (START_POSTION + movement));
-      CHECK(P1.getPosition().y < ORIGINAL_SCREEN_HEIGHT);
-    
-    }
-    
+      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION + movement) );
+      CHECK(P1.getPosition().y() < ORIGINAL_SCREEN_HEIGHT);
+}
+
+
     
     //LazerShot Tests
     
-TEST_CASE("Check if LazerShot is loaded to the Player"){
+/*TEST_CASE("Check if LazerShot is loaded to the Player"){
         
         auto L1 = LazerShot{sf::Color::Red,sf::Vector2f(3.0f,7.0f), 0.6f};
         auto P1 = Player{nullptr,speed};
@@ -219,11 +195,11 @@ TEST_CASE("Check if LazerShot is fired"){
     CHECK(L1.getPosition()==initialPos-movement);
     
     }
-    
+    */
     
 /* Csegment TESTS*/
 
-TEST_CASE("Check if Csegment is on the set Initialised Position"){
+/*TEST_CASE("Check if Csegment is on the set Initialised Position"){
     
     auto initialPos = sf::Vector2f(ORIGINAL_SCREEN_WIDTH/2, 0.0f);
     
@@ -296,7 +272,7 @@ TEST_CASE("Check if length of centipede corresponds to the number of segments ")
     CHECK(centipede.getLength() == 10);
         
     }
-        
+        */
 
     //Vector2D Tests
     
@@ -306,6 +282,15 @@ TEST_CASE("Check is x and y are set correctly"){
     CHECK(Vector2D.x() == 6.0f);
     CHECK(Vector2D.y() == 10.0f);
 }
+
+TEST_CASE("vector2D containing the same x and y values are equal"){
+    
+    auto V1 = vector2D{19.0f,18.0f};
+    auto V2 = vector2D{19.0f,18.0f};
+    
+    CHECK(V1==V2);
+    
+    }
 
 TEST_CASE("Check if operator + returns correct answer"){
     

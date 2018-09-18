@@ -1,6 +1,9 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 #include "GameTypes.h"
+#include "Constants.h"
+
+class ObjectOutOfBounds{};
 
 class GameObject
 {
