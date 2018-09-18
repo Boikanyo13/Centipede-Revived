@@ -9,6 +9,7 @@
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameTypes.h"
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameFiles.cpp"
 
 /*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
@@ -332,3 +333,14 @@ TEST_CASE("Check if operator - returns correct answer"){
     CHECK(answer.x() == 6.0f);
     CHECK(answer.y() == 7.0f); 
 }
+
+//GameFiles Tests
+
+TEST_CASE("GameFiles returns correct image file according to Object ID"){
+    
+    auto G1 = GameFiles{};
+    std::string PlayerTexture = "ship.png";
+    
+    CHECK(G1.image(ObjectID::PLAYER)==PlayerTexture);
+
+    }
