@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include <iostream>
 
 GameObject::GameObject(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 size_{size},
@@ -25,14 +26,15 @@ void GameObject::setPosition(const vector2D& position){
     //Ensure that objects are within the screen bounds 
     
     //Check, for LazerShots and Centipede vertical position is allowed to be < 0 
-    if((objectID_ != ObjectID::CENTIPEDE) ||(objectID_ != ObjectID::BULLET)){
+    if((objectID_ != ObjectID::CENTIPEDE) && (objectID_ != ObjectID::BULLET)){
       if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
-        throw ObjectOutOfBounds{};
+            throw ObjectOutOfBounds{};
         }
         else{position_ = position;}
       }
    else if(position.x() < 0 || position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
            throw ObjectOutOfBounds{};
+          
      }
    else{
           position_=position;

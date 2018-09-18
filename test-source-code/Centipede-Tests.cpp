@@ -168,34 +168,54 @@ TEST_CASE("Player does not go over Down window boundry"){
 }
 
 
+//LazerShot Tests
+TEST_CASE("LazerShot cannot be set out of game grid Boundary"){
     
-    //LazerShot Tests
+    auto position = vector2D{ORIGINAL_SCREEN_WIDTH + 1.0f,ORIGINAL_SCREEN_HEIGHT + 1.0f};
+   
+    CHECK_THROWS_AS(auto L1 = LazerShot(vector2D{5.0f,10.0f},position,speed, ObjectID::BULLET),ObjectOutOfBounds);
     
-/*TEST_CASE("Check if LazerShot is loaded to the Player"){
+    }
+     
+ 
+TEST_CASE("LazerShot is loaded to the Player"){
         
-        auto L1 = LazerShot{sf::Color::Red,sf::Vector2f(3.0f,7.0f), 0.6f};
-        auto P1 = Player{nullptr,speed};
+         auto lazershot_pos = vector2D{0.0f,0.0f};
+         auto L1 = LazerShot{vector2D{5.0f,10.0f},lazershot_pos,speed, ObjectID::BULLET};
+         auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
         
         CHECK_FALSE(L1.getPosition()==P1.getPosition());
+        
+        //Load Bullet to player
         L1.Load(P1.getPosition());
       
         CHECK(L1.getPosition()==P1.getPosition());
     }
-
-TEST_CASE("Check if LazerShot is fired"){
     
-    auto L1 = LazerShot{sf::Color::Red,sf::Vector2f(3.0f,7.0f), speed};
+
+TEST_CASE("LazerShot is fired"){
+    
+    auto lazershot_pos = vector2D{20.0f,20.0f};
+    auto L1 = LazerShot{vector2D{5.0f,10.0f},lazershot_pos,speed, ObjectID::BULLET};
     auto initialPos = L1.getPosition();
     
     L1.Fire();
     
     //Expected Movement
-    auto movement = sf::Vector2f(0.0f,speed);
+    auto movement = vector2D{0.0f,speed};
   
     CHECK(L1.getPosition()==initialPos-movement);
     
     }
-    */
+
+
+TEST_CASE("LazerShot is allowed to go over UP game grid boundry"){
+    
+    auto lazershot_pos = vector2D{20.0f,0.0f};
+    auto L1 = LazerShot{vector2D{5.0f,10.0f},lazershot_pos,speed, ObjectID::BULLET};
+    CHECK_NOTHROW(L1.Fire());
+}
+    
     
 /* Csegment TESTS*/
 

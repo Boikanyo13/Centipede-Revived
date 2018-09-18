@@ -6,12 +6,14 @@ class LazerShot: public GameObject{
 
 public:
     LazerShot(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
-    virtual void Move(Direction direction) override;
+    //Load Lazershot to player
     void Load(const vector2D& pos);
+    //Fire Bullet
+    void Fire();
     virtual ~LazerShot();
 
 private:
-
+     virtual void Move(Direction direction) override;
 };
 
 
