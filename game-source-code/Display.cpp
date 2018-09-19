@@ -6,6 +6,9 @@ screenWidth_(screenWidth),screenHeight_(screenHeight),
 window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default}
 {
     space = false;
+    c_.loadFromFile(gamefile_.image(ObjectID::CENTIPEDE));
+    l_.loadFromFile(gamefile_.image(ObjectID::BULLET));
+    p_.loadFromFile(gamefile_.image(ObjectID::PLAYER));
     
     }
 
@@ -66,18 +69,34 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
 
     auto gameobject_SFML = drawSprite(gameobject_ptr);
     
-    sf::Texture objectTexture;
+   // sf::Texture objectTexture;
     
     //Does the file exist?
-    if(!objectTexture.loadFromFile(gamefile_.image(gameobject_ptr->ID()))){
+   // if(!objectTexture.loadFromFile(gamefile_.image(gameobject_ptr->ID()))){
         
-        throw FileNotFound{};
+    //    throw FileNotFound{};
         
-        };
+    //    };
         
-    gameobject_SFML.setTexture(&objectTexture);
+    switch(gameobject_ptr->ID()){    
+        
+     case ObjectID::BULLET:
+            gameobject_SFML.setTexture(&l_);
+            break;
+        
+        case ObjectID::PLAYER:
+            gameobject_SFML.setTexture(&p_);
+            break;
+        case ObjectID::CENTIPEDE:
+             gameobject_SFML.setTexture(&c_);
+             break;
+       
+            
+        default:
+
+        break;
     
-    
+    }
     window_.draw(gameobject_SFML);
 }
 
@@ -87,9 +106,10 @@ void Display::drawLazerShot(shared_ptr<Player> player_ptr){
     
     for(auto i = 0; i < lazershots; i++){
        
-       auto gameobject_SFML = drawSprite(std::get<0>(player_ptr->firedLazerShot(i)));
-            gameobject_SFML.setFillColor(sf::Color::Yellow);
-            window_.draw(gameobject_SFML);
+       drawObject(std::get<0>(player_ptr->firedLazerShot(i)));
+       //auto gameobject_SFML = drawSprite(std::get<0>(player_ptr->firedLazerShot(i)));
+           // gameobject_SFML.setFillColor(sf::Color::Yellow);
+            //window_.draw(gameobject_SFML);
        }
 }
 

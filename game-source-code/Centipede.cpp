@@ -9,7 +9,7 @@ Centipede::Centipede(int length):length_{length}{
         
         
         centipede.push_back(std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE, CENTIPEDE_Y_SIZE},
-            vector2D{x_pos, y_pos},3.0f, ObjectID::CENTIPEDE));
+            vector2D{x_pos, y_pos},1.0f, ObjectID::CENTIPEDE));
             
         y_pos -= 1.2*CENTIPEDE_Y_SIZE;
     }

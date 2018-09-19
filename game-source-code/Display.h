@@ -33,6 +33,9 @@ private:
     float screenHeight_;
     bool space;
     sf::RenderWindow window_;
+    sf::Texture p_;
+    sf::Texture l_;
+    sf::Texture c_;
     GameFiles gamefile_;
 
 };

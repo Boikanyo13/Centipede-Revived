@@ -17,7 +17,7 @@ string GameFiles::image(ObjectID ID) const{
             break;
         case ObjectID::CENTIPEDE:
             return "centi2.png";
-            break;
+
        
             
         default:
