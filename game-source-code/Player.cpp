@@ -1,11 +1,12 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 GameObject{size,position,speed,objectid}
 {   
-    
+    noOfLazerShots_ = 0;
     }
-    
+
 void Player::Move(Direction direction){  
 
     switch(direction){
@@ -29,8 +30,39 @@ void Player::Move(Direction direction){
         default:
         break;
         }
+        
+        
+        
     }
+
+void Player::shoot(){
     
+    for(auto i = 0; i < noOfLazerShots_; i++){
+        
+       lazerShotsGun_[i]->Fire();
+        
+         /* if(lazerShotsGun_[i]->isDead() && noOfLazerShots_ >50){
+            
+            lazerShotsGun_.erase(lazerShotsGun_.begin()+i);
+          
+            noOfLazerShots_--;
+            
+            }*/
+         }
+}
+
+void Player::load(){
+    
+    lazerShotsGun_.push_back(std::make_shared<LazerShot>(vector2D{2.0f,5.0f},vector2D{0.0f,0.0f}, 1.0f, ObjectID::BULLET));
+    lazerShotsGun_[noOfLazerShots_]->Load(getPosition());
+    noOfLazerShots_++;
+    
+}
+
+std::tuple<std::shared_ptr<LazerShot>, int> Player::firedLazerShot(int i) const
+{
+return std::tie(lazerShotsGun_[i], noOfLazerShots_);
+}
    
 
         
@@ -62,8 +94,7 @@ void Player::moveDown(){
             }
     }
     
-   // down >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3
-    
+
 void Player::moveUp(){
     
      //Check if at boundary

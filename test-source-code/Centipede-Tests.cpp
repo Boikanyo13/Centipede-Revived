@@ -1,17 +1,18 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
-#include <windows.h>
+#include <memory>
 
 
-/*
+
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameTypes.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameFiles.cpp"
-*/
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Display.h"
 
+/*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -20,7 +21,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\SplashScreen.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameTypes.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Display.h"
-
+*/
    
     float speed = 1.5f;
     
@@ -217,7 +218,50 @@ TEST_CASE("LazerShot is allowed to go over UP game grid boundry"){
     auto L1 = LazerShot{vector2D{5.0f,10.0f},lazershot_pos,speed, ObjectID::BULLET};
     CHECK_NOTHROW(L1.Fire());
 }
+
+
+//LazerShot + Player Test
+
+TEST_CASE("LazerShot is loaded onto the LazerShot Gun of the Player"){
     
+    auto expectedLoadedShot = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},PLAYER_START_POSTION, 1.0f, ObjectID::BULLET);
+    
+     auto player = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+    
+    //Load the Player's LazerGun three times
+     player.load();
+     player.load();
+     player.load();
+     
+     auto expectedNoOfLazerShots = 3;   
+     
+     //All the lazershots are identical, choose the 1st one   
+     auto[loadedLazerShot, noOflazershots] = player.firedLazerShot(0);
+     
+     CHECK(loadedLazerShot->getPosition() == expectedLoadedShot->getPosition());
+     CHECK(noOflazershots==expectedNoOfLazerShots );
+     
+}
+
+TEST_CASE("Player Shoots LazerShots"){
+    
+    auto player = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+     
+    player.load();
+    
+    auto loadedLazerShot= std::get<0>(player.firedLazerShot(0));
+    
+    //LazerShot is loaded at Player
+    CHECK(loadedLazerShot->getPosition()==player.getPosition());
+    
+    player.shoot();
+   
+    //LazerShot shoots up
+    auto expectedPosition = vector2D{PLAYER_START_POSTION.x(),( PLAYER_START_POSTION.y()-loadedLazerShot->getSpeed())};
+    
+    CHECK(loadedLazerShot->getPosition()==expectedPosition); 
+    
+    }
     
 /* Csegment TESTS*/
 

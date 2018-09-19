@@ -11,6 +11,9 @@ void LazerShot::Move(Direction direction){
     auto newPosition = getPosition().y() - getSpeed();
     
     setPosition(vector2D(getPosition().x(), newPosition));
+    
+    //LazerShot out of bounds
+     if(getPosition().y() < - getSize().y()){updateState(State::DEAD);}
     }
     else{
         // Do nothing
@@ -19,8 +22,9 @@ void LazerShot::Move(Direction direction){
 
 void LazerShot::Fire(){
     
+   if(!isDead()){
     Move(Direction::UP);
-    
+  }
 }
     
 void LazerShot::Load(const vector2D& position){
