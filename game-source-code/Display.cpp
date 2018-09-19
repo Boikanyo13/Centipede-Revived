@@ -52,6 +52,14 @@ void Display::display(){
     
 }
 
+void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
+      
+      for (auto i = 0; i <= centi_ptr->length() ; i++){
+      drawObject(centi_ptr->centiSegment(i));
+      
+      }
+}
+
 
 void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     

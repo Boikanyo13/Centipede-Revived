@@ -335,16 +335,15 @@ TEST_CASE("Check if Centipede segment changes direction at turn"){
     
     
     }
-/*    
+    
     //Centipede Tests
     
 TEST_CASE("Check if length of centipede corresponds to the number of segments "){
         
-    auto centipede = Centipede{nullptr, 10, speed};
-    CHECK(centipede.getLength() == 10);
+    auto centipede = Centipede{CENTIPEDE_LENGTH};
+    CHECK(centipede.length() == CENTIPEDE_LENGTH);
         
     }
-        */
 
     //Vector2D Tests
     

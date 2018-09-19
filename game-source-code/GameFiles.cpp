@@ -15,6 +15,9 @@ string GameFiles::image(ObjectID ID) const{
         case ObjectID::PLAYER:
             return "ship.png";
             break;
+        case ObjectID::CENTIPEDE:
+            return "centi2.png";
+            break;
        
             
         default:

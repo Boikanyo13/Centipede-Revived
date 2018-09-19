@@ -3,6 +3,7 @@
 #include "Display.h"
 #include "Constants.h"
 #include "UserInputs.h"
+#include "Centipede.h"
 #include <memory>
 
 
@@ -15,6 +16,8 @@ int main(){
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, 1.0f, ObjectID::PLAYER);
     auto D1 = std::make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT);
     auto userInput = std::make_shared<UserInputs>();
+    
+    auto C1 = std::make_shared<Centipede>(CENTIPEDE_LENGTH);
     
  
     
@@ -42,7 +45,7 @@ int main(){
              P1->Move(Direction::RIGHT);
          }
     
-        
+        C1->Move();
         
         if(D1->spaceKey()){
             
@@ -55,7 +58,9 @@ int main(){
          if(shooting){
          D1->drawLazerShot(P1);}
          D1->drawObject(P1);
+         D1->drawCentipede(C1);
          D1->display();
+         
 
         
         }

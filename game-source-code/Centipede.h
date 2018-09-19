@@ -1,33 +1,27 @@
-/*#ifndef CENTIPEDE_H
+#ifndef CENTIPEDE_H
 #define CENTIPEDE_H
-#include <SFML\Graphics.hpp>
+#include <vector>
 #include "Csegment.h"
+#include "GameTypes.h"
+#include <memory>
 
-using  segments = std::vector<Csegment>;
+using std::vector; 
+using std::shared_ptr;
+ 
 
-class Centipede
-{
-public:
-
-    Centipede(sf::Texture* texture, int length, float speed);
-    ~Centipede();
-    //Draw the centipede on the window
-    void Draw(sf::RenderWindow& window);
-    //Get the length of the centipede
-    int getLength() const;
-    //Move the centipede across the window
-    void Move();
+class Centipede{
     
-private: 
-
-     //This is a vector of type Csegment.
-     //The centipede is a vector of Csegment objects.
-     segments centipede;
-     int length_;
-     float speed_;
-     
-
+public:
+    Centipede(int length);
+    void Move();
+    int length(){ return length_;}
+    shared_ptr<CentiSegment> centiSegment(int i){return centipede[i] ; }
+    ~Centipede();
+    
+private:
+    //segment centipede;
+    vector<shared_ptr <CentiSegment>> centipede;
+    int length_;
 };
 
 #endif // CENTIPEDE_H
-*/

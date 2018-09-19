@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "GameFiles.h"
 #include "Player.h"
+#include "Centipede.h"
 using std::shared_ptr;
 
 class FileNotFound{};
@@ -21,6 +22,8 @@ public:
     bool isOpen() const;
     //Draw fired Lazershots
     void drawLazerShot(shared_ptr<Player> player_ptr);
+    //Draw Centipede
+    void drawCentipede(shared_ptr<Centipede> centi_ptr);
     ~Display();
     
 private:
