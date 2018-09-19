@@ -1,7 +1,8 @@
-#include "Centipede.h"
+/*#include "Centipede.h"
 #include <vector>
 #include <SFML\Graphics.hpp>
-#include "Csegment.h"
+#include "Csegment.h
+
 
 Centipede::Centipede(sf::Texture* texture,int length = 8, float speed = 0.2f):length_(length),speed_(speed)
 { 
@@ -52,3 +53,4 @@ Centipede::~Centipede()
 {
 }
 
+*/

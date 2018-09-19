@@ -1,33 +1,27 @@
 #ifndef CSEGMENT_H
 #define CSEGMENT_H
-#include <SFML\Graphics.hpp>
+#include "GameObject.h"
 #include "Constants.h"
 
-
-/*This is the Centipede Segment Class*/
-
-class Csegment
-{
+class CentiSegment: public GameObject{
 public:
-       
-    Csegment(sf::Texture* texture,sf::Vector2f InitPosition,sf::Vector2f size,float speed);
-    //Draw the segment on the screen
-    void Draw(sf::RenderWindow& window);
-    //Get posotion of the Centipede Segment
-    sf::Vector2f getPosition() const;
-    //Move the Csegement
+    
+    CentiSegment(const vector2D& size, const vector2D& position, float speed, ObjectID objectid);
     void Move();
-    ~Csegment();
+    virtual ~CentiSegment();
     
 private:
-     //Called when centipede enters screen
-     void Entrance();
-     sf::RectangleShape body_;
-     float speed_;
-     //Check for foward movement
-     bool forward_;
-     //Check for upward movement
-     bool up_;
-};
+
+    virtual void Move(Direction direction) override;
+    void moveLeft();
+    void moveRight();
+    void moveUp();
+    void moveDown();
+    void entrance();
+    bool forward_;
+    bool up_;
+    bool atBoundry_;
+    };
+
 
 #endif // CSEGMENT_H

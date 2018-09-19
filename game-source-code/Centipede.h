@@ -1,4 +1,4 @@
-#ifndef CENTIPEDE_H
+/*#ifndef CENTIPEDE_H
 #define CENTIPEDE_H
 #include <SFML\Graphics.hpp>
 #include "Csegment.h"
@@ -30,3 +30,4 @@ private:
 };
 
 #endif // CENTIPEDE_H
+*/

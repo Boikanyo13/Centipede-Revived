@@ -1,65 +1,108 @@
 #include "Csegment.h"
 
-Csegment::Csegment(sf::Texture* texture,sf::Vector2f InitPosition, sf::Vector2f size, float speed):speed_(speed)
-{
-   
-    body_.setSize(size);
-    body_.setFillColor(sf::Color::Green);
-    body_.setPosition(InitPosition.x, InitPosition.y);
-    body_.setTexture(texture);
-    body_.setOrigin(size/2.0f);
+
+CentiSegment::CentiSegment(const vector2D& size, const vector2D& position, float speed, ObjectID objectid):
+GameObject{size,position,speed,objectid}{
     forward_ = true;
     up_ = false;
+    atBoundry_ = false;
+    }
+
+
+void CentiSegment::Move(Direction direction){
+    
+    switch(direction){
+        
+        case Direction::UP:
+                moveUp();
+            break;
+        
+        case Direction::DOWN:
+                moveDown();
+            break;
+            
+        case Direction::LEFT:
+                moveLeft();
+            break;
+            
+        case Direction::RIGHT:
+                moveRight();
+            break;
+        
+        default:
+        break;
+        }
+    
+    }
+
+void CentiSegment::Move(){
+    
+    if(getPosition().y() <= getSize().y()) { entrance(); }
+    
+    else{
+        
+            if(atBoundry_){
+                
+                if(!up_) Move(Direction::DOWN);
+                else Move(Direction::UP);
+            }
+
+          else{
+                if(forward_) Move(Direction::RIGHT);
+                else Move(Direction::LEFT);}
+    }
 }
 
-void Csegment::Entrance(){
-
-        body_.move(0.0f,speed_);
-}    
-
-void Csegment::Move(){
+void CentiSegment::moveLeft(){
     
-  if(body_.getPosition().y <= body_.getSize().y){  Entrance(); }
-   else{
-    
-   //Move segment  one row up or down if it is at right boundry
-    if(body_.getPosition().x >= (ORIGINAL_SCREEN_WIDTH  - body_.getSize().x)){
-        
-        forward_ = false;
-        
-        if(!up_) body_.move(0.0f,body_.getSize().y);
-        else body_.move(0.0f, - body_.getSize().y);
+    auto left = getPosition().x() - getSpeed();
+    if(left >= (getSize().x()/2.0f )){
+        setPosition(vector2D{left, getPosition().y()});
+        }
+    else{forward_ = true;
+        atBoundry_ = true;
     }
-    //Move segment  one row up or down if boundry at left boundry
-    else if( body_.getPosition().x <= body_.getSize().x/2.0f){
-        
-        forward_ = true;
-        if(!up_) body_.move(0.0f, body_.getSize().y);
-        else body_.move(0.0f, -body_.getSize().y);
-    }
-    
-    //Move segment left or right  depending on current direction
-    if(forward_) body_.move(speed_, 0.0f);
-    else body_.move(-speed_, 0.0f);
-    
-    if(body_.getPosition().y >= (ORIGINAL_SCREEN_HEIGHT -body_.getSize().y/2.0f)) up_ = true;
-   else if (body_.getPosition().y <= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)) up_ = false;
-    
-    }
-    
     }
 
-sf::Vector2f Csegment::getPosition() const
-{
-    return body_.getPosition();
+void CentiSegment::moveRight(){ 
+    
+    auto right = getSpeed() + getPosition().x();
+    if(right <= (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
+        setPosition(vector2D{right, getPosition().y()});
+    }
+    else{ forward_ = false;
+        atBoundry_ = true;
+    }
+    }
+
+void CentiSegment::moveUp(){
+    
+    auto up = getPosition().y() - getSize().y();
+    if(up >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)){
+        setPosition(vector2D{getPosition().x(), up});
+         atBoundry_ = false;
+        }
+    else{ up_ = false;
+                
+       }
+    }
+
+void CentiSegment::moveDown(){
+    
+    auto down = getPosition().y() + getSize().y();
+    if(down <= (ORIGINAL_SCREEN_HEIGHT -getSize().y()/2.0f)){
+        setPosition(vector2D{getPosition().x(), down});
+         atBoundry_ = false;
+       }
+    else{up_ = true; }
     }
     
-void Csegment::Draw(sf::RenderWindow& window){
+void CentiSegment::entrance(){
     
-    window.draw(body_);
-    }
-    
-Csegment::~Csegment()
-{
+    auto movement = getSpeed() + getPosition().y();
+    setPosition(vector2D{getPosition().x(),movement});
 }
-
+    
+CentiSegment::~CentiSegment(){
+    
+}
