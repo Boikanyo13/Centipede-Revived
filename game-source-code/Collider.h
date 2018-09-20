@@ -12,7 +12,7 @@ public:
 
     void isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr);
     void isPlayerHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr);
-    void checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr);
+    bool checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr);
     
     ~Collider();
     

@@ -17,22 +17,22 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
        }
     
     
-    //return false;
+   
 }
 
 void Collider::isPlayerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr){
     
      for(auto i = 0; i < centipede_ptr->length(); i++){
             
-        /*return */checkCollision(centipede_ptr->centiSegment(i),player_ptr);
+           checkCollision(centipede_ptr->centiSegment(i),player_ptr);
          
          }
     
- // return false;  
+   
     }
 
 
-void Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr){
+bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr){
     
      auto deltaX = abs(other_ptr->getPosition().x() - this_ptr->getPosition().x());
      auto deltaY = abs(other_ptr->getPosition().y() - this_ptr->getPosition().y());
@@ -45,9 +45,9 @@ void Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
        
          other_ptr->updateState(State::DEAD);
          
-         //return true;
+          return true;
          }
-  //  return false;
+   return false;
     
 }
 
