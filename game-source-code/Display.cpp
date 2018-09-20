@@ -6,10 +6,17 @@ screenWidth_(screenWidth),screenHeight_(screenHeight),
 window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default}
 {
     space = false;
-    c_.loadFromFile(gamefile_.image(ObjectID::CENTIPEDE));
-    l_.loadFromFile(gamefile_.image(ObjectID::BULLET));
-    p_.loadFromFile(gamefile_.image(ObjectID::PLAYER));
+   
+    auto textures = gamefile_.images();
+    auto size = textures.size();
     
+    for(auto i = 0u; i < size; i++){
+        
+        sf::Texture temp;
+        temp.loadFromFile(textures[i]);
+        textures_.push_back(temp);
+    
+        }
     }
 
 void Display::Events(){
@@ -68,27 +75,18 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     
 
     auto gameobject_SFML = drawSprite(gameobject_ptr);
-    
-   // sf::Texture objectTexture;
-    
-    //Does the file exist?
-   // if(!objectTexture.loadFromFile(gamefile_.image(gameobject_ptr->ID()))){
         
-    //    throw FileNotFound{};
-        
-    //    };
-        
-    switch(gameobject_ptr->ID()){    
+   switch(gameobject_ptr->ID()){    
         
      case ObjectID::BULLET:
-            gameobject_SFML.setTexture(&l_);
+            gameobject_SFML.setTexture(&textures_[1]);
             break;
         
         case ObjectID::PLAYER:
-            gameobject_SFML.setTexture(&p_);
+            gameobject_SFML.setTexture(&textures_[0]);
             break;
         case ObjectID::CENTIPEDE:
-             gameobject_SFML.setTexture(&c_);
+            gameobject_SFML.setTexture(&textures_[2]);
              break;
        
             
@@ -97,6 +95,7 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
         break;
     
     }
+  
     window_.draw(gameobject_SFML);
 }
 
@@ -107,9 +106,6 @@ void Display::drawLazerShot(shared_ptr<Player> player_ptr){
     for(auto i = 0; i < lazershots; i++){
        
        drawObject(std::get<0>(player_ptr->firedLazerShot(i)));
-       //auto gameobject_SFML = drawSprite(std::get<0>(player_ptr->firedLazerShot(i)));
-           // gameobject_SFML.setFillColor(sf::Color::Yellow);
-            //window_.draw(gameobject_SFML);
        }
 }
 
@@ -127,6 +123,7 @@ sf::RectangleShape Display::drawSprite(shared_ptr<GameObject> gameobject_ptr){
            gameobject_SFML.setOrigin(gameobject_SFML.getSize()/2.0f);
            return  gameobject_SFML;
     }
+
 
 Display::~Display()
 {

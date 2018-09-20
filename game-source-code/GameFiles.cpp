@@ -1,33 +1,37 @@
 #include "GameFiles.h"
 
-/*GameFiles::GameFiles()
+GameFiles::GameFiles()
 {
-}*/
-
-string GameFiles::image(ObjectID ID) const{
+    images_ = {"ship.png","lazershot.png", "centi2.png"};
     
-    switch(ID){
+}
+
+ std::vector<string> GameFiles::images() const{
+    
+   /* switch(ID){
         
         case ObjectID::BULLET:
-            return "lazershot.png";
+            return auto p = &textures_[1];
             break;
         
         case ObjectID::PLAYER:
-            return "ship.png";
+            return &textures_[0];
             break;
         case ObjectID::CENTIPEDE:
-            return "centi2.png";
+            return &textures_[2];
 
        
             
         default:
-        return "";
+        //return "";
         break;
         
         
-        }
-
+        }*/
+  return images_;
     }
+    
+
 
 GameFiles::~GameFiles()
 {

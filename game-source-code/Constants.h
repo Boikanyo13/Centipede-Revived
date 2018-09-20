@@ -1,6 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 #include "GameTypes.h"
+#include <string>
 
 const auto ORIGINAL_SCREEN_WIDTH = 540.0f;
 const auto ORIGINAL_SCREEN_HEIGHT = 640.0f;
@@ -12,6 +13,10 @@ const auto PLAYER_START_POSTION = vector2D{280.0f,620.0f};
 const auto CENTIPEDE_LENGTH = 10;
 const auto CENTIPEDE_INIT_X = ORIGINAL_SCREEN_WIDTH/2.0f;
 const auto CENTIPEDE_INIT_Y = 0.0f;
+
+const std::string PLAYER_TEXTURE = "ship.png";
+const std::string CENTI_BODY = "centi2.png";
+const std::string LAZER_TEXTURE = "lazershot.png";
 
 
 #endif // CONSTANTS_H
