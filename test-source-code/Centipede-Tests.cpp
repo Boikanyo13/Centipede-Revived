@@ -438,4 +438,21 @@ TEST_CASE("The other object dies after collision"){
      CHECK(collider.checkCollision(L1,Cs1));
      CHECK(Cs1->isDead());
      
-}   
+} 
+
+TEST_CASE("Dead object cannot collide"){
+    
+     auto collider = Collider{};
+    auto position = vector2D{250.0f,100.0f};
+   
+   //Objects at the same place
+    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position, speed, ObjectID::PLAYER);
+    auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position,speed, ObjectID::CENTIPEDE);
+    
+    CHECK(collider.checkCollision(Cs1,P1));
+
+    //Cs1->updateState(State::DEAD);
+    
+    CHECK_FALSE(collider.checkCollision(Cs1,P1));
+    
+}  

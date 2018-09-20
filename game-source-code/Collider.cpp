@@ -11,7 +11,12 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
        
          for(auto j = 0; j < centipede_ptr->length(); j++){
          
-             checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),centipede_ptr->centiSegment(j));
+             if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),centipede_ptr->centiSegment(j))){
+                  
+                  if(j < centipede_ptr->length() - 1)
+                  (centipede_ptr->centiSegment(j+1))->head();
+                  
+                 }
          
          }
        }
@@ -22,9 +27,11 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
 
 void Collider::isPlayerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr){
     
+    
+     
      for(auto i = 0; i < centipede_ptr->length(); i++){
             
-           checkCollision(centipede_ptr->centiSegment(i),player_ptr);
+          checkCollision(centipede_ptr->centiSegment(i),player_ptr);
          
          }
     
@@ -41,9 +48,13 @@ bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
      auto halfY = abs( other_ptr->getSize().y()/2.0f + this_ptr->getSize().y()/2.0f);    
      
 
-     if(deltaX <= halfX && deltaY <= halfY){
+     if(deltaX <= halfX && deltaY <= halfY && !this_ptr->isDead() && !other_ptr->isDead()){
        
          other_ptr->updateState(State::DEAD);
+         
+        if(this_ptr->ID()==ObjectID::BULLET){
+             this_ptr->updateState(State::DEAD);
+             }
          
           return true;
          }

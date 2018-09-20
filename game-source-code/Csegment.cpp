@@ -35,6 +35,11 @@ void CentiSegment::Move(Direction direction){
     
     }
 
+void CentiSegment::head(){
+    
+    setObjectID(ObjectID::CHEAD);
+    }
+
 void CentiSegment::Move(){
     
     if(getPosition().y() <= getSize().y()/2.0f) { entrance(); }

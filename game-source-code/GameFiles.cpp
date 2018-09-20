@@ -2,12 +2,12 @@
 
 GameFiles::GameFiles()
 {
-    images_ = {"ship.png","lazershot.png", "centi2.png"};
+    images_ = {"ship.png","lazershot.png", "centi2.png", "head2.png"};
     
 }
 
  std::vector<string> GameFiles::images() const{
-    \
+    
   return images_;
     }
     

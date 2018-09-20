@@ -7,9 +7,6 @@
 #include "Collider.h"
 #include <memory>
 
-#include <iostream>
-
-
 int main(){
     
     
@@ -22,7 +19,7 @@ int main(){
     auto userInput = std::make_shared<UserInputs>();
     
     
-    auto C1 = std::make_shared<Centipede>(20);
+    auto C1 = std::make_shared<Centipede>(17);
     
  
     auto Coll_Player = std::make_shared<Collider>();
@@ -52,7 +49,7 @@ int main(){
     
          C1->Move();
         
-        if(D1->spaceKey()){
+        if(D1->spaceKey() && !P1->isDead()){
             
             P1->load();
             shooting = true;
@@ -60,9 +57,9 @@ int main(){
             }
          P1->shoot();
           
-         
-        // Coll_Player->isPlayerHit(P1,C1);
-         if(shooting){
+        
+         if(shooting && !P1->isDead()){
+             
          D1->drawLazerShot(P1);
          
 
@@ -73,15 +70,13 @@ int main(){
          }
          
          Coll_Player->isPlayerHit(C1,P1);
-         if(!P1->isDead())
+       
          D1->drawObject(P1);
          
          D1->drawCentipede(C1);
          D1->display();
          
-        
 
-        
         }
      
     

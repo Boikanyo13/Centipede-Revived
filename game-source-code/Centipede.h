@@ -19,7 +19,7 @@ public:
     ~Centipede();
     
 private:
-
+    
     vector<shared_ptr <CentiSegment>> centipede;
     int length_;
 };

@@ -2,7 +2,7 @@
 #define GAMETYPES_H
 
 enum class Direction{UP,DOWN,LEFT,RIGHT,UNKNOWN};
-enum class ObjectID{PLAYER,BULLET,CENTIPEDE,MUSHROOM};
+enum class ObjectID{PLAYER,BULLET,CENTIPEDE,CHEAD,MUSHROOM};
 enum class State{ALIVE, DEAD};
 
 //This vector mimics a 2D vector that takes in an x and y value for

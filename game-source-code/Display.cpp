@@ -69,16 +69,16 @@ void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
       
       for (auto i = 0; i < centi_ptr->length() ; i++){
         
-    if(!centi_ptr->centiSegment(i)->isDead()){
+    //if(!centi_ptr->centiSegment(i)->isDead()){
       drawObject(centi_ptr->centiSegment(i));
-    }
+   // }
       }
 }
 
 
 void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     
-
+    if(!gameobject_ptr->isDead()){
     auto gameobject_SFML = drawSprite(gameobject_ptr);
         
   switch(gameobject_ptr->ID()){    
@@ -93,15 +93,21 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
         case ObjectID::CENTIPEDE:
             gameobject_SFML.setTexture(&textures_[2]);
              break;
-       
-            
+       case ObjectID::CHEAD:
+             gameobject_SFML.setTexture(&textures_[3]);
+            break;
         default:
 
         break;
     
     }
   
-    window_.draw(gameobject_SFML);
+    window_.draw(gameobject_SFML);}
+    else{
+        //Do nothing
+        
+        }
+    
 }
 
 void Display::drawLazerShot(shared_ptr<Player> player_ptr){
