@@ -3,7 +3,7 @@
 #include <memory>
 
 
-/*
+
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
@@ -11,9 +11,10 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameTypes.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameFiles.cpp"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Display.h"
-*/
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Collider.cpp"
 
-#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
+
+/*#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
@@ -23,7 +24,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Display.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
-
+*/
    
     float speed = 1.5f;
     
@@ -384,14 +385,57 @@ TEST_CASE("Check if operator - returns correct answer"){
     CHECK(answer.y() == 7.0f); 
 }
 
-//GameFiles Tests
+//Collision Test
 
-TEST_CASE("GameFiles returns correct image file according to Object ID"){
+TEST_CASE("Vertical Collision between two GameObject is detected"){
     
-    auto G1 = GameFiles{};
-    std::string PlayerTexture = "ship.png";
-    
-    CHECK(G1.image(ObjectID::PLAYER)==PlayerTexture);
-
+     auto collider = Collider{};
+     auto newSpeed = 20.0f;
+     auto position1 = vector2D{250.0f,100.0f};
+     auto position2 = vector2D{250.0f,100.0f - newSpeed};
+     
+     auto L1 = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},position1,newSpeed, ObjectID::BULLET);
+     auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
+     
+     CHECK_FALSE(collider.checkCollision(L1,Cs1));
+     
+     L1->Fire();
+     
+     CHECK(collider.checkCollision(L1,Cs1));
+     
     }
     
+TEST_CASE("Horizontal collision between two Gameobjects is detected"){
+    
+     auto collider = Collider{};
+     auto newSpeed = 25.0f;
+     auto position1 = vector2D{250.0f,100.0f};
+     auto position2 = vector2D{250.0f - newSpeed,100.0f};
+     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
+    
+     
+     CHECK_FALSE(collider.checkCollision(Cs1,P1));
+     Cs1->Move();
+     CHECK(collider.checkCollision(Cs1,P1));
+    
+    }
+    
+TEST_CASE("The other object dies after collision"){
+    
+     auto collider = Collider{};
+     auto newSpeed = 20.0f;
+     auto position1 = vector2D{250.0f,100.0f};
+     auto position2 = vector2D{250.0f,100.0f - newSpeed};
+     
+     auto L1 = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},position1,newSpeed, ObjectID::BULLET);
+     auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
+      
+     CHECK_FALSE(Cs1->isDead());
+     
+     L1->Fire();
+     //The second argument into the function is the other
+     CHECK(collider.checkCollision(L1,Cs1));
+     CHECK(Cs1->isDead());
+     
+}   

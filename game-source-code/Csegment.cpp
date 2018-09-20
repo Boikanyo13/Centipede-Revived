@@ -37,7 +37,7 @@ void CentiSegment::Move(Direction direction){
 
 void CentiSegment::Move(){
     
-    if(getPosition().y() <= getSize().y()) { entrance(); }
+    if(getPosition().y() <= getSize().y()/2.0f) { entrance(); }
     
     else{
         
@@ -90,7 +90,7 @@ void CentiSegment::moveUp(){
 void CentiSegment::moveDown(){
     
     auto down = getPosition().y() + getSize().y();
-    if(down <= (ORIGINAL_SCREEN_HEIGHT -getSize().y()/2.0f)){
+    if(down <= (ORIGINAL_SCREEN_HEIGHT /*-getSize().y()/2.0f*/)){
         setPosition(vector2D{getPosition().x(), down});
          atBoundry_ = false;
        }

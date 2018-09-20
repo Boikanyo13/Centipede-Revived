@@ -19,6 +19,8 @@ objectID_{objectid}
    else{
           position_=position;
        }
+
+       isDead_ = false;
   }
     
 void GameObject::setPosition(const vector2D& position){

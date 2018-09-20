@@ -13,7 +13,10 @@ window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style
     for(auto i = 0u; i < size; i++){
         
         sf::Texture temp;
-        temp.loadFromFile(textures[i]);
+        if(!temp.loadFromFile(textures[i])){
+            throw FileNotFound{};
+            
+            };
         textures_.push_back(temp);
     
         }
@@ -64,9 +67,11 @@ void Display::display(){
 
 void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
       
-      for (auto i = 0; i <= centi_ptr->length() ; i++){
+      for (auto i = 0; i < centi_ptr->length() ; i++){
+        
+    if(!centi_ptr->centiSegment(i)->isDead()){
       drawObject(centi_ptr->centiSegment(i));
-      
+    }
       }
 }
 
@@ -76,7 +81,7 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
 
     auto gameobject_SFML = drawSprite(gameobject_ptr);
         
-   switch(gameobject_ptr->ID()){    
+  switch(gameobject_ptr->ID()){    
         
      case ObjectID::BULLET:
             gameobject_SFML.setTexture(&textures_[1]);

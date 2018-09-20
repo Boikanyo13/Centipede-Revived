@@ -4,7 +4,7 @@
 #include "Csegment.h"
 #include "GameTypes.h"
 #include <memory>
-
+#include <iostream>
 using std::vector; 
 using std::shared_ptr;
  
@@ -19,7 +19,7 @@ public:
     ~Centipede();
     
 private:
-    //segment centipede;
+
     vector<shared_ptr <CentiSegment>> centipede;
     int length_;
 };
