@@ -18,6 +18,8 @@ public:
     void load();
     //Fire at the at the target
     void shoot();
+    //Explode the player
+    void explode();
     virtual ~Player();
     
 private:

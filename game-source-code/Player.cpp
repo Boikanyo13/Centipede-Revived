@@ -64,7 +64,10 @@ std::tuple<std::shared_ptr<LazerShot>, int> Player::firedLazerShot(int i) const
 return std::tie(lazerShotsGun_[i], noOfLazerShots_);
 }
    
-
+void Player::explode(){
+    
+    setObjectID(ObjectID::EXPLOSION);
+    }
         
       
 void Player::moveLeft(){

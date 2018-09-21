@@ -2,7 +2,7 @@
 
 GameFiles::GameFiles()
 {
-    images_ = {"ship.png","lazershot.png", "centi2.png", "head2.png"};
+    images_ = {"ship.png","lazershot.png", "centi2.png", "head6.png", "explosion.png"};
     
 }
 

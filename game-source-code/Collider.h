@@ -4,6 +4,7 @@
 #include "Player.h"
 #include <memory>
 #include "Centipede.h"
+
 using std::shared_ptr;
 
 class Collider

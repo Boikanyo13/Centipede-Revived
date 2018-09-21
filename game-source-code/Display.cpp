@@ -1,4 +1,5 @@
 #include "Display.h"
+#include <unistd.h>
 
 
 Display::Display(float screenWidth, float screenHeight):
@@ -96,6 +97,10 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
        case ObjectID::CHEAD:
              gameobject_SFML.setTexture(&textures_[3]);
             break;
+        case ObjectID::EXPLOSION:
+              gameobject_SFML.setTexture(&textures_[4]);
+              usleep(30000);
+              break;
         default:
 
         break;

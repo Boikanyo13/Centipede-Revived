@@ -31,8 +31,8 @@ void Collider::isPlayerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Playe
      
      for(auto i = 0; i < centipede_ptr->length(); i++){
             
-          checkCollision(centipede_ptr->centiSegment(i),player_ptr);
-         
+          if(checkCollision(centipede_ptr->centiSegment(i),player_ptr))
+                player_ptr->explode();
          }
     
    
@@ -49,13 +49,13 @@ bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
      
 
      if(deltaX <= halfX && deltaY <= halfY && !this_ptr->isDead() && !other_ptr->isDead()){
-       
+          
          other_ptr->updateState(State::DEAD);
          
         if(this_ptr->ID()==ObjectID::BULLET){
              this_ptr->updateState(State::DEAD);
              }
-         
+      
           return true;
          }
    return false;

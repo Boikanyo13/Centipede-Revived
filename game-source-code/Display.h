@@ -33,7 +33,7 @@ private:
     float screenHeight_;
     bool space;
     sf::RenderWindow window_;
-    GameFiles gamefile_;
+    GameFiles gamefile_;  //ptr_;
     std::vector<sf::Texture> textures_;
 
 };
