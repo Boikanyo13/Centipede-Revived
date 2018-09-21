@@ -1,15 +1,22 @@
 #ifndef SPLASHSCREEN_H
 #define SPLASHSCREEN_H
 #include <SFML/Graphics.hpp>
+#include "Constants.h"
+#include "GameTypes.h"
+#include "GameFiles.h"
 #include <tuple>
+#include <vector>
+
+enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1};
+class FileNotFound{};
+
 
 class SplashScreen
 {
 public:
     
     
-    SplashScreen(sf::RenderWindow& window):window_(window){}
-    ~SplashScreen();
+    SplashScreen(sf::RenderWindow& window);
     //Draws the opening screen 
     void OpeningScreen();
     //Draws the helpscreen
@@ -17,19 +24,26 @@ public:
     //Draws the game over screen
     void GameOver();
     //Detects which button in the screen is being pressed
-    int DetectButton(sf::Vector2i mousePos, float aspectRatioY, float aspectRatioX);
+    ScreenObjectID DetectButton();
+    ~SplashScreen();
    
 private:
 
-    //Gets dimensions  of the buttons
+    //Gets dimensions  of the buttonsclTabCtrl
    std::tuple <float, float, float, float> ButtonDimension (sf::RectangleShape button);
    sf::RenderWindow& window_;
+   //Makes buttons
+   sf::RectangleShape DrawScreenObject(const vector2D& size,const vector2D& position, ScreenObjectID ID);
+   //Stores button textures
+   std::vector<sf::Texture> screenObjectTextures_;
    //These are the variables that represent the dimensions of each button
    float a, b, c,d;    //start button
    float e,f,g,h;      //help button
-   float q,r,y,t;      //back button
+   float q,r,w,t;      //back button
    sf::Font gameFont;
    sf::Text gameText;
+   
+   GameFiles gamefile_;
   
 
 };

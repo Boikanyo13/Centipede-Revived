@@ -11,18 +11,19 @@ class GameFiles
 public:
     GameFiles();
     //return Image files corresponding to ObjectID
-    std::vector<string> images() const;
+    std::vector<string> objectImages() const;
     //return Audio files corresponding to ObjectID
     string audio(ObjectID ID) const;
     //return Button files corresponding to ObjectID
-    string button(ObjectID ID) const;
+    std::vector<string> screenImages() const;
      //return Font files corresponding to ObjectID
     string font() const;
-    void LoadFiles();
     ~GameFiles();
 
 private:
-    std::vector<string> images_;
+    std::vector<string> objectImages_;
+    std::vector<string> screenImages_;
+    
  
 };
 

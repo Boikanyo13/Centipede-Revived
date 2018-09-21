@@ -13,6 +13,10 @@ int main(){
     
     
     auto shooting = false;
+    auto isPlaying = false;
+    auto help = false;
+    auto opening = true;
+    
     
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, 1.0f, ObjectID::PLAYER);
     auto D1 = std::make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT);
@@ -30,6 +34,40 @@ int main(){
         
          D1->Events();
          
+         
+         
+         if(opening){
+         
+         D1->clearDisplay();
+         D1->openingWindow();
+         isPlaying = false;
+         help = false;
+         
+         if(D1->leftClick()){
+             
+             
+             if(D1->splashscreen().DetectButton() == ScreenObjectID::START){
+                 isPlaying = true;
+                  opening = false;
+                
+                 }
+             
+             if(D1->splashscreen().DetectButton() == ScreenObjectID::HELP){
+                  help = true;
+                 opening = false;
+                 
+                
+                 }
+         }
+            D1->display();
+           
+             
+             }
+             
+             
+         
+         if(isPlaying){
+          D1->clearDisplay();
          if(userInput->pressedKey()==Key::UP){
              
              P1->Move(Direction::UP);
@@ -62,9 +100,6 @@ int main(){
              
          D1->drawLazerShot(P1);
          
-
-         
-     
          Coll_Player->isTargetDestroyed(P1,C1);
          
          }
@@ -74,12 +109,30 @@ int main(){
          D1->drawObject(P1);
          
          D1->drawCentipede(C1);
-         D1->display();
          
-
+         D1->display();
+        
         }
+        
+        if(help){
+            
+            D1->clearDisplay();
+            D1->helpWindow();
+            
+            
+            if(D1->leftClick()){
+                  
+                
+            if(D1->splashscreen().DetectButton() == ScreenObjectID::BACK){
+                  opening = true;
+                 }
+                 
+            }
+            D1->display();
+            
+            }
      
-    
+    }
 return 0;
 
 }

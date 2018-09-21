@@ -1,48 +1,53 @@
 #include "SplashScreen.h"
 
-
-using  buttonTexture = sf::Texture;
-using Button = sf::RectangleShape;
-
-/*SplashScreen::SplashScreen(sf::RenderWindow& window):window_(window)
+SplashScreen::SplashScreen(sf::RenderWindow& window):window_(window)
 {
+        //Get the file names
+        auto fileNames = gamefile_.screenImages();
+        gameFont.loadFromFile(gamefile_.font());
+        sf::Texture tempTexure; 
 
-}*/
+        //Load textures
+        for(auto i = 0u; i< fileNames.size() ; i++){
+            
+            if(!tempTexure.loadFromFile(fileNames[i])) throw FileNotFound{};
+             
+                else 
+                 
+                    screenObjectTextures_.push_back(tempTexure);
+        }
+
+}
+
+sf::RectangleShape SplashScreen::DrawScreenObject(const vector2D& size, const vector2D& position, ScreenObjectID ID){
+    
+    //create screen object
+    auto  screenObject = sf::RectangleShape{sf::Vector2f(size.x(),size.y())};
+    screenObject.setPosition(position.x() , position.y());
+    screenObject.setTexture(&screenObjectTextures_[static_cast<int>(ID)]);
+    //draw screen object
+    window_.draw(screenObject);
+    
+    return screenObject;
+}
+
 
 void SplashScreen::OpeningScreen()
 {
+    //Background
+    DrawScreenObject(vector2D{1080.0f, 750.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND1);
     //Start button
-    buttonTexture startTexture;
-    startTexture.loadFromFile("start2.png");
-    auto startButton = Button{sf::Vector2f(100.0f, 50.0f)};
-    startButton.setPosition(220,330);
-    startButton.setTexture(&startTexture);
-    std::tie(a,b,c,d) = ButtonDimension(startButton);
-    
+    auto startbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{START_X_POS, START_Y_POS}, ScreenObjectID::START);
+    std::tie(a,b,c,d) = ButtonDimension(startbutton);
     //Help button
-    buttonTexture helpTexture;
-    helpTexture.loadFromFile("redhelp.png");
-    auto helpButton = Button{sf::Vector2f(100.0f, 50.0f)};
-    helpButton.setPosition(220,420);
-    helpButton.setTexture(&helpTexture);
-     std::tie(e,f,g,h) = ButtonDimension(helpButton);
-    
-    //GameFont
-    gameFont.loadFromFile("basson.ttf");
-    gameText.setFont(gameFont);
-    gameText.setCharacterSize(60);
-    gameText.setPosition(130,140);
-    gameText.setString("Centipede \nRevived!");
-    gameText.setFillColor(sf::Color::Red);
-    
-    //Draw to window
-     window_.draw(startButton);
-     window_.draw(helpButton);
-     window_.draw(gameText);
+    auto helpbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{HELP_X_POS, HELP_Y_POS}, ScreenObjectID::HELP);
+    std::tie(e,f,g,h) = ButtonDimension(helpbutton);
+    //Logo
+    DrawScreenObject( vector2D{540.0f, 450.0f},vector2D{0.0f,0.0f}, ScreenObjectID::LOGO);
      
 }
 
-std::tuple <float, float, float, float> SplashScreen::ButtonDimension(Button button)
+std::tuple <float, float, float, float> SplashScreen::ButtonDimension(sf::RectangleShape button)
 {
     auto a  =button.getPosition().x;
     auto b = button.getPosition().x + button.getSize().x ;
@@ -55,59 +60,56 @@ std::tuple <float, float, float, float> SplashScreen::ButtonDimension(Button but
 
  void SplashScreen::HelpScreen()
  {
-     //Back button
-     buttonTexture backTexture;
-    backTexture.loadFromFile("back.png");
-    auto backButton = Button{sf::Vector2f(100.0f, 50.0f)};
-    backButton.setPosition(220,450);
-    backButton.setTexture(&backTexture);
-    std::tie(q,r,y,t) = ButtonDimension(backButton);
+     //Background
+    DrawScreenObject(vector2D{1080.0f, 750.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND1);
     
     //Text for instructions
-    gameText.setFillColor(sf::Color::White);
-    gameText.setCharacterSize(40);
-    gameText.setPosition(100,150);
-    gameText.setString("Instructions" );
+    gameText.setFont(gameFont);
+    gameText.setFillColor(sf::Color::Red);
+    gameText.setCharacterSize(25);
+    gameText.setPosition(65, 100);
+    gameText.setString(TEXT_1);
+    
+    //Back button
+    auto backbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{BACK_X_POS, BACK_Y_POS}, ScreenObjectID::BACK);
+    std::tie(q,r,w,t) = ButtonDimension(backbutton);
     window_.draw(gameText);
     
-    gameText.setCharacterSize(15);
-    gameText.setPosition(40, 200);
-    gameText.setString("\n To Shoot: space \n \n Move Up: Up Arrow \n \n Move Down: Down Arrow \n \n Move Left: Left Arrow \n \n Move Right: Right Arrow");
-    window_.draw(gameText);
-    window_.draw(backButton);
-     
-     
      }
 
-int SplashScreen::DetectButton(sf::Vector2i mousePos, float aspectRatioY, float aspectRatioX) 
+ScreenObjectID SplashScreen::DetectButton()
 {
-    auto startButtonFlag = 1;
-    auto helpButtonFlag = 2;
-    auto backButtonFlag = 3;
+    sf::Vector2i mousePos  = sf::Mouse::getPosition(window_);
+    
+    //For accurate button detection
+    auto aspectRatioX = ORIGINAL_SCREEN_WIDTH/window_.getSize().x;
+    auto aspectRatioY = ORIGINAL_SCREEN_HEIGHT/window_.getSize().y;
+                
     
             if( (aspectRatioX*mousePos.x >= a)   && (aspectRatioX*mousePos.x <= b))  {
                     if((aspectRatioY*mousePos.y >= c) && (aspectRatioY*mousePos.y <= d )){
                         
-                        return startButtonFlag;       //start buttn
-               }
+                        return ScreenObjectID::START;       //start buttn
+                    }
              }
 
             if( (aspectRatioX*mousePos.x >= e)   && (aspectRatioX*mousePos.x <= f))  {
-                 if((aspectRatioY*mousePos.y >= g) && (aspectRatioY*mousePos.y <= h )){
+                    if((aspectRatioY*mousePos.y >= g) && (aspectRatioY*mousePos.y <= h )){
                             
-                          return helpButtonFlag;    //help button
+                        return ScreenObjectID::HELP;    //help button
                             
-                        }
+                    }
                }
                
-               
+              
                if( (aspectRatioX*mousePos.x >= q)   && (aspectRatioX*mousePos.x <= r))  {
-                    if((aspectRatioY*mousePos.y >= y) && (aspectRatioY*mousePos.y <= t)) {
-                        
-                        return backButtonFlag ;    //back button
-                        }
+                    if((aspectRatioY*mousePos.y >= w) && (aspectRatioY*mousePos.y <= t)) {
+                       
+                        return ScreenObjectID::BACK;    //back button
+                    }
                }
- return 0;
+               
+  return ScreenObjectID::BACKGROUND1;
 }
 
 

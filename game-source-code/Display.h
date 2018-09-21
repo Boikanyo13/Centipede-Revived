@@ -4,9 +4,8 @@
 #include "GameFiles.h"
 #include "Player.h"
 #include "Centipede.h"
+#include "SplashScreen.h"
 using std::shared_ptr;
-
-class FileNotFound{};
 
 class Display
 {
@@ -14,7 +13,7 @@ public:
     Display(float screenWidth, float ScreenHeight);
     //Display drawn object on display
     void display();
-    bool spaceKey(){return space;}
+    bool spaceKey(){return space_;}
     void Events();
     //Draw GameObjects on Display
     void drawObject(shared_ptr<GameObject> gameobject_ptr);
@@ -24,6 +23,15 @@ public:
     void drawLazerShot(shared_ptr<Player> player_ptr);
     //Draw Centipede
     void drawCentipede(shared_ptr<Centipede> centi_ptr);
+    //Display opening window
+    void openingWindow();
+    //Check if mouse is clicked on the left side
+    bool leftClick(){return leftClick_;}
+    //Clear the window
+    void clearDisplay(){ window_.clear();}
+    //Display help window
+    void helpWindow();
+    SplashScreen splashscreen(){return splashscreen_;};
     ~Display();
     
 private:
@@ -31,9 +39,10 @@ private:
     sf::RectangleShape drawSprite(shared_ptr<GameObject> gameobject_ptr);
     float screenWidth_;
     float screenHeight_;
-    bool space;
+    bool space_, leftClick_;
     sf::RenderWindow window_;
-    GameFiles gamefile_;  //ptr_;
+    GameFiles gamefile_; 
     std::vector<sf::Texture> textures_;
+    SplashScreen splashscreen_;
 
 };

@@ -4,13 +4,16 @@
 
 Display::Display(float screenWidth, float screenHeight):
 screenWidth_(screenWidth),screenHeight_(screenHeight),
-window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default}
-{
-    space = false;
-   
-    auto textures = gamefile_.images();
+window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default},
+splashscreen_{window_}
+{ 
+    space_ = false;
+    leftClick_ = false;
+    
+    auto textures = gamefile_.objectImages();
     auto size = textures.size();
     
+    //Load object files
     for(auto i = 0u; i < size; i++){
         
         sf::Texture temp;
@@ -34,9 +37,7 @@ void Display::Events(){
             if(event.type==sf::Event::Resized){
                 
                 //Set aspectRation when window is resized
-                //aspectRatioX = ORIGINAL_SCREEN_WIDTH/window->getSize().x;
-              //  aspectRatioY = ORIGINAL_SCREEN_HEIGHT/window->getSize().y;
-                
+              
                   //Above Boundary?
                   if(window_.getSize().x >= 1920.0f){
                       
@@ -50,19 +51,28 @@ void Display::Events(){
                 //Shoot?
             if(event.type ==sf::Event::KeyPressed){
             
-                    if(event.key.code== sf::Keyboard::Space) space = true;
+                    if(event.key.code== sf::Keyboard::Space) space_ = true;
             }
             
-}
+            //Mouse clicked on left?
+            if(event.type == sf::Event::MouseButtonPressed){
+                    if (event.mouseButton.button == sf::Mouse::Left)
+                        leftClick_ = true;
+                        
+                }
+            
+        }
         
 
 }
 
+
+
 void Display::display(){
     
       window_.display();
-      window_.clear();
-      space = false;
+      space_ = false;
+      leftClick_ = false;
     
 }
 
@@ -70,9 +80,8 @@ void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
       
       for (auto i = 0; i < centi_ptr->length() ; i++){
         
-    //if(!centi_ptr->centiSegment(i)->isDead()){
       drawObject(centi_ptr->centiSegment(i));
-   // }
+
       }
 }
 
@@ -140,7 +149,17 @@ sf::RectangleShape Display::drawSprite(shared_ptr<GameObject> gameobject_ptr){
            return  gameobject_SFML;
     }
 
+void Display::openingWindow(){
+    
+    splashscreen_.OpeningScreen();
+    
+    }
 
+void Display::helpWindow(){
+    
+    splashscreen_.HelpScreen();
+    }
+    
 Display::~Display()
 {
 }
