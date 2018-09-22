@@ -112,16 +112,32 @@ ScreenObjectID SplashScreen::DetectButton()
   return ScreenObjectID::BACKGROUND1;
 }
 
-void SplashScreen::GameScreen(){
+void SplashScreen::GameScreen(int score, int lives){
     
     //Background2
+    auto score_ = std::to_string(score);
+    auto posX = 100.0f;
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
+     
+      //Score
+     for(auto i = 0; i< lives; i++)
+     {  
+        DrawScreenObject(vector2D{30.0f, 30.0f},vector2D{posX,16.0f}, ScreenObjectID::LIFE);
+        posX+=25.0f;
+     }
+    
+    gameText.setFillColor(sf::Color::Green);
+    gameText.setCharacterSize(20);
+    gameText.setPosition(20, 20);
+    gameText.setString(score_);
+    window_.draw(gameText);
      
     }
     
 void SplashScreen::YouLoose(){
     
-    GameScreen();
+    //Background2
+     DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
     //set the text for the game lost
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(45);
@@ -132,7 +148,8 @@ void SplashScreen::YouLoose(){
 
 void SplashScreen::YouWin(){
     
-    GameScreen();
+    //Background2
+     DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
     //Set text for game won
     gameText.setFillColor(sf::Color::Green);
     gameText.setCharacterSize(55);

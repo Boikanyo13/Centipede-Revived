@@ -40,6 +40,11 @@ void CentiSegment::head(){
     setObjectID(ObjectID::CHEAD);
     }
     
+bool CentiSegment::isHead() const
+{
+    return (ID()==ObjectID::CHEAD);
+    }
+    
 void CentiSegment::reset(){
      
  }   

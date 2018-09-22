@@ -22,12 +22,12 @@ int main(){
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, 1.0f, ObjectID::PLAYER);
     auto D1 = std::make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT);
     auto userInput = std::make_shared<UserInputs>();
-    
+    auto score = std::make_shared<Score>();
     
     auto C1 = std::make_shared<Centipede>(17);
     
  
-    auto Coll_Player = std::make_shared<Collider>();
+    auto Coll_Player = std::make_shared<Collider>(score);
    
     
     while(D1->isOpen()){
@@ -70,7 +70,7 @@ int main(){
     if(isPlaying){
              
           D1->clearDisplay();
-          D1->gameWindow();
+          D1->gameWindow(score, P1->Lives());
           
          if(userInput->pressedKey()==Key::UP){
              
@@ -128,6 +128,8 @@ int main(){
           if( P1->isDead()  ||  C1->isDead()){
               isPlaying = false;
               gameOver = true;
+              score->reset();
+              shooting = false;
               
           }
           
@@ -153,8 +155,9 @@ int main(){
             
         if(gameOver){
           
-           D1->clearDisplay();
+            D1->clearDisplay();
             isPlaying = false;
+         
             if(P1->isDead()) 
                 D1->splashscreen().YouLoose();
 
@@ -164,7 +167,7 @@ int main(){
             
             }
                 
-             
+              P1->reset();
               D1->display();
               usleep(1000000);
               gameOver = false;

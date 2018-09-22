@@ -12,7 +12,7 @@ public:
     //set the CentiSegment to head;
     void head();
     //Check if it is head
-    bool isHead();
+    bool isHead() const;
     //set the centipede segment to its inital conditions
     virtual void reset() override;
     virtual ~CentiSegment();

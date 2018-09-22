@@ -7,7 +7,7 @@ speed_{speed},
 objectID_{objectid}
 {
  
-   if(objectid != ObjectID::CENTIPEDE){
+   if((objectid != ObjectID::CENTIPEDE) && (objectID_ != ObjectID::BULLET)){
       if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
         throw ObjectOutOfBounds{};
         }

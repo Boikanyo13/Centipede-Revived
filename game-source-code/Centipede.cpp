@@ -6,10 +6,10 @@ Centipede::Centipede(int length):length_{length}{
     
 }
 
-shared_ptr<CentiSegment> Centipede::centiSegment(int i)
-{return centipede_[i] ; }
 
-int Centipede::length(){ return length_;}
+int Centipede::length(){ //return length_;
+ return centipede_.size();
+}
 
 void Centipede::Move(){
     
@@ -57,5 +57,9 @@ void Centipede::reset(){
     centipede_.erase(centipede_.begin(), centipede_.end());
     initialConditions();
     }
+    
+shared_ptr<CentiSegment> Centipede::centiSegment(int i)
+{return centipede_[i] ; }
+
     
 Centipede::~Centipede(){}

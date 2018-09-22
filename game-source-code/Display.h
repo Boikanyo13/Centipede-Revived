@@ -34,7 +34,7 @@ public:
     //Display help window
     void helpWindow();
     //Displays the background of the game window
-    void gameWindow();
+    void gameWindow(shared_ptr<Score> score_ptr, int lives);
     SplashScreen splashscreen(){return splashscreen_;};
     ~Display();
     

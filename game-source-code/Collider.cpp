@@ -1,5 +1,8 @@
 #include "Collider.h"
 
+Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
+     
+ }
 
 void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr)
 {
@@ -17,11 +20,16 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
                   centipede_ptr->SegmentDestroyed();
                   
                   //make the previous segment head if the one before it is destroyed
-                  if(j < centipede_ptr->length() - 1){
-                  (centipede_ptr->centiSegment(j+1))->head();
+                  if((j < centipede_ptr->length() - 1)){
+                  
+                      (centipede_ptr->centiSegment(j+1))->head();
                   
                   }
                   
+                 if(centipede_ptr->centiSegment(j)->isHead())
+                       _score_ptr->centiheadDestroyed();
+                  else
+                        _score_ptr->centibodyDestroyed();
                  }
          
          }

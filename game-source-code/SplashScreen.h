@@ -2,12 +2,14 @@
 #define SPLASHSCREEN_H
 #include <SFML/Graphics.hpp>
 #include "Constants.h"
+#include "Score.h"
 #include "GameTypes.h"
 #include "GameFiles.h"
 #include <tuple>
+#include <memory>
 #include <vector>
 
-enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1, BACKGROUND2};
+enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1, BACKGROUND2, LIFE};
 class FileNotFound{};
 
 
@@ -25,7 +27,7 @@ public:
     void YouLoose();
     void YouWin();
     //Draws the Background of the gamescreen
-    void GameScreen();
+    void GameScreen(int score, int lives);
     //Detects which button in the screen is being pressed
     ScreenObjectID DetectButton();
     ~SplashScreen();

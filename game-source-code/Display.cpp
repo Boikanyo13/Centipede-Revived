@@ -164,8 +164,8 @@ void Display::helpWindow(){
     splashscreen_.HelpScreen();
     }
 
-void Display::gameWindow(){
-    splashscreen_.GameScreen();
+void Display::gameWindow(shared_ptr<Score> score_ptr, int lives){
+    splashscreen_.GameScreen(score_ptr->score(), lives);
     }
     
 Display::~Display()

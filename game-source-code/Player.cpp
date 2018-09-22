@@ -82,10 +82,10 @@ void Player::reset(){
     setPosition(PLAYER_START_POSTION);
 
     //clear the vector 
-    if(lazerShotsGun_.size()>0)
-    lazerShotsGun_.erase(lazerShotsGun_.begin(), lazerShotsGun_.end());
-    
-    noOfLazerShots_ = 0;
+     if(lazerShotsGun_.size()>0){
+       lazerShotsGun_.erase(lazerShotsGun_.begin(), lazerShotsGun_.end());
+      }
+      noOfLazerShots_ = 0;
    
 }
       

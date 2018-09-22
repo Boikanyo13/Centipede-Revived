@@ -25,6 +25,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
+//#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.cpp"
    
     float speed = 1.5f;
     
@@ -530,18 +531,19 @@ TEST_CASE("Player  is declared dead if number of lives is 0"){
 }
 
 
-TEST_CASE("Player wins if centipede is destroyed"){
+TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     
-    
-    auto collider = Collider{};
+    auto score = std::make_shared<Score>();
+    auto collider = Collider{score};
     auto newSpeed = 20.0f;
     
-    auto position1 = vector2D{250.0f ,100.0f- newSpeed};
-    auto position2 = vector2D{250.0f,100.0f};
+    auto position1 = vector2D{250.0f ,120.0f- newSpeed};
+    auto position2 = vector2D{250.0f,120.0f};
     
     auto centipede = std::make_shared<Centipede>(1);
     //Set the position just next to the LazerShot
     centipede->centiSegment(0)->setPosition(position1);
+
      
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position2, newSpeed, ObjectID::PLAYER);
     //Load Lazershot
@@ -551,9 +553,38 @@ TEST_CASE("Player wins if centipede is destroyed"){
     //Fire Lazershot at target
     P1->shoot();
         
-    collider.isTargetDestroyed(P1,centipede);
+     collider.isTargetDestroyed(P1,centipede);
     
     
     CHECK(centipede->isDead());
+    
+}
+
+//Score tests
+
+TEST_CASE("Score increases by 100 if head of centipede is shot"){
+    auto score_ = Score{};
+    
+    CHECK(score_.score() == 0);
+    score_.centiheadDestroyed();
+    CHECK(score_.score() == 100);
+    
+}
+
+TEST_CASE("Score increases by 10 if body of centipede is shot"){
+    auto score_ = Score{};
+    
+    CHECK(score_.score() == 0);
+    score_.centibodyDestroyed();
+    CHECK(score_.score() == 10);
+    
+}
+
+TEST_CASE("Score increases by 1 if mushroom is shot"){
+    auto score_ = Score{};
+    
+    CHECK(score_.score() == 0);
+    score_.mushroomDestroyed();
+    CHECK(score_.score() == 1);
     
 }
