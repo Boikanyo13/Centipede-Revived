@@ -67,7 +67,10 @@ int main(){
              
          
          if(isPlaying){
+             
           D1->clearDisplay();
+          D1->gameWindow();
+          
          if(userInput->pressedKey()==Key::UP){
              
              P1->Move(Direction::UP);

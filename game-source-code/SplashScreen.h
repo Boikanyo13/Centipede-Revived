@@ -7,7 +7,7 @@
 #include <tuple>
 #include <vector>
 
-enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1};
+enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1, BACKGROUND2};
 class FileNotFound{};
 
 
@@ -23,6 +23,8 @@ public:
     void HelpScreen();
     //Draws the game over screen
     void GameOver();
+    //Draws the Background of the gamescreen
+    void GameScreen();
     //Detects which button in the screen is being pressed
     ScreenObjectID DetectButton();
     ~SplashScreen();

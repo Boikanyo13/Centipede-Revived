@@ -31,6 +31,8 @@ public:
     void clearDisplay(){ window_.clear();}
     //Display help window
     void helpWindow();
+    //Displays the background of the game window
+    void gameWindow();
     SplashScreen splashscreen(){return splashscreen_;};
     ~Display();
     

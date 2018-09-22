@@ -159,6 +159,10 @@ void Display::helpWindow(){
     
     splashscreen_.HelpScreen();
     }
+
+void Display::gameWindow(){
+    splashscreen_.GameScreen();
+    }
     
 Display::~Display()
 {
