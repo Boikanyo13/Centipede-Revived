@@ -4,7 +4,7 @@
 
 
 
-#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
+/*#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
@@ -12,9 +12,9 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameFiles.cpp"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Display.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Collider.cpp"
+*/
 
-
-/*#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
@@ -24,7 +24,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Display.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
-*/
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
    
     float speed = 1.5f;
     
@@ -446,13 +446,82 @@ TEST_CASE("Dead object cannot collide"){
     auto position = vector2D{250.0f,100.0f};
    
    //Objects at the same place
-    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position, speed, ObjectID::PLAYER);
+    auto L1 = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},position,speed, ObjectID::BULLET);
     auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position,speed, ObjectID::CENTIPEDE);
     
-    CHECK(collider.checkCollision(Cs1,P1));
+    CHECK(collider.checkCollision(Cs1,L1));
 
     //Cs1->updateState(State::DEAD);
     
-    CHECK_FALSE(collider.checkCollision(Cs1,P1));
+    CHECK_FALSE(collider.checkCollision(Cs1,L1));
     
 }  
+
+TEST_CASE("Player looses life if hit"){
+    
+     auto collider = Collider{};
+     auto newSpeed = 20.0f;
+     auto position1 = vector2D{250.0f,100.0f};
+     auto position2 = vector2D{250.0f - newSpeed,100.0f};
+     
+     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto centipede = std::make_shared<Centipede>(1);
+     centipede->centiSegment(0)->setPosition(position2);
+     
+     //Player has 3 lives initially
+     CHECK(P1->Lives()==3);
+     
+     centipede->Move();
+     
+     collider.isPlayerHit(centipede,P1);
+     
+     CHECK(P1->Lives()==2);
+    
+}
+
+
+TEST_CASE("Player explodes if hit"){
+    
+     auto collider = Collider{};
+     auto newSpeed = 20.0f;
+     auto position1 = vector2D{250.0f,100.0f};
+     auto position2 = vector2D{250.0f - newSpeed,100.0f};
+     
+     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto centipede = std::make_shared<Centipede>(1);
+     
+     //set the centipede ready for collision
+     centipede->centiSegment(0)->setPosition(position2);
+     
+    //Collide the centipede with the player
+     centipede->Move();
+     collider.isPlayerHit(centipede,P1);
+     
+    
+     CHECK(P1->ID() == ObjectID::EXPLOSION);
+    
+}
+
+TEST_CASE("Player  is declared dead if number of lives is 0"){
+    
+    auto collider = Collider{};
+    auto newSpeed = 20.0f;
+    auto position1 = vector2D{250.0f,100.0f};
+    auto position2 = vector2D{250.0f - newSpeed,100.0f};
+     
+    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+    //set number of lives to zero
+    P1->Lives(1);
+    auto centipede = std::make_shared<Centipede>(1);
+    
+    //set the centipede ready for collision
+    centipede->centiSegment(0)->setPosition(position2);
+    
+    //Collide the centipede with the player
+    centipede->Move();
+    collider.isPlayerHit(centipede,P1);
+  
+    CHECK(P1->Lives() == 0);
+    CHECK(P1->isDead());
+     
+}

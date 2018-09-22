@@ -116,7 +116,7 @@ void SplashScreen::GameScreen(){
     
     //Background2
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
-    
+     
     }
 
 SplashScreen::~SplashScreen()

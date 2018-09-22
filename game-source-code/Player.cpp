@@ -5,6 +5,7 @@ Player::Player(const vector2D& size,const vector2D& position, float speed, Objec
 GameObject{size,position,speed,objectid}
 {   
     noOfLazerShots_ = 0;
+    lives_ = 3;
     }
 
 void Player::Move(Direction direction){  
@@ -34,6 +35,12 @@ void Player::Move(Direction direction){
         
         
     }
+    
+ void Player::Lives(int lives){
+     
+     lives_ = lives;
+     
+     }
 
 void Player::shoot(){
     
@@ -106,7 +113,22 @@ void Player::moveUp(){
                 setPosition(vector2D{getPosition().x(),up});
             }
     }
+    
+void Player::lostLife(){
+    
+    if(!isDead()){
+       lives_--;
+    
+       if(lives_ == 0)
+        updateState(State::DEAD);
+    }
+    
+    
+}
 
+int Player::Lives(){
+    return lives_;
+    }
 Player::~Player()
 {
 }

@@ -9,6 +9,7 @@ splashscreen_{window_}
 { 
     space_ = false;
     leftClick_ = false;
+    delay = false;
     
     auto textures = gamefile_.objectImages();
     auto size = textures.size();
@@ -73,7 +74,11 @@ void Display::display(){
       window_.display();
       space_ = false;
       leftClick_ = false;
-    
+      
+      if(delay){
+          usleep(150000);
+          delay = false;
+      }
 }
 
 void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
@@ -108,7 +113,7 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
             break;
         case ObjectID::EXPLOSION:
               gameobject_SFML.setTexture(&textures_[4]);
-              usleep(30000);
+              delay = true;
               break;
         default:
 

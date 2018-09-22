@@ -20,6 +20,12 @@ public:
     void shoot();
     //Explode the player
     void explode();
+    //Decreement the number of lives
+    void lostLife();
+    //Get number of lives
+    int Lives();
+    //Set Number of lives
+    void Lives(int lives);
     virtual ~Player();
     
 private:
@@ -28,6 +34,7 @@ private:
    void moveRight();
    void moveUp();
    void moveDown();
+   int lives_;
    int noOfLazerShots_;
    std::vector<std::shared_ptr<LazerShot>> lazerShotsGun_;
 
