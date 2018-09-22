@@ -22,7 +22,8 @@ public:
     //Draws the helpscreen
     void HelpScreen();
     //Draws the game over screen
-    void GameOver();
+    void YouLoose();
+    void YouWin();
     //Draws the Background of the gamescreen
     void GameScreen();
     //Detects which button in the screen is being pressed

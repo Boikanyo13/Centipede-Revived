@@ -14,14 +14,18 @@ class Centipede{
 public:
     Centipede(int length);
     void Move();
-    int length(){ return length_;}
-    shared_ptr<CentiSegment> centiSegment(int i){return centipede[i] ; }
+    int length();
+    shared_ptr<CentiSegment> centiSegment(int i);
+    void SegmentDestroyed();
+    bool isDead();
     ~Centipede();
+    
     
 private:
     
     vector<shared_ptr <CentiSegment>> centipede;
     int length_;
+    int numDeadSegments_;
 };
 
 #endif // CENTIPEDE_H

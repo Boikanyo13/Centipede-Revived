@@ -469,6 +469,8 @@ TEST_CASE("Player looses life if hit"){
      centipede->centiSegment(0)->setPosition(position2);
      
      //Player has 3 lives initially
+      P1->Lives(3);
+      
      CHECK(P1->Lives()==3);
      
      centipede->Move();
@@ -488,6 +490,7 @@ TEST_CASE("Player explodes if hit"){
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
      
      auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+      P1->Lives(3);
      auto centipede = std::make_shared<Centipede>(1);
      
      //set the centipede ready for collision
@@ -524,4 +527,33 @@ TEST_CASE("Player  is declared dead if number of lives is 0"){
     CHECK(P1->Lives() == 0);
     CHECK(P1->isDead());
      
+}
+
+
+TEST_CASE("Player wins if centipede is destroyed"){
+    
+    
+    auto collider = Collider{};
+    auto newSpeed = 20.0f;
+    
+    auto position1 = vector2D{250.0f ,100.0f- newSpeed};
+    auto position2 = vector2D{250.0f,100.0f};
+    
+    auto centipede = std::make_shared<Centipede>(1);
+    //Set the position just next to the LazerShot
+    centipede->centiSegment(0)->setPosition(position1);
+     
+    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position2, newSpeed, ObjectID::PLAYER);
+    //Load Lazershot
+    P1->load();
+    //Set the LazerShot speed
+    std::get<0>(P1->firedLazerShot(0))->setSpeed(newSpeed);
+    //Fire Lazershot at target
+    P1->shoot();
+        
+    collider.isTargetDestroyed(P1,centipede);
+    
+    
+    CHECK(centipede->isDead());
+    
 }

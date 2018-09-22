@@ -32,5 +32,6 @@ const auto BACK_Y_POS =  520.0f ;
 
 const auto TEXT_1 = "Instructions \n \n \n To Shoot: space \n \n Move Up: Up Arrow \n \n Move Down: Down Arrow \n \n Move Left: Left Arrow \n \n Move Right: Right Arrow";
 const auto TEXT_2 = "GAME OVER!! \n \n You Loose";
+const auto TEXT_3 = "You Win!";
 
 #endif // CONSTANTS_H

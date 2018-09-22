@@ -119,13 +119,25 @@ void SplashScreen::GameScreen(){
      
     }
     
-void SplashScreen::GameOver(){
+void SplashScreen::YouLoose(){
     
+    //set the text for the game lost
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(45);
     gameText.setPosition(135, 210);
     gameText.setString(TEXT_2);
     window_.draw(gameText);
+}
+
+void SplashScreen::YouWin(){
+    
+    //Set text for game won
+    gameText.setFillColor(sf::Color::Green);
+    gameText.setCharacterSize(55);
+    gameText.setPosition(150, 250);
+    gameText.setString(TEXT_3);
+    window_.draw(gameText);
+    
 }
 
 SplashScreen::~SplashScreen()

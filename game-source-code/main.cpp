@@ -91,7 +91,7 @@ int main(){
     
          C1->Move();
         
-        if(D1->spaceKey() && !P1->isDead()){
+        if(D1->spaceKey() && !P1->isDead() && !(P1->ID()==ObjectID::EXPLOSION)){
             
             P1->load();
             shooting = true;
@@ -117,11 +117,13 @@ int main(){
          
          D1->display();
          
-          if(P1->isDead()){
+          if( P1->isDead()  ||  C1->isDead()){
               isPlaying = false;
               gameOver = true;
               
           }
+          
+          
         
         }
         
@@ -144,9 +146,19 @@ int main(){
             }
             
         if(gameOver){
-            D1->clearDisplay();
-            D1->splashscreen().GameOver();
-            D1->display();
+           D1->clearDisplay();
+            isPlaying = false;
+            if(P1->isDead()) 
+                D1->splashscreen().YouLoose();
+
+            else {
+           
+                D1->splashscreen().YouWin();
+            
+            }
+                
+                
+              D1->display();
         }
      
     }

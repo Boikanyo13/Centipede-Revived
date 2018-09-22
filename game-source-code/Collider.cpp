@@ -13,8 +13,14 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
          
              if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),centipede_ptr->centiSegment(j))){
                   
-                  if(j < centipede_ptr->length() - 1)
+                 //Increase the number of destroyed  segment 
+                  centipede_ptr->SegmentDestroyed();
+                  
+                  //make the previous segment head if the one before it is destroyed
+                  if(j < centipede_ptr->length() - 1){
                   (centipede_ptr->centiSegment(j+1))->head();
+                  
+                  }
                   
                  }
          
@@ -32,9 +38,13 @@ void Collider::isPlayerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Playe
      for(auto i = 0; i < centipede_ptr->length(); i++){
             
           if(checkCollision(centipede_ptr->centiSegment(i),player_ptr)){
-                player_ptr->explode();
-                player_ptr->lostLife();
-                
+           
+                //Player looses a life if hit
+                if(!(player_ptr->ID()==ObjectID::EXPLOSION))
+                      player_ptr->lostLife();
+                  
+                //Explode the player
+                 player_ptr->explode();
           }
          }
     
@@ -53,7 +63,7 @@ bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
 
      if(deltaX <= halfX && deltaY <= halfY && !this_ptr->isDead() && !other_ptr->isDead()){
           
-         if(other_ptr->ID() != ObjectID::PLAYER)
+         if((other_ptr->ID() != ObjectID::PLAYER)  && (other_ptr->ID() != ObjectID::EXPLOSION))
               other_ptr->updateState(State::DEAD);
          
         if(this_ptr->ID()==ObjectID::BULLET){
