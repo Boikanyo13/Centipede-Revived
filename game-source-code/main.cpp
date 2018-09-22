@@ -16,6 +16,7 @@ int main(){
     auto isPlaying = false;
     auto help = false;
     auto opening = true;
+    auto gameOver = false;
     
     
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, 1.0f, ObjectID::PLAYER);
@@ -107,6 +108,7 @@ int main(){
          
          }
          
+         
          Coll_Player->isPlayerHit(C1,P1);
        
          D1->drawObject(P1);
@@ -114,6 +116,12 @@ int main(){
          D1->drawCentipede(C1);
          
          D1->display();
+         
+          if(P1->isDead()){
+              isPlaying = false;
+              gameOver = true;
+              
+          }
         
         }
         
@@ -134,6 +142,12 @@ int main(){
             D1->display();
             
             }
+            
+        if(gameOver){
+            D1->clearDisplay();
+            D1->splashscreen().GameOver();
+            D1->display();
+        }
      
     }
 return 0;

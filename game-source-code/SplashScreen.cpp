@@ -5,6 +5,7 @@ SplashScreen::SplashScreen(sf::RenderWindow& window):window_(window)
         //Get the file names
         auto fileNames = gamefile_.screenImages();
         gameFont.loadFromFile(gamefile_.font());
+        gameText.setFont(gameFont);
         sf::Texture tempTexure; 
 
         //Load textures
@@ -64,7 +65,6 @@ std::tuple <float, float, float, float> SplashScreen::ButtonDimension(sf::Rectan
     DrawScreenObject(vector2D{1080.0f, 750.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND1);
     
     //Text for instructions
-    gameText.setFont(gameFont);
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(25);
     gameText.setPosition(65, 100);
@@ -118,6 +118,15 @@ void SplashScreen::GameScreen(){
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
      
     }
+    
+void SplashScreen::GameOver(){
+    
+    gameText.setFillColor(sf::Color::Red);
+    gameText.setCharacterSize(45);
+    gameText.setPosition(135, 210);
+    gameText.setString(TEXT_2);
+    window_.draw(gameText);
+}
 
 SplashScreen::~SplashScreen()
 {
