@@ -1,5 +1,4 @@
 #include "Display.h"
-#include <unistd.h>
 
 
 Display::Display(float screenWidth, float screenHeight):
@@ -76,7 +75,7 @@ void Display::display(){
       leftClick_ = false;
       
       if(delay){
-          usleep(150000);
+          usleep(500000);
           delay = false;
       }
 }

@@ -13,17 +13,24 @@ class Centipede{
     
 public:
     Centipede(int length);
+    //Move Centipede across screen
     void Move();
+    //Return length of Centipede
     int length();
+    //Return the ith CentiSegment
     shared_ptr<CentiSegment> centiSegment(int i);
+    //Count the number of destroyed CentiSegments
     void SegmentDestroyed();
+    //is The Centipede dead?
     bool isDead();
+    //Reset centipede to initial conditions
+    void reset();
     ~Centipede();
     
     
 private:
-    
-    vector<shared_ptr <CentiSegment>> centipede;
+    void initialConditions();
+    vector<shared_ptr <CentiSegment>> centipede_;
     int length_;
     int numDeadSegments_;
 };

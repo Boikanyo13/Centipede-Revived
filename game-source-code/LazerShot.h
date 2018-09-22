@@ -8,8 +8,10 @@ public:
     LazerShot(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
     //Load Lazershot to player
     void Load(const vector2D& pos);
-    //Fire Bullet
+    //Fire Lazershot
     void Fire();
+    //destroy Lazershot
+    virtual void reset() override;
     virtual ~LazerShot();
 
 private:

@@ -121,6 +121,7 @@ void SplashScreen::GameScreen(){
     
 void SplashScreen::YouLoose(){
     
+    GameScreen();
     //set the text for the game lost
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(45);
@@ -131,6 +132,7 @@ void SplashScreen::YouLoose(){
 
 void SplashScreen::YouWin(){
     
+    GameScreen();
     //Set text for game won
     gameText.setFillColor(sf::Color::Green);
     gameText.setCharacterSize(55);

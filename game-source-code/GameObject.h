@@ -32,6 +32,8 @@ public:
     vector2D getSize() const;
     //get ID of the object
     ObjectID ID() const;
+    //Reset object to inital conditions
+    virtual void reset() = 0;
     virtual ~GameObject();
 
 private:

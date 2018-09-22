@@ -67,7 +67,7 @@ int main(){
              
              
          
-         if(isPlaying){
+    if(isPlaying){
              
           D1->clearDisplay();
           D1->gameWindow();
@@ -117,15 +117,21 @@ int main(){
          
          D1->display();
          
+         if(P1->ID() == ObjectID::EXPLOSION){
+             
+             P1->reset();
+             C1->reset();
+             shooting = false;
+             
+         }
+         
           if( P1->isDead()  ||  C1->isDead()){
               isPlaying = false;
               gameOver = true;
               
           }
           
-          
-        
-        }
+    }
         
         if(help){
             
@@ -146,6 +152,7 @@ int main(){
             }
             
         if(gameOver){
+          
            D1->clearDisplay();
             isPlaying = false;
             if(P1->isDead()) 
@@ -157,8 +164,15 @@ int main(){
             
             }
                 
-                
+             
               D1->display();
+              usleep(1000000);
+              gameOver = false;
+              opening = true;
+              C1->reset();
+              P1->Lives(3);
+              P1->setObjectID(ObjectID::PLAYER);
+              P1->updateState(State::ALIVE);
         }
      
     }

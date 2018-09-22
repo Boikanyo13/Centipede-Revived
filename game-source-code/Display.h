@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Centipede.h"
 #include "SplashScreen.h"
+#include <unistd.h>
+
 using std::shared_ptr;
 
 class Display

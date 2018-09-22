@@ -13,6 +13,8 @@ public:
     void head();
     //Check if it is head
     bool isHead();
+    //set the centipede segment to its inital conditions
+    virtual void reset() override;
     virtual ~CentiSegment();
     
 private:

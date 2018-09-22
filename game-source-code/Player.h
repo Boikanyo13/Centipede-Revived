@@ -13,6 +13,7 @@ public:
 
     Player(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
     virtual void Move(Direction direction) override;
+    //Return fired lazer shot
     std::tuple<std::shared_ptr<LazerShot>,int> firedLazerShot(int i) const;
     //Load the LazerShot gun of the Player
     void load();
@@ -26,6 +27,8 @@ public:
     int Lives();
     //Set Number of lives
     void Lives(int lives);
+    //Reset player to inital conditions
+    virtual void reset() override;
     virtual ~Player();
     
 private:

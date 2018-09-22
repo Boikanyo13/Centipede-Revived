@@ -39,6 +39,10 @@ void CentiSegment::head(){
     
     setObjectID(ObjectID::CHEAD);
     }
+    
+void CentiSegment::reset(){
+     
+ }   
 
 void CentiSegment::Move(){
     

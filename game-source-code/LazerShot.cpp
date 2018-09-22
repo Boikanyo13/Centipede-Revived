@@ -33,6 +33,11 @@ void LazerShot::Load(const vector2D& position){
     
     }
     
+void LazerShot::reset(){
+     updateState(State::DEAD);
+    
+}
+    
 LazerShot::~LazerShot()
 {
 }

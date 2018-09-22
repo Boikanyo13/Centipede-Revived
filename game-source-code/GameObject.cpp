@@ -1,5 +1,5 @@
 #include "GameObject.h"
-#include <iostream>
+
 
 GameObject::GameObject(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 size_{size},
