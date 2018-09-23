@@ -5,6 +5,7 @@
 #include "UserInputs.h"
 #include "Centipede.h"
 #include "Collider.h"
+#include "Mushroom.h"
 #include <memory>
 
 int main(){
@@ -26,6 +27,7 @@ int main(){
     
     auto C1 = std::make_shared<Centipede>(17);
     
+    auto M1 = std::make_shared<Mushroom>(MUSHROOM_SIZE, vector2D{250.0f, 340.0f}, 0.0f, ObjectID::MUSHROOM);
  
     auto Coll_Player = std::make_shared<Collider>(score);
    
@@ -71,6 +73,7 @@ int main(){
              
           D1->clearDisplay();
           D1->gameWindow(score, P1->Lives());
+          D1->drawObject(M1);
           
          if(userInput->pressedKey()==Key::UP){
              

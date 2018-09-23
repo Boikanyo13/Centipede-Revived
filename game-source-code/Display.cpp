@@ -114,6 +114,18 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
               gameobject_SFML.setTexture(&textures_[4]);
               delay = true;
               break;
+        case ObjectID::MUSHROOM:
+              gameobject_SFML.setTexture(&textures_[5]);
+              break;
+         case ObjectID::MUSHROO:
+              gameobject_SFML.setTexture(&textures_[6]);
+              break;
+        case ObjectID::MUSHRO:
+              gameobject_SFML.setTexture(&textures_[7]);
+              break;
+        case ObjectID::MUSHR:
+             // gameobject_SFML.setTexture(&textures_[8]);
+              break;
         default:
 
         break;

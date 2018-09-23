@@ -4,7 +4,7 @@
 
 
 
-/*#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
+#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
@@ -12,8 +12,10 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\GameFiles.cpp"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Display.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Collider.cpp"
-*/
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Score.h"
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Mushroom.h"
 
+/*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -25,7 +27,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
-//#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.cpp"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.cpp"*/
    
     float speed = 1.5f;
     
@@ -240,7 +242,8 @@ TEST_CASE("LazerShot is loaded onto the LazerShot Gun of the Player"){
      auto expectedNoOfLazerShots = 3;   
      
      //All the lazershots are identical, choose the 1st one   
-     auto[loadedLazerShot, noOflazershots] = player.firedLazerShot(0);
+     auto loadedLazerShot =  std::get<0>(player.firedLazerShot(0));
+     auto noOflazershots = std::get<1>(player.firedLazerShot(0));
      
      CHECK(loadedLazerShot->getPosition() == expectedLoadedShot->getPosition());
      CHECK(noOflazershots==expectedNoOfLazerShots );
@@ -386,7 +389,7 @@ TEST_CASE("Check if operator - returns correct answer"){
     CHECK(answer.y() == 7.0f); 
 }
 
-//Collision Test
+//Collision Tests
 
 TEST_CASE("Vertical Collision between two GameObject is detected"){
     
@@ -588,3 +591,55 @@ TEST_CASE("Score increases by 1 if mushroom is shot"){
     CHECK(score_.score() == 1);
     
 }
+
+//Mushroom Test
+TEST_CASE("Mushroom cannot move"){
+    
+    auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+   
+    CHECK_THROWS_AS(M1.Move(Direction::UP),NonMovableObject);
+    
+
+    }
+    
+TEST_CASE("Mushroom loses life if shot"){
+    
+     auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+     
+       //Mushroom has 4 lives initially
+      CHECK(M1.lives()==4);
+      M1.shot();
+      CHECK(M1.lives()==3);
+    
+    }
+    
+TEST_CASE("Mushroom chips if shot"){
+    
+     
+     auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+     
+     
+      M1.shot();
+      CHECK(M1.ID()==ObjectID::MUSHROO);
+      M1.shot();
+     CHECK(M1.ID()==ObjectID::MUSHRO);
+    
+    
+    }
+
+TEST_CASE("If number of lives is zero Mushroom is Dead"){
+    
+     
+     auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+     
+     //Simulate the Mushroom being shot 3 times
+     M1.shot();
+     CHECK_FALSE(M1.isDead());
+     M1.shot();
+     M1.shot();
+     M1.shot();
+     
+     CHECK(M1.lives()==0);
+     CHECK(M1.isDead());
+    
+    }
