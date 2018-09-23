@@ -24,8 +24,8 @@ public:
     //Draws the helpscreen
     void HelpScreen();
     //Draws the game over screen
-    void YouLoose();
-    void YouWin();
+    void YouLoose(int score);
+    void YouWin(int score);
     //Draws the Background of the gamescreen
     void GameScreen(int score, int lives);
     //Detects which button in the screen is being pressed
@@ -34,11 +34,13 @@ public:
    
 private:
 
-    //Gets dimensions  of the buttonsclTabCtrl
+    //Gets dimensions  of the buttons
    std::tuple <float, float, float, float> ButtonDimension (sf::RectangleShape button);
    sf::RenderWindow& window_;
    //Makes buttons
    sf::RectangleShape DrawScreenObject(const vector2D& size,const vector2D& position, ScreenObjectID ID);
+   //Draws high scores
+    void HighScores(int score);
    //Stores button textures
    std::vector<sf::Texture> screenObjectTextures_;
    //These are the variables that represent the dimensions of each button

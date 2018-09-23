@@ -168,23 +168,23 @@ int main(){
         if(gameOver){
             
             score->updateHighscore();
-            score->reset();  
+           
             D1->clearDisplay();
             isPlaying = false;
          
             if(P1->isDead()) 
-                D1->splashscreen().YouLoose();
+                D1->splashscreen().YouLoose(score->score());
 
             else {
            
-                D1->splashscreen().YouWin();
+                D1->splashscreen().YouWin(score->score());
             
             }
                 
               P1->reset();
               M1->reset();
               D1->display();
-              usleep(1000000);
+              usleep(3000000);
               
               gameOver = false;
               opening = true;
@@ -192,6 +192,9 @@ int main(){
               P1->Lives(3);
               P1->setObjectID(ObjectID::PLAYER);
               P1->updateState(State::ALIVE);
+               score->reset(); 
+
+            
         }
      
     }

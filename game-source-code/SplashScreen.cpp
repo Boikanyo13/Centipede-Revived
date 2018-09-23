@@ -143,31 +143,56 @@ void SplashScreen::GameScreen(int score, int lives){
      
     }
     
-void SplashScreen::YouLoose(){
+void SplashScreen::YouLoose(int score){
     
     //Background2
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
     //set the text for the game lost
     gameText.setFillColor(sf::Color::Red);
-    gameText.setCharacterSize(45);
-    gameText.setPosition(135, 210);
+    gameText.setCharacterSize(55);
+    gameText.setPosition(120, 110);
     gameText.setString(TEXT_2);
     window_.draw(gameText);
+    HighScores(score);
+    
 }
 
-void SplashScreen::YouWin(){
+void SplashScreen::YouWin(int score){
     
     //Background2
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
     //Set text for game won
     gameText.setFillColor(sf::Color::Green);
     gameText.setCharacterSize(55);
-    gameText.setPosition(150, 250);
+    gameText.setPosition(120, 110);
     gameText.setString(TEXT_3);
     window_.draw(gameText);
     
+    HighScores(score);
 }
 
+void SplashScreen::HighScores(int score){
+   
+   auto score_ = std::to_string(score);
+   auto highscores =  gamefile_.scorefile();
+   gameText.setCharacterSize(30);
+   auto  delyaY  = 0;
+   gameText.setPosition(110, 180);
+   gameText.setString("\n Your score : "+ score_ + " \n \n HIGH SCORES");
+   window_.draw(gameText);
+
+  
+   for(auto i = 0u; i < highscores.size(); i++ )
+   {    delyaY +=40;
+       gameText.setString(std::to_string(highscores[i]));
+       gameText.setPosition(200, 280+delyaY);
+       
+        window_.draw(gameText);
+   }
+   
+     
+ }
+ 
 SplashScreen::~SplashScreen()
 {
 }
