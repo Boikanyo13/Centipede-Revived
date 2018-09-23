@@ -22,6 +22,8 @@ public:
     bool checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr);
     //Handle Centipede and Mushroom collission
     void mushroomHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<MushroomField> mushroom_ptr);
+    //Handle Mushroom Bullet Collision
+    void mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr);
     
     ~Collider();
     

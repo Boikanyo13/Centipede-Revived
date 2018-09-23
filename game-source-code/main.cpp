@@ -109,12 +109,13 @@ int main(){
             }
          P1->shoot();
           
+         
         
          if(shooting && !P1->isDead()){
              
          D1->drawLazerShot(P1);
-         
-         Coll_Player->targetDestroyed(P1,C1);
+          Coll_Player->mushroomShot(P1,M1);  
+          Coll_Player->targetDestroyed(P1,C1);
          
          }
          
@@ -178,6 +179,7 @@ int main(){
             }
                 
               P1->reset();
+              M1->reset();
               D1->display();
               usleep(1000000);
               gameOver = false;

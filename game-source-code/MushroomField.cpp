@@ -3,9 +3,9 @@
 MushroomField::MushroomField(int size):size_{size}
 {
      //Fill the vectors with all the possible positions
-    for(auto i = 0.0f; i < 30.0f; i++){
+    for(auto i = 0.0f; i < 29.0f; i++){
         
-        yPositions_.push_back(20.0f*(i+1.0f));
+        yPositions_.push_back(20.0f*(i+2.0f));
         
         if(i<25)  
         xPositions_.push_back(20.0f*(i+1.0f));
@@ -35,7 +35,7 @@ void MushroomField::generateField(){
         
        //Acces at random indices
         randx = rand()%25;
-        randy = rand()%30;
+        randy = rand()%29;
         
         _mushrooms_ptr.push_back(std::make_shared<Mushroom>(vector2D{MUSHROOM_SIZE},vector2D{xPositions_[randx],yPositions_[randy]},0.0f,ObjectID::MUSHROOM));
      

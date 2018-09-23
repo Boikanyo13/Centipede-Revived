@@ -39,6 +39,24 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
    
 }
 
+void Collider::mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr){
+    
+    auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+    
+     for(auto i = 0; i < lazershots; i++){
+         
+         for(auto j = 0; j < mushroom_ptr->size(); j++){
+             
+              if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),mushroom_ptr->mushroom(j))){
+                     
+                     mushroom_ptr->mushroom(j)->shot();
+                     _score_ptr->mushroomDestroyed();
+              
+              }
+             }
+         }
+}
+
 void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr){
     
    for(auto i = 0; i < mushroom_ptr->size(); i++){
@@ -86,7 +104,7 @@ bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
 
      if(deltaX <= halfX && deltaY <= halfY && !this_ptr->isDead() && !other_ptr->isDead()){
           
-         if((other_ptr->ID() == ObjectID::CENTIPEDE) || (other_ptr->ID() == ObjectID::CHEAD))  /*&& (other_ptr->ID() != ObjectID::EXPLOSION))*/
+         if((other_ptr->ID() == ObjectID::CENTIPEDE) || (other_ptr->ID() == ObjectID::CHEAD))
               other_ptr->updateState(State::DEAD);
          
         if(this_ptr->ID()==ObjectID::BULLET){
