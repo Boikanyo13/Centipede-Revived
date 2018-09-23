@@ -89,6 +89,14 @@ void Display::drawCentipede(shared_ptr<Centipede> centi_ptr){
       }
 }
 
+void Display::drawMushroomField(shared_ptr<MushroomField> mushroom_ptr){
+    
+    for(auto i = 0; i <  mushroom_ptr->size(); i++){
+         
+         drawObject(mushroom_ptr->mushroom(i));
+        }
+}
+
 
 void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     
@@ -124,7 +132,7 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
               gameobject_SFML.setTexture(&textures_[7]);
               break;
         case ObjectID::MUSHR:
-             // gameobject_SFML.setTexture(&textures_[8]);
+              gameobject_SFML.setTexture(&textures_[8]);
               break;
         default:
 

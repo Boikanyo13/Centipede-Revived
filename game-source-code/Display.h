@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Centipede.h"
 #include "SplashScreen.h"
+#include "MushroomField.h"
 #include <unistd.h>
 
 using std::shared_ptr;
@@ -25,6 +26,8 @@ public:
     void drawLazerShot(shared_ptr<Player> player_ptr);
     //Draw Centipede
     void drawCentipede(shared_ptr<Centipede> centi_ptr);
+    //Draw Mushroom Field
+    void drawMushroomField(shared_ptr<MushroomField> mushroom_ptr);
     //Display opening window
     void openingWindow();
     //Check if mouse is clicked on the left side
