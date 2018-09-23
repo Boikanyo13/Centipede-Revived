@@ -15,6 +15,9 @@ public:
     bool isHead() const;
     //set the centipede segment to its inital conditions
     virtual void reset() override;
+    //Take action if hits a mushroom
+    void mushroomHit();
+    //Destructor
     virtual ~CentiSegment();
     
 private:

@@ -78,7 +78,7 @@ int main(){
           D1->gameWindow(score, P1->Lives());
            D1->drawMushroomField(M1);
          
-        // D1->drawObject(M2);
+         
           
          if(userInput->pressedKey()==Key::UP){
              
@@ -98,6 +98,8 @@ int main(){
          }
     
          C1->Move();
+         
+         Coll_Player->mushroomHit(C1,M1);
         
         if(D1->spaceKey() && !P1->isDead() && !(P1->ID()==ObjectID::EXPLOSION)){
             
@@ -112,12 +114,12 @@ int main(){
              
          D1->drawLazerShot(P1);
          
-         Coll_Player->isTargetDestroyed(P1,C1);
+         Coll_Player->targetDestroyed(P1,C1);
          
          }
          
          
-         Coll_Player->isPlayerHit(C1,P1);
+         Coll_Player->playerHit(C1,P1);
        
          D1->drawObject(P1);
          

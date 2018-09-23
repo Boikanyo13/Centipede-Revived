@@ -4,7 +4,7 @@ Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
      
  }
 
-void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr)
+void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr)
 {
       
      auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
@@ -39,7 +39,22 @@ void Collider::isTargetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centi
    
 }
 
-void Collider::isPlayerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr){
+void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr){
+    
+   for(auto i = 0; i < mushroom_ptr->size(); i++){
+       
+       for(auto j = 0; j < centipede_ptr->length(); j++){
+           
+            if(checkCollision(centipede_ptr->centiSegment(j),mushroom_ptr->mushroom(i)))
+                     centipede_ptr->centiSegment(j)->mushroomHit();     
+           
+           }
+       
+       }
+    
+}
+
+void Collider::playerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr){
     
     
      
@@ -71,7 +86,7 @@ bool Collider::checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameOb
 
      if(deltaX <= halfX && deltaY <= halfY && !this_ptr->isDead() && !other_ptr->isDead()){
           
-         if((other_ptr->ID() != ObjectID::PLAYER)  && (other_ptr->ID() != ObjectID::EXPLOSION))
+         if((other_ptr->ID() == ObjectID::CENTIPEDE) || (other_ptr->ID() == ObjectID::CHEAD))  /*&& (other_ptr->ID() != ObjectID::EXPLOSION))*/
               other_ptr->updateState(State::DEAD);
          
         if(this_ptr->ID()==ObjectID::BULLET){

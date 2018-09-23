@@ -6,7 +6,7 @@ GameObject{size,position,speed,objectid}{
     forward_ = true;
     up_ = false;
     atBoundry_ = false;
-    }
+}
 
 
 void CentiSegment::Move(Direction direction){
@@ -44,6 +44,20 @@ bool CentiSegment::isHead() const
 {
     return (ID()==ObjectID::CHEAD);
     }
+    
+void CentiSegment::mushroomHit(){
+    
+       
+    if(!up_)
+    moveDown();
+    else
+        moveUp();
+    
+    //reverse direction   
+    forward_ = !forward_;
+    
+}
+    
     
 void CentiSegment::reset(){
      
