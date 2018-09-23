@@ -30,7 +30,7 @@ int main(){
     
     auto M1 = std::make_shared<MushroomField>(25);
     
-   // auto M2 = std::make_shared<Mushroom>(vector2D{MUSHROOM_SIZE},vector2D{100.0f,440.0f},0.0f,ObjectID::MUSHROOM);
+
  
     auto Coll_Player = std::make_shared<Collider>(score);
    
@@ -77,9 +77,7 @@ int main(){
           D1->clearDisplay();
           D1->gameWindow(score, P1->Lives());
            D1->drawMushroomField(M1);
-         
-         
-          
+            
          if(userInput->pressedKey()==Key::UP){
              
              P1->Move(Direction::UP);
@@ -97,9 +95,12 @@ int main(){
              P1->Move(Direction::RIGHT);
          }
     
-         C1->Move();
+          C1->Move();
          
          Coll_Player->mushroomHit(C1,M1);
+        
+          Coll_Player->playerCollision(P1,M1,userInput->pressedKey());
+       
         
         if(D1->spaceKey() && !P1->isDead() && !(P1->ID()==ObjectID::EXPLOSION)){
             

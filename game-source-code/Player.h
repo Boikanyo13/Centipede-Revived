@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "constants.h"
 #include "GameObject.h"
+#include "UserInputs.h"
 #include "LazerShot.h"
 #include <memory>
 #include <vector>
@@ -29,6 +30,9 @@ public:
     void Lives(int lives);
     //Reset player to inital conditions
     virtual void reset() override;
+    //Take action if there is a mushroomhit
+    void mushroomCollision(bool collision,Key key);
+    //Destructor
     virtual ~Player();
     
 private:
@@ -37,6 +41,11 @@ private:
    void moveRight();
    void moveUp();
    void moveDown();
+   bool left_;
+   bool right_;
+   bool up_;
+   bool down_;
+   int tempSpeed_;
    int lives_;
    int noOfLazerShots_;
    std::vector<std::shared_ptr<LazerShot>> lazerShotsGun_;

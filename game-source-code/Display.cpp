@@ -6,6 +6,7 @@ screenWidth_(screenWidth),screenHeight_(screenHeight),
 window_{sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default},
 splashscreen_{window_}
 { 
+    window_.setFramerateLimit(600);
     space_ = false;
     leftClick_ = false;
     delay = false;

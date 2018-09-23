@@ -6,6 +6,11 @@ GameObject{size,position,speed,objectid}
 {   
     noOfLazerShots_ = 0;
     lives_ = 3;
+    tempSpeed_ = speed;
+    left_ = true;
+    right_ = true;
+    up_ = true;
+    down_ = true;
     }
 
 void Player::Move(Direction direction){  
@@ -88,13 +93,63 @@ void Player::reset(){
       noOfLazerShots_ = 0;
    
 }
+
+void Player::mushroomCollision(bool collision, Key key){
+    
+    //If there is a collision bounce back by bounce
+    auto bounce = 1.0f;
+    
+    if(collision){
+       
+       switch(key){
+           
+           case Key::LEFT:
+             
+              left_ = false;
+              setPosition(vector2D{getPosition().x()+bounce, getPosition().y()});
+              break;
+              
+          case Key::RIGHT:
+              
+              right_ = false;
+              setPosition(vector2D{getPosition().x()-bounce, getPosition().y()});
+              break;
+              
+          case Key::UP:
+              
+              up_ = false;
+              setPosition(vector2D{getPosition().x(), getPosition().y()+bounce});
+              break;
+              
+          case Key::DOWN:
+              
+              down_ = false;
+              setPosition(vector2D{getPosition().x(), getPosition().y()-bounce});
+              break;
+              
+           default:
+              break;
+           }
+        
+        
+    }
+    else{
+        
+         left_ = true;
+         right_ = true;
+         up_ = true;
+         down_ = true;
+          
+        }
+    
+}
       
       
 void Player::moveLeft(){
     
     //Check if at boundary
         auto left =  getPosition().x() - getSpeed();
-        if(left >= (getSize().x()/2.0f )){
+        if(left >= (getSize().x()/2.0f ) && left_){
                   setPosition(vector2D{left,getPosition().y()});
         }
     }
@@ -103,7 +158,7 @@ void Player::moveRight(){
     
       //Check if at boundary
         auto right = getSpeed() + getPosition().x();
-        if(right <= (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
+        if(right <= (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f) && right_){
                     setPosition(vector2D{right,getPosition().y()});
                 }
     }
@@ -112,7 +167,7 @@ void Player::moveDown(){
     
      //Check if at boundary
         auto down =  getPosition().y() + getSpeed();
-        if(down <= (ORIGINAL_SCREEN_HEIGHT -getSize().y()/2.0f)){
+        if(down <= (ORIGINAL_SCREEN_HEIGHT -getSize().y()/2.0f) && down_){
                  setPosition(vector2D{getPosition().x(),down});
             }
     }
@@ -122,7 +177,7 @@ void Player::moveUp(){
     
      //Check if at boundary
         auto up = getPosition().y() - getSpeed();
-        if(up >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)){
+        if(up >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3) && up_){
                 setPosition(vector2D{getPosition().x(),up});
             }
     }

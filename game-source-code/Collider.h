@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "MushroomField.h"
+#include "UserInputs.h"
 #include <memory>
 #include "Centipede.h"
 #include "Score.h"
@@ -24,11 +25,15 @@ public:
     void mushroomHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<MushroomField> mushroom_ptr);
     //Handle Mushroom Bullet Collision
     void mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr);
+    //Handle Player mushroom collision
+    void playerCollision(shared_ptr<Player> player_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
+    
     
     ~Collider();
     
 private:
     shared_ptr<Score> _score_ptr;
+    Key key_;
   
 
 };

@@ -1,7 +1,7 @@
 #include "Collider.h"
 
 Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
-     
+     key_ = Key::OTHERS;
  }
 
 void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr)
@@ -55,6 +55,23 @@ void Collider::mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomFi
               }
              }
          }
+}
+
+
+void Collider::playerCollision(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr, Key key){
+    
+
+    for(auto i = 0; i < mushroom_ptr->size(); i++){
+         
+        
+          if(checkCollision(player_ptr,mushroom_ptr->mushroom(i))){
+              player_ptr->mushroomCollision(true,key);
+               break;
+          }
+          else{ player_ptr->mushroomCollision(false,key);}
+            
+        }
+ 
 }
 
 void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr){

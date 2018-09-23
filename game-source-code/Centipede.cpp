@@ -7,8 +7,10 @@ Centipede::Centipede(int length):length_{length}{
 }
 
 
-int Centipede::length(){ //return length_;
- return centipede_.size();
+int Centipede::length(){ 
+    
+    return length_;
+ 
 }
 
 void Centipede::Move(){
