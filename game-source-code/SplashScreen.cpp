@@ -126,10 +126,19 @@ void SplashScreen::GameScreen(int score, int lives){
         posX+=25.0f;
      }
     
+    //current score
     gameText.setFillColor(sf::Color::Green);
     gameText.setCharacterSize(20);
     gameText.setPosition(20.0f, 5.0f);
     gameText.setString(score_);
+    window_.draw(gameText);
+    
+    //highscore
+    auto scores = gamefile_.scorefile();
+    auto highscore = std::to_string(scores[0]);
+    gameText.setFillColor(sf::Color::Green);
+    gameText.setPosition(220.0f, 5.0f);
+    gameText.setString(highscore);
     window_.draw(gameText);
      
     }

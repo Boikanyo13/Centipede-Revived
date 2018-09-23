@@ -3,7 +3,7 @@
 #include <memory>
 
 
-
+/*
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
@@ -15,7 +15,7 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Score.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Mushroom.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\MushroomField.h"
-/*
+*/
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -27,7 +27,9 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
-#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.cpp"*/
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\MushroomField.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Mushroom.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.h"
    
     float speed = 1.5f;
     
@@ -455,7 +457,7 @@ TEST_CASE("Dead object cannot collide"){
     
     CHECK(collider.checkCollision(Cs1,L1));
 
-    //Cs1->updateState(State::DEAD);
+    Cs1->updateState(State::DEAD);
     
     CHECK_FALSE(collider.checkCollision(Cs1,L1));
     
@@ -479,7 +481,7 @@ TEST_CASE("Player looses life if hit"){
      
      centipede->Move();
      
-     collider.isPlayerHit(centipede,P1);
+     collider.playerHit(centipede,P1);
      
      CHECK(P1->Lives()==2);
     
@@ -502,7 +504,7 @@ TEST_CASE("Player explodes if hit"){
      
     //Collide the centipede with the player
      centipede->Move();
-     collider.isPlayerHit(centipede,P1);
+     collider.playerHit(centipede,P1);
      
     
      CHECK(P1->ID() == ObjectID::EXPLOSION);
@@ -526,7 +528,7 @@ TEST_CASE("Player  is declared dead if number of lives is 0"){
     
     //Collide the centipede with the player
     centipede->Move();
-    collider.isPlayerHit(centipede,P1);
+    collider.playerHit(centipede,P1);
   
     CHECK(P1->Lives() == 0);
     CHECK(P1->isDead());
@@ -556,7 +558,7 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     //Fire Lazershot at target
     P1->shoot();
         
-     collider.isTargetDestroyed(P1,centipede);
+     collider.targetDestroyed(P1,centipede);
     
     
     CHECK(centipede->isDead());

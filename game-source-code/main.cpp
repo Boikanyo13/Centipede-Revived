@@ -140,7 +140,7 @@ int main(){
           if( P1->isDead()  ||  C1->isDead()){
               isPlaying = false;
               gameOver = true;
-              score->reset();
+              
               shooting = false;
               
           }
@@ -166,7 +166,9 @@ int main(){
             }
             
         if(gameOver){
-          
+            
+            score->updateHighscore();
+            score->reset();  
             D1->clearDisplay();
             isPlaying = false;
          
@@ -183,6 +185,7 @@ int main(){
               M1->reset();
               D1->display();
               usleep(1000000);
+              
               gameOver = false;
               opening = true;
               C1->reset();

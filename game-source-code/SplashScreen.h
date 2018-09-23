@@ -10,7 +10,7 @@
 #include <vector>
 
 enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1, BACKGROUND2, LIFE};
-class FileNotFound{};
+//class FileNotFound{};
 
 
 class SplashScreen

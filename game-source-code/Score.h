@@ -1,5 +1,7 @@
 #ifndef SCORE_H
 #define SCORE_H
+#include "GameFiles.h"
+#include <memory>
 
 class Score
 {
@@ -15,6 +17,8 @@ public:
     int score() const;
     //reset score 
     void reset();
+    //update high score
+    void updateHighscore();
     ~Score();
 private:
         int score_;
