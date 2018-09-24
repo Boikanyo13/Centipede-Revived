@@ -125,7 +125,7 @@ void GameLoop::PlayGame(){
              centipede_ptr->reset();
              mushroomfield_ptr->reset();
               usleep(20000);
-            
+            shooting_ = false;
              
              }
          
