@@ -5,7 +5,7 @@ player_ptr{make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_STA
 display_ptr{make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT)},
 userinput_ptr{make_shared<UserInputs>()},
 score_ptr{make_shared<Score>()},
-centipede_ptr{make_shared<Centipede>(17)},
+centipede_ptr{make_shared<Centipede>(12)},
 mushroomfield_ptr{make_shared<MushroomField>(25)},
 collision_ptr{make_shared<Collider>(score_ptr)}
 {
@@ -93,7 +93,7 @@ void GameLoop::PlayGame(){
              
             display_ptr->drawLazerShot(player_ptr);
             collision_ptr->mushroomShot(player_ptr,mushroomfield_ptr);  
-            collision_ptr->targetDestroyed(player_ptr,centipede_ptr);
+            collision_ptr->targetDestroyed(player_ptr,centipede_ptr,mushroomfield_ptr);
          }
          
          collision_ptr->playerHit(centipede_ptr,player_ptr);
@@ -124,6 +124,7 @@ void GameLoop::PlayGame(){
               isPlaying_ = false;
               gameOver_ = true;
               shooting_ = false;
+           
               }
     
 }

@@ -11,7 +11,8 @@ MushroomField::MushroomField(int size):size_{size}
         xPositions_.push_back(20.0f*(i+1.0f));
        
        }
-    
+       
+      original_size_ = size;
       generateField();
 }
 
@@ -19,7 +20,8 @@ void MushroomField::reset(){
     
     if(_mushrooms_ptr.size()> 0)
        _mushrooms_ptr.erase(_mushrooms_ptr.begin(), _mushrooms_ptr.end());  
- 
+       
+    size_ = original_size_;
     generateField();
 }
 
@@ -31,7 +33,7 @@ void MushroomField::generateField(){
     auto randx = 0;
     
      
-   for(auto i = 0; i < size_; i++){
+   for(auto i = 0; i <  size_; i++){
         
        //Acces at random indices
         randx = rand()%25;
@@ -41,6 +43,12 @@ void MushroomField::generateField(){
      
         }
 
+    }
+
+void MushroomField::transform(std::shared_ptr<CentiSegment> seg){
+    
+_mushrooms_ptr.push_back(std::make_shared<Mushroom>(vector2D{MUSHROOM_SIZE},seg->getPosition(),0.0f,ObjectID::MUSHROOM));
+    size_++;
     }
 
 int MushroomField::size() const{

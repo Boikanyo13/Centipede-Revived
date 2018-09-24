@@ -1,10 +1,10 @@
 #include "Collider.h"
 
 Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
-     key_ = Key::OTHERS;
+
  }
 
-void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr)
+void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr)
 {
       
      auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
@@ -26,11 +26,14 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
                   
                   }
                   
-                 if(centipede_ptr->centiSegment(j)->isHead())
+                 if(centipede_ptr->centiSegment(j)->isHead()){
                        _score_ptr->centiheadDestroyed();
-                  else
-                        _score_ptr->centibodyDestroyed();
                  }
+                  else{
+                         mushroom_ptr->transform(centipede_ptr->centiSegment(j));
+                        _score_ptr->centibodyDestroyed();}
+                     
+                     }
          
          }
        }
