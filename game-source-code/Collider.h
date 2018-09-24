@@ -7,6 +7,7 @@
 #include <memory>
 #include "Centipede.h"
 #include "Score.h"
+#include "Spider.h"
 
 using std::shared_ptr;
 
@@ -27,6 +28,8 @@ public:
     void mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr);
     //Handle Player mushroom collision
     void playerCollision(shared_ptr<Player> player_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
+    //Handle Collision between Spider and Player
+    void playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr);
     ~Collider();
     
 private:

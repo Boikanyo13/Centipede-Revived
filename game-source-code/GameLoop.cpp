@@ -75,6 +75,8 @@ void GameLoop::PlayGame(){
         centipede_ptr->Move();
         
         spider_ptr->Move();
+        
+        collision_ptr->playerHit(spider_ptr,player_ptr);
          
          //detect if the centipede collides with a mushroom
         collision_ptr->mushroomHit(centipede_ptr,mushroomfield_ptr);
@@ -110,6 +112,7 @@ void GameLoop::PlayGame(){
              
              player_ptr->reset();
              centipede_ptr->reset();
+             spider_ptr->reset();
              shooting_ = false;
              }
          

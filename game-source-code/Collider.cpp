@@ -38,7 +38,19 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
          }
        }
     
-    
+}
+
+void Collider::playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr)
+{
+   if(checkCollision(spider_ptr,player_ptr)){
+       
+              if(!(player_ptr->ID()==ObjectID::EXPLOSION))
+                      player_ptr->lostLife();
+                  
+                //Explode the player
+                 player_ptr->explode();
+       }
+       
    
 }
 
