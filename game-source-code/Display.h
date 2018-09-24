@@ -48,6 +48,7 @@ private:
     float screenHeight_;
     bool space_, leftClick_;
     bool delay;
+    bool delay2;
     sf::RenderWindow window_;
     GameFiles gamefile_; 
     std::vector<sf::Texture> textures_;

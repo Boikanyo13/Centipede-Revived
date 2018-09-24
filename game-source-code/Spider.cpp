@@ -4,12 +4,16 @@
 
 Spider::Spider(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 GameObject{size,position,speed,objectid}
-{
-    setPosition(vector2D{getSize().x()/2.0f+2.0f, 440.0f});
+{ 
     up_ = false;
     zigzag_ = true;
 }
 
+
+void Spider::explode(){
+    
+     setObjectID(ObjectID::EXPLOSION2);
+    }
 
 void Spider::Move(Direction direction){
     
@@ -20,7 +24,7 @@ void Spider::Move(){
     
     //Introduce randomness
     srand(time(0));
-    auto decision = rand()%2;
+    auto decision = rand()%3;
     
     switch(decision){
     
@@ -28,9 +32,9 @@ void Spider::Move(){
             if(!up_)
                 moveDown();
             else if(!zigzag_)
-                moveUp();
-            else if(zigzag_)
                 moveZig();
+            else if(zigzag_)
+                moveUp();
             else if(up_) 
                 {moveZag();}
         break;
@@ -66,6 +70,9 @@ void Spider::reset(){
     
     setPosition(vector2D{ORIGINAL_SCREEN_WIDTH-2.0f, 440.0f});
     updateState(State::ALIVE);
+    setObjectID(ObjectID::SPIDER);
+    zigzag_ = !zigzag_;
+    up_ = !up_;
 }
 
 void Spider::moveDown(){
@@ -100,15 +107,15 @@ void Spider::moveZig(){
     auto zag = getPosition().y() + getSpeed();
 
     
-    if(zag <= (ORIGINAL_SCREEN_HEIGHT)  && zig <= (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f))
+    if(zag <= (ORIGINAL_SCREEN_HEIGHT)  && zig <= (1.2f*ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f))
     { 
         setPosition(vector2D{zig,zag});
         }
     else{
             
-         if(zig >=  (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
+         if(zig >=  (1.2f*ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
              
-             setPosition(vector2D{ getSize().x()/2.0f+2.0f,zag});
+             setPosition(vector2D{ -2.0f*getSize().x()/*/2.0f+2.0f*/,zag});
              }
              else{zigzag_ = !zigzag_; 
                   up_ = !up_;
@@ -124,7 +131,7 @@ void Spider::moveZag(){
     auto zag = getPosition().y() - getSpeed();
     
     
-    if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= (getSize().x()/2.0f))
+    if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= -2.0f*(getSize().x()/2.0f))
     { 
         setPosition(vector2D{zig,zag});
         }
@@ -132,7 +139,7 @@ void Spider::moveZag(){
         
          if(zig <= (getSize().x()/2.0f)){
              
-             setPosition(vector2D{ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f-2.0f,zag});
+             setPosition(vector2D{1.2f*ORIGINAL_SCREEN_WIDTH /*- getSize().x()/2.0f-2.0f*/,zag});
              }
              else{zigzag_ = !zigzag_;}
         

@@ -13,6 +13,8 @@ public:
     void centiheadDestroyed();
     //incremenet score by 1
     void mushroomDestroyed();
+    //increment score by 300
+    void spiderDestroyed();
     //get score
     int score() const;
     //reset score 

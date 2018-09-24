@@ -101,6 +101,7 @@ void GameLoop::PlayGame(){
             display_ptr->drawLazerShot(player_ptr);
             collision_ptr->mushroomShot(player_ptr,mushroomfield_ptr);  
             collision_ptr->targetDestroyed(player_ptr,centipede_ptr,mushroomfield_ptr);
+            collision_ptr->targetDestroyed(player_ptr,spider_ptr);
          }
          
          collision_ptr->playerHit(centipede_ptr,player_ptr);
@@ -133,6 +134,11 @@ void GameLoop::PlayGame(){
               gameOver_ = true;
               shooting_ = false;
            
+              }
+           //Revive the Spider if Shot   
+          if(spider_ptr->ID()==ObjectID::EXPLOSION2){
+              
+              spider_ptr->reset();
               }
     
 }

@@ -18,6 +18,11 @@ void Score::mushroomDestroyed(){
     score_+=1;
 }
 
+void Score::spiderDestroyed(){
+    
+    score_+=300;
+    }
+
 int Score::score() const {
  return score_;
 }

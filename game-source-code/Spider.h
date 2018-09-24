@@ -10,6 +10,7 @@ class Spider: public GameObject{
      void Move();
      //Reset Spider to initial consitions
      virtual void reset() override;
+     void explode();
      virtual ~Spider();
      
 private:

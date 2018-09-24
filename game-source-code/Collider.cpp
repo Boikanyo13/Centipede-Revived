@@ -27,10 +27,12 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
                   }
                   
                  if(centipede_ptr->centiSegment(j)->isHead()){
+                         //Update Score
                        _score_ptr->centiheadDestroyed();
                  }
-                  else{
+                  else{  //Transform the shot centipede into a Mushroom
                          mushroom_ptr->transform(centipede_ptr->centiSegment(j));
+                         //Update Score
                         _score_ptr->centibodyDestroyed();}
                      
                      }
@@ -40,11 +42,27 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
     
 }
 
+void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Spider> spider_ptr){
+    
+     auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+     
+     for(auto i = 0; i < lazershots; i++){
+         
+         if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),spider_ptr)){
+             //Add to score
+             _score_ptr->spiderDestroyed();
+             //Explode the spider
+             spider_ptr->explode();
+             }
+     }
+
+}
 
 void Collider::mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<MushroomField> mushroom_ptr){
     
     for(auto i = 0; i < mushroom_ptr->size(); i++){
-        
+           
+          //Mushroom dies if collides with Spider
           if(checkCollision(spider_ptr,mushroom_ptr->mushroom(i))){
               mushroom_ptr->mushroom(i)->updateState(State::DEAD);
           }
@@ -56,7 +74,8 @@ void Collider::mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<Mushro
 void Collider::playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr)
 {
    if(checkCollision(spider_ptr,player_ptr)){
-       
+               
+                //Player loses if collides with a Spider
               if(!(player_ptr->ID()==ObjectID::EXPLOSION))
                       player_ptr->lostLife();
                   
@@ -76,8 +95,9 @@ void Collider::mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomFi
          for(auto j = 0; j < mushroom_ptr->size(); j++){
              
               if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),mushroom_ptr->mushroom(j))){
-                     
+                     //Flag the mushroom as being shot
                      mushroom_ptr->mushroom(j)->shot();
+                     //Update Score
                      _score_ptr->mushroomDestroyed();
               
               }
@@ -91,7 +111,7 @@ void Collider::playerCollision(shared_ptr<Player> player_ptr, shared_ptr<Mushroo
 
     for(auto i = 0; i < mushroom_ptr->size(); i++){
          
-        
+          //Restrict Player from moving to the direction of the Collision
           if(checkCollision(player_ptr,mushroom_ptr->mushroom(i))){
               player_ptr->mushroomCollision(true,key);
                break;
@@ -104,10 +124,11 @@ void Collider::playerCollision(shared_ptr<Player> player_ptr, shared_ptr<Mushroo
 
 void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr){
     
-   for(auto i = 0; i < mushroom_ptr->size(); i++){
+    for(auto i = 0; i < mushroom_ptr->size(); i++){
        
-       for(auto j = 0; j < centipede_ptr->length(); j++){
-           
+        for(auto j = 0; j < centipede_ptr->length(); j++){
+             
+            //Change Centiped direction if hits a mushroom
             if(checkCollision(centipede_ptr->centiSegment(j),mushroom_ptr->mushroom(i)))
                      centipede_ptr->centiSegment(j)->mushroomHit();     
            
