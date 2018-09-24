@@ -28,7 +28,7 @@ void GameObject::setPosition(const vector2D& position){
     //Ensure that objects are within the screen bounds 
     
     //Check, for LazerShots and Centipede vertical position is allowed to be < 0 
-    if(objectID_ != ObjectID::SPIDER){
+    if(objectID_ != ObjectID::SPIDER && objectID_ != ObjectID::BULLET){
     
     if((objectID_ != ObjectID::CENTIPEDE) && (objectID_ != ObjectID::BULLET)){
       if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){

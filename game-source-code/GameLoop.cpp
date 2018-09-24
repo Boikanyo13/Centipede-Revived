@@ -1,12 +1,12 @@
 #include "GameLoop.h"
 
 GameLoop::GameLoop():
-player_ptr{make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, 1.0f, ObjectID::PLAYER)},
+player_ptr{make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, PLAYER_SPEED, ObjectID::PLAYER)},
 display_ptr{make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT)},
 userinput_ptr{make_shared<UserInputs>()},
 score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
-mushroomfield_ptr{make_shared<MushroomField>(25)},
+mushroomfield_ptr{make_shared<MushroomField>(35)},
 collision_ptr{make_shared<Collider>(score_ptr)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)}
 {
@@ -119,14 +119,15 @@ void GameLoop::PlayGame(){
              shooting_ = false;
              }
          
-        /* if(centipede_ptr->isDead()){
+         if(centipede_ptr->isDead()){
              
              player_ptr->reset();
              centipede_ptr->reset();
              mushroomfield_ptr->reset();
-             usleep(2000000);
+              usleep(20000);
+            
              
-             }*/
+             }
          
          //End game if player is dead
           if( player_ptr->isDead() ||  centipede_ptr->isDead()){

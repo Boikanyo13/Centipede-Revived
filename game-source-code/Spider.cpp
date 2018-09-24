@@ -43,9 +43,9 @@ void Spider::Move(){
             if(up_)
                 moveZig();
             else if(zigzag_)
-                moveUp();
+               moveZag();
             else if(!zigzag_)
-                moveZag();
+                 moveUp();
             else if(!up_) 
                 moveDown();
         break;
@@ -56,9 +56,9 @@ void Spider::Move(){
             else if(up_)
                 moveUp();
             else if(!zigzag_)
-                moveDown();
+               moveZig();
             else if(!up_) 
-                moveZig();
+                moveDown();
         break;
         
       default:
@@ -107,15 +107,15 @@ void Spider::moveZig(){
     auto zag = getPosition().y() + getSpeed();
 
     
-    if(zag <= (ORIGINAL_SCREEN_HEIGHT)  && zig <= (1.2f*ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f))
+    if(zag <= (ORIGINAL_SCREEN_HEIGHT)  && zig <= (ORIGINAL_SCREEN_WIDTH))
     { 
         setPosition(vector2D{zig,zag});
         }
     else{
             
-         if(zig >=  (1.2f*ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
+         if(zig >=  (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
              
-             setPosition(vector2D{ -2.0f*getSize().x()/*/2.0f+2.0f*/,zag});
+             setPosition(vector2D{-getSize().x()/*/2.0f+2.0f*/,zag});
              }
              else{zigzag_ = !zigzag_; 
                   up_ = !up_;
@@ -131,15 +131,15 @@ void Spider::moveZag(){
     auto zag = getPosition().y() - getSpeed();
     
     
-    if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= -2.0f*(getSize().x()/2.0f))
+    if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= -(getSize().x()/2.0f))
     { 
         setPosition(vector2D{zig,zag});
         }
     else{
         
-         if(zig <= (getSize().x()/2.0f)){
+         if(zig <= -(getSize().x()/2.0f)){
              
-             setPosition(vector2D{1.2f*ORIGINAL_SCREEN_WIDTH /*- getSize().x()/2.0f-2.0f*/,zag});
+             setPosition(vector2D{ORIGINAL_SCREEN_WIDTH /*- getSize().x()/2.0f-2.0f*/,zag});
              }
              else{zigzag_ = !zigzag_;}
         

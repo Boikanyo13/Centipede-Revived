@@ -65,7 +65,7 @@ void Player::shoot(){
 
 void Player::load(){
     
-    lazerShotsGun_.push_back(std::make_shared<LazerShot>(vector2D{2.0f,10.0f},vector2D{0.0f,0.0f}, 1.0f, ObjectID::BULLET));
+    lazerShotsGun_.push_back(std::make_shared<LazerShot>(BULLET_SIZE,vector2D{0.0f,0.0f}, 1.0f, ObjectID::BULLET));
     lazerShotsGun_[noOfLazerShots_]->Load(getPosition());
     noOfLazerShots_++;
     

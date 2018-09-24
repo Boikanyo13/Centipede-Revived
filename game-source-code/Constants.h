@@ -21,6 +21,8 @@ const auto SPIDER_INIT_POSITION =  vector2D{11.0f, 440.0f};
 const auto SPIDER_SIZE = vector2D{25.0f,25.0f};
 const auto SPIDER_SPEED = 0.3f;
 const auto CENTIPEDE_SPEED = 1.5f;
+const auto BULLET_SIZE = vector2D{2.0f,10.0f};
+const auto PLAYER_SPEED = 1.0f;
 
 //Button dimensions
 const auto BUTTON_X_SIZE = 100.0f;
