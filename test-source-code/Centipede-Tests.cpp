@@ -3,7 +3,7 @@
 #include <memory>
 
 
-/*
+
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
@@ -15,7 +15,9 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Score.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Mushroom.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\MushroomField.h"
-*/
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spider.h"
+
+/*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -29,7 +31,7 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\MushroomField.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Mushroom.h"
-#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.h"*/
    
     float speed = 1.5f;
     
@@ -548,7 +550,8 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     auto centipede = std::make_shared<Centipede>(1);
     //Set the position just next to the LazerShot
     centipede->centiSegment(0)->setPosition(position1);
-
+     
+    auto mushroom_field = std::make_shared<MushroomField>(1);
      
     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position2, newSpeed, ObjectID::PLAYER);
     //Load Lazershot
@@ -558,7 +561,7 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     //Fire Lazershot at target
     P1->shoot();
         
-     collider.targetDestroyed(P1,centipede);
+     collider.targetDestroyed(P1,centipede,mushroom_field);
     
     
     CHECK(centipede->isDead());
@@ -643,6 +646,16 @@ TEST_CASE("If number of lives is zero Mushroom is Dead"){
      
      CHECK(M1.lives()==0);
      CHECK(M1.isDead());
+    
+    }
+    
+//Spider Tests
+TEST_CASE("Spider Moves"){
+    
+    
+    auto S1 = Spider{SPIDER_SIZE,SPIDER_INIT_POSITION,speed,ObjectID::SPIDER};
+    S1.Move();
+    CHECK_FALSE(S1.getPosition()==SPIDER_INIT_POSITION);
     
     }
 

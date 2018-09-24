@@ -135,6 +135,10 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
         case ObjectID::MUSHR:
               gameobject_SFML.setTexture(&textures_[8]);
               break;
+        case ObjectID::SPIDER:
+              gameobject_SFML.setTexture(&textures_[9]);
+              break;    
+            
         default:
 
         break;

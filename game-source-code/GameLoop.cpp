@@ -5,9 +5,10 @@ player_ptr{make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_STA
 display_ptr{make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT)},
 userinput_ptr{make_shared<UserInputs>()},
 score_ptr{make_shared<Score>()},
-centipede_ptr{make_shared<Centipede>(12)},
+centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
 mushroomfield_ptr{make_shared<MushroomField>(25)},
-collision_ptr{make_shared<Collider>(score_ptr)}
+collision_ptr{make_shared<Collider>(score_ptr)},
+spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)}
 {
     shooting_ = false;
     isPlaying_ = false;
@@ -72,6 +73,8 @@ void GameLoop::PlayGame(){
         
         //move the centipede across the screen
         centipede_ptr->Move();
+        
+        spider_ptr->Move();
          
          //detect if the centipede collides with a mushroom
         collision_ptr->mushroomHit(centipede_ptr,mushroomfield_ptr);
@@ -97,7 +100,7 @@ void GameLoop::PlayGame(){
          }
          
          collision_ptr->playerHit(centipede_ptr,player_ptr);
-       
+         display_ptr->drawObject(spider_ptr);
          display_ptr->drawObject(player_ptr);
          display_ptr->drawCentipede(centipede_ptr);
          display_ptr->display();

@@ -8,6 +8,7 @@
 #include "Centipede.h"
 #include "Collider.h"
 #include "Mushroom.h"
+#include "Spider.h"
 #include "MushroomField.h"
 #include <memory>
 
@@ -38,6 +39,7 @@ private:
     shared_ptr<Centipede> centipede_ptr;
     shared_ptr<MushroomField> mushroomfield_ptr;
     shared_ptr<Collider> collision_ptr;
+    shared_ptr<Spider> spider_ptr;
 
     bool shooting_;
     bool isPlaying_;
