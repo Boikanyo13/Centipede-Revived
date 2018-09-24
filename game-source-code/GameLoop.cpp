@@ -76,6 +76,8 @@ void GameLoop::PlayGame(){
         
         spider_ptr->Move();
         
+        collision_ptr->mushroomDestroyed(spider_ptr,mushroomfield_ptr);
+        
         collision_ptr->playerHit(spider_ptr,player_ptr);
          
          //detect if the centipede collides with a mushroom

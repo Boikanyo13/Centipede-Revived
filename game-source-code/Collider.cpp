@@ -40,6 +40,19 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
     
 }
 
+
+void Collider::mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<MushroomField> mushroom_ptr){
+    
+    for(auto i = 0; i < mushroom_ptr->size(); i++){
+        
+          if(checkCollision(spider_ptr,mushroom_ptr->mushroom(i))){
+              mushroom_ptr->mushroom(i)->updateState(State::DEAD);
+          }
+        }
+
+}
+
+
 void Collider::playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr)
 {
    if(checkCollision(spider_ptr,player_ptr)){

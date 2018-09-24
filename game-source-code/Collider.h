@@ -30,6 +30,8 @@ public:
     void playerCollision(shared_ptr<Player> player_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
     //Handle Collision between Spider and Player
     void playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr);
+    //Handle Spider Mushroom Collision
+    void mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<MushroomField> mushroom_ptr);
     ~Collider();
     
 private:
