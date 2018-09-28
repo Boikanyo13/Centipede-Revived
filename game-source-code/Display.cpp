@@ -109,9 +109,9 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     if(!gameobject_ptr->isDead()){
     auto gameobject_SFML = drawSprite(gameobject_ptr);
         
-  switch(gameobject_ptr->ID()){    
+ switch(gameobject_ptr->ID()){    
         
-     case ObjectID::BULLET:
+       case ObjectID::BULLET:
             gameobject_SFML.setTexture(&textures_[1]);
             break;
         

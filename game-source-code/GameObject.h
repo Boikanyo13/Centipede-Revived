@@ -37,7 +37,6 @@ public:
     virtual ~GameObject();
 
 private:
-
     vector2D size_;
     vector2D position_;
     float speed_;

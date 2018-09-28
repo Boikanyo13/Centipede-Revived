@@ -49,17 +49,16 @@ void Player::Move(Direction direction){
 
 void Player::shoot(){
     
-    for(auto i = 0; i < noOfLazerShots_; i++){
+    for(auto i = 0; i != noOfLazerShots_; i++){
         
        lazerShotsGun_[i]->Fire();
         
-         /* if(lazerShotsGun_[i]->isDead() && noOfLazerShots_ >50){
-            
-            lazerShotsGun_.erase(lazerShotsGun_.begin()+i);
-          
-            noOfLazerShots_--;
-            
-            }*/
+        if(lazerShotsGun_[i]->getPosition().y() <= 0.0f){
+                
+                 lazerShotsGun_[i]->updateState(State::DEAD);
+                 //lazerShotsGun_.erase(lazerShotsGun_.begin()+i);
+                   //  noOfLazerShots_--;
+                }
          }
 }
 

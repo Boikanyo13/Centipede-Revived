@@ -65,7 +65,7 @@ void CentiSegment::reset(){
 
 void CentiSegment::Move(){
     
-    if(getPosition().y() <= getSize().y()/2.0f) { entrance(); }
+    if(getPosition().y() <= getSize().y()/*/2.0f*/) { entrance(); }
     
     else{
         

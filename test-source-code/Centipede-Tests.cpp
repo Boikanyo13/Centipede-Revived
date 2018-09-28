@@ -275,6 +275,45 @@ TEST_CASE("Player Shoots LazerShots"){
     }
     
 //Centisegment TESTS
+TEST_CASE("Centisegment's postion can be  be set outside of the top boundary but no doew"){
+    
+    auto outofVerticalBoundsPosition1 = vector2D{100.0f, 2*ORIGINAL_SCREEN_WIDTH};
+    auto outofVerticalBoundsPosition2 = vector2D{100.0f,-89.0f};
+    
+    //Check constructor
+    CHECK_THROWS_AS(auto Cs1 = CentiSegment(CENTIPEDE_SIZE,outofVerticalBoundsPosition1,speed, ObjectID::CENTIPEDE),ObjectOutOfBounds);
+    CHECK_NOTHROW(auto Cs1 = CentiSegment(CENTIPEDE_SIZE,outofVerticalBoundsPosition2,speed, ObjectID::CENTIPEDE));
+    
+     //Check setPosition function
+    auto Cs1 = CentiSegment{vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},vector2D(ORIGINAL_SCREEN_WIDTH/2, 0.0f),speed, ObjectID::CENTIPEDE};
+    
+    
+    CHECK_THROWS_AS(Cs1.setPosition(outofVerticalBoundsPosition1), ObjectOutOfBounds);
+    CHECK_NOTHROW(Cs1.setPosition(outofVerticalBoundsPosition2));
+
+
+}
+    
+
+    
+TEST_CASE("CSegment's position cannot be set outside of the game grid left and right boundaries(X-boundaries)"){
+    
+    
+    auto outofHorizontalBoundsPosition1 = vector2D{2*ORIGINAL_SCREEN_WIDTH,100.0f};
+    auto outofHorizontalBoundsPosition2 = vector2D{-89.0f,100.0f};
+    
+    //Check Constructor
+    CHECK_THROWS_AS(auto Cs1 = CentiSegment(CENTIPEDE_SIZE,outofHorizontalBoundsPosition1,speed, ObjectID::CENTIPEDE),ObjectOutOfBounds);
+   CHECK_THROWS_AS(auto Cs1 = CentiSegment(CENTIPEDE_SIZE,outofHorizontalBoundsPosition2,speed, ObjectID::CENTIPEDE), ObjectOutOfBounds);
+    
+    //Check setPosition function
+    auto Cs1 = CentiSegment{vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},vector2D{ORIGINAL_SCREEN_WIDTH/2, 0.0f},speed, ObjectID::CENTIPEDE};
+    
+     CHECK_THROWS_AS(Cs1.setPosition(outofHorizontalBoundsPosition1),ObjectOutOfBounds);
+     CHECK_THROWS_AS(Cs1.setPosition(outofHorizontalBoundsPosition2),ObjectOutOfBounds);
+}
+
+
 
 TEST_CASE("Csegment is on the set Initialised Position"){
     
@@ -597,7 +636,49 @@ TEST_CASE("Score increases by 1 if mushroom is shot"){
     
 }
 
-//Mushroom Test
+//Mushroom Tests
+
+
+TEST_CASE("Mushroom's Position cannot be set outside of the game grid X-boundaries"){
+    
+    auto outofHorizontalBoundsPosition1 = vector2D{2*ORIGINAL_SCREEN_WIDTH,100.0f};
+    auto outofHorizontalBoundsPosition2 = vector2D{-89.0f,100.0f};
+    
+    //Check constructor
+    CHECK_THROWS_AS(auto M1 = Mushroom(MUSHROOM_SIZE,outofHorizontalBoundsPosition1, 0.0f, ObjectID::MUSHROOM);, ObjectOutOfBounds);
+    CHECK_THROWS_AS( auto M1 = Mushroom(MUSHROOM_SIZE,outofHorizontalBoundsPosition2, 0.0f, ObjectID::MUSHROOM);, ObjectOutOfBounds);
+    
+     //Check setPosition function
+    auto M1 = Mushroom{MUSHROOM_SIZE,vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+    
+    CHECK_THROWS_AS(M1.setPosition(outofHorizontalBoundsPosition1), ObjectOutOfBounds);
+    CHECK_THROWS_AS(M1.setPosition(outofHorizontalBoundsPosition2), ObjectOutOfBounds);
+
+}
+
+    
+TEST_CASE("Mushroom's Position cannot be set outside of the game grid Y-boundaries"){
+    
+    
+    auto outofVerticalBoundsPosition1 = vector2D{100.0f,2*ORIGINAL_SCREEN_HEIGHT};
+    auto outofVerticalBoundsPosition2 = vector2D{100.0f,-89.0f};
+    
+  //Check constructor
+    CHECK_THROWS_AS(auto M1 = Mushroom(MUSHROOM_SIZE,outofVerticalBoundsPosition1 , 0.0f, ObjectID::MUSHROOM);, ObjectOutOfBounds);
+    CHECK_THROWS_AS( auto M1 = Mushroom(MUSHROOM_SIZE,outofVerticalBoundsPosition2, 0.0f, ObjectID::MUSHROOM);, ObjectOutOfBounds);
+    
+     //Check setPosition function
+    auto M1 = Mushroom{MUSHROOM_SIZE,vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
+    
+    CHECK_THROWS_AS(M1.setPosition(outofVerticalBoundsPosition1), ObjectOutOfBounds);
+    CHECK_THROWS_AS(M1.setPosition(outofVerticalBoundsPosition2), ObjectOutOfBounds);
+
+
+}
+
+
+
+
 TEST_CASE("Mushroom cannot move"){
     
     auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
@@ -658,4 +739,43 @@ TEST_CASE("Spider Moves"){
     CHECK_FALSE(S1.getPosition()==SPIDER_INIT_POSITION);
     
     }
+
+TEST_CASE("Spider's Position cannot be set outside of the game grid Y-boundaries"){
+    
+    auto outofVerticalBoundsPosition1 = vector2D{100.0f, 2*ORIGINAL_SCREEN_WIDTH};
+    auto outofVerticalBoundsPosition2 = vector2D{100.0f,-89.0f};
+    
+    //Check constructor
+    CHECK_THROWS_AS(auto spider = Spider(SPIDER_SIZE,outofVerticalBoundsPosition1,speed,ObjectID::SPIDER), ObjectOutOfBounds);
+    CHECK_THROWS_AS(auto spider = Spider(SPIDER_SIZE,outofVerticalBoundsPosition2,speed,ObjectID::SPIDER), ObjectOutOfBounds);
+    
+     //Check setPosition function
+    auto S1 =  Spider{SPIDER_SIZE,SPIDER_INIT_POSITION,speed,ObjectID::SPIDER};
+    
+    CHECK_THROWS_AS(S1.setPosition(outofVerticalBoundsPosition1), ObjectOutOfBounds);
+    CHECK_THROWS_AS(S1.setPosition(outofVerticalBoundsPosition2), ObjectOutOfBounds);
+
+
+}
+    
+
+    
+TEST_CASE("Spider's position can be set outside of the game grid X-boundaries"){
+    
+    
+    auto outofHorizontalBoundsPosition1 = vector2D{2*ORIGINAL_SCREEN_WIDTH,100.0f};
+    auto outofHorizontalBoundsPosition2 = vector2D{-89.0f,100.0f};
+    
+    //Check Constructor
+    CHECK_NOTHROW(auto spider = Spider(SPIDER_SIZE,outofHorizontalBoundsPosition1,speed,ObjectID::SPIDER));
+    CHECK_NOTHROW(auto spider = Spider(SPIDER_SIZE,outofHorizontalBoundsPosition2,speed,ObjectID::SPIDER));
+    
+    //Check setPosition function
+    auto S1 =  Spider{SPIDER_SIZE,SPIDER_INIT_POSITION,speed,ObjectID::SPIDER};
+    
+    CHECK_NOTHROW(S1.setPosition(outofHorizontalBoundsPosition1));
+    CHECK_NOTHROW(S1.setPosition(outofHorizontalBoundsPosition2));
+
+
+}
 

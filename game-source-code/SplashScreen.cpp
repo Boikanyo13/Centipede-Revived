@@ -27,7 +27,7 @@ sf::RectangleShape SplashScreen::DrawScreenObject(const vector2D& size, const ve
     screenObject.setPosition(position.x() , position.y());
     screenObject.setTexture(&screenObjectTextures_[static_cast<int>(ID)]);
     //draw screen object
-    window_.draw(screenObject);
+     window_.draw(screenObject);
     
     return screenObject;
 }

@@ -6,19 +6,33 @@ size_{size},
 speed_{speed},
 objectID_{objectid}
 {
- 
-   if((objectid != ObjectID::CENTIPEDE) && (objectID_ != ObjectID::BULLET)){
-      if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+    
+    if(objectid == ObjectID::PLAYER || objectid == ObjectID::MUSHROOM){
+        
+        if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
         throw ObjectOutOfBounds{};
+          }
+        else{  position_=position;
+            }
+        
         }
-       else{position_=position;}
-      }
-  else if(position.x() < 0 || position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
-           throw ObjectOutOfBounds{};
-     }
-   else{
-          position_=position;
-       }
+       else if(objectid == ObjectID::SPIDER){
+           
+            if(position.y() < 0 ||position.y() > ORIGINAL_SCREEN_HEIGHT){
+                throw ObjectOutOfBounds{};
+                }
+                else{  position_=position;
+                }
+           
+        }
+       else{
+              
+            if(position.x() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+                    throw ObjectOutOfBounds{};
+                }
+                else{position_=position;}
+           
+           }
 
        isDead_ = false;
   }
@@ -28,22 +42,33 @@ void GameObject::setPosition(const vector2D& position){
     //Ensure that objects are within the screen bounds 
     
     //Check, for LazerShots and Centipede vertical position is allowed to be < 0 
-    if(objectID_ != ObjectID::SPIDER && objectID_ != ObjectID::BULLET){
-    
-    if((objectID_ != ObjectID::CENTIPEDE) && (objectID_ != ObjectID::BULLET)){
-      if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
-            throw ObjectOutOfBounds{};
+   
+    if(objectID_ == ObjectID::PLAYER || objectID_ == ObjectID::MUSHROOM){
+        
+        if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+        throw ObjectOutOfBounds{};
+          }
+        else{  position_=position;
+            }
+        
         }
-        else{position_ = position;}
-      }
-   else if(position.x() < 0 || position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
-           throw ObjectOutOfBounds{};
-          
-     }
-   else{
-          position_=position;
-    }}
-    else{position_=position;}
+       else if(objectID_ == ObjectID::SPIDER){
+           
+            if(position.y() < 0 ||position.y() > ORIGINAL_SCREEN_HEIGHT){
+                throw ObjectOutOfBounds{};
+                }
+                else{  position_=position;
+                }
+           
+        }
+       else{
+              
+            if(position.x() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
+                    throw ObjectOutOfBounds{};
+                }
+                else{position_=position;}
+           }
+
 
     }
  

@@ -51,11 +51,11 @@ void Spider::Move(){
         break;
         
         case 2:
-            if(zigzag_)
+            if(!zigzag_)
                 moveZag();
             else if(up_)
                 moveUp();
-            else if(!zigzag_)
+            else if(zigzag_)
                moveZig();
             else if(!up_) 
                 moveDown();
@@ -79,11 +79,11 @@ void Spider::moveDown(){
     
     auto down = getPosition().y() + getSpeed();
     
-    if(down <= (ORIGINAL_SCREEN_HEIGHT)){
+    if(down < (ORIGINAL_SCREEN_HEIGHT)){
         setPosition(vector2D{getPosition().x(), down});
        
     }else{
-        
+       
         up_ = !up_;
         }
        
@@ -97,6 +97,7 @@ void Spider::moveUp(){
         
     }
     else{
+          
           up_ = !up_;
         }
 }
@@ -107,7 +108,7 @@ void Spider::moveZig(){
     auto zag = getPosition().y() + getSpeed();
 
     
-    if(zag <= (ORIGINAL_SCREEN_HEIGHT)  && zig <= (ORIGINAL_SCREEN_WIDTH))
+    if(zag < (ORIGINAL_SCREEN_HEIGHT)  && zig <= (ORIGINAL_SCREEN_WIDTH))
     { 
         setPosition(vector2D{zig,zag});
         }
@@ -118,7 +119,7 @@ void Spider::moveZig(){
              setPosition(vector2D{-getSize().x()/*/2.0f+2.0f*/,zag});
              }
              else{zigzag_ = !zigzag_; 
-                  up_ = !up_;
+                   up_ = !up_;
                   }
          
         }
@@ -141,7 +142,9 @@ void Spider::moveZag(){
              
              setPosition(vector2D{ORIGINAL_SCREEN_WIDTH /*- getSize().x()/2.0f-2.0f*/,zag});
              }
-             else{zigzag_ = !zigzag_;}
+             else{zigzag_ = !zigzag_;
+                    up_ = !up_;
+                   }
         
         }
     
