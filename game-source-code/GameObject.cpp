@@ -7,7 +7,7 @@ speed_{speed},
 objectID_{objectid}
 {
     
-    if(objectid == ObjectID::PLAYER || objectid == ObjectID::MUSHROOM){
+    if(objectid == ObjectID::SPACESHIP || objectid == ObjectID::MUSHROOM){
         
         if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
         throw ObjectOutOfBounds{};
@@ -43,7 +43,7 @@ void GameObject::setPosition(const vector2D& position){
     
     //Check, for LazerShots and Centipede vertical position is allowed to be < 0 
    
-    if(objectID_ == ObjectID::PLAYER || objectID_ == ObjectID::MUSHROOM){
+    if(objectID_ == ObjectID::SPACESHIP || objectID_ == ObjectID::MUSHROOM){
         
         if(position.x() < 0 || position.y() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
         throw ObjectOutOfBounds{};
@@ -71,23 +71,6 @@ void GameObject::setPosition(const vector2D& position){
 
 
     }
- 
-void GameObject::setSize(const vector2D& size){
-    
-    size_ = size;
-    }
-    
-void GameObject::setSpeed(float speed){
-    
-    speed_ = speed;
-    
-    }
-    
-void GameObject::setObjectID(ObjectID oID){
-    
-    objectID_ = oID;
-    
-    }
     
 void GameObject::updateState(State state){
     
@@ -105,31 +88,5 @@ void GameObject::updateState(State state){
     
     
     }
-    
-bool GameObject::isDead() const{
-    
-    return isDead_;
-    };
 
-float GameObject::getSpeed() const{
-    
-    return speed_;
-    }
-
-vector2D GameObject::getPosition() const{
-    
-    return position_;
-    }
-
-vector2D GameObject::getSize() const{
-    
-    return size_;
-    }
-    
-ObjectID GameObject::ID() const{
-    
-    return objectID_;
-    }
-
-GameObject::~GameObject(){}
 

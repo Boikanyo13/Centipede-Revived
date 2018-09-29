@@ -4,17 +4,17 @@ Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
 
  }
 
-void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr)
+void Collider::targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr)
 {
       
-     auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+     auto lazershots =std::get<1>(spaceship_ptr->firedLazerShot(0));
      
     
      for(auto i = 0; i < lazershots; i++){
        
          for(auto j = 0; j < centipede_ptr->length(); j++){
          
-             if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),centipede_ptr->centiSegment(j))){
+             if(checkCollision(std::get<0>(spaceship_ptr->firedLazerShot(i)),centipede_ptr->centiSegment(j))){
                   
                  //Increase the number of destroyed  segment 
                   centipede_ptr->SegmentDestroyed();
@@ -42,13 +42,13 @@ void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipe
     
 }
 
-void Collider::targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Spider> spider_ptr){
+void Collider::targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Spider> spider_ptr){
     
-     auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+     auto lazershots =std::get<1>(spaceship_ptr->firedLazerShot(0));
      
      for(auto i = 0; i < lazershots; i++){
          
-         if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),spider_ptr)){
+         if(checkCollision(std::get<0>(spaceship_ptr->firedLazerShot(i)),spider_ptr)){
              //Add to score
              _score_ptr->spiderDestroyed();
              //Explode the spider
@@ -71,30 +71,30 @@ void Collider::mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<Mushro
 }
 
 
-void Collider::playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr)
+void Collider::spaceshipHit(shared_ptr<Spider> spider_ptr, shared_ptr<Spaceship> spaceship_ptr)
 {
-   if(checkCollision(spider_ptr,player_ptr)){
+   if(checkCollision(spider_ptr,spaceship_ptr)){
                
-                //Player loses if collides with a Spider
-              if(!(player_ptr->ID()==ObjectID::EXPLOSION))
-                      player_ptr->lostLife();
+                //spaceship loses life if collides with a Spider
+              if(!(spaceship_ptr->ID()==ObjectID::EXPLOSION))
+                      spaceship_ptr->lostLife();
                   
-                //Explode the player
-                 player_ptr->explode();
+                //Explode the spaceship
+                 spaceship_ptr->explode();
        }
        
    
 }
 
-void Collider::mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr){
+void Collider::mushroomShot(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr){
     
-    auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+    auto lazershots =std::get<1>(spaceship_ptr->firedLazerShot(0));
     
      for(auto i = 0; i < lazershots; i++){
          
          for(auto j = 0; j < mushroom_ptr->size(); j++){
              
-              if(checkCollision(std::get<0>(player_ptr->firedLazerShot(i)),mushroom_ptr->mushroom(j))){
+              if(checkCollision(std::get<0>(spaceship_ptr->firedLazerShot(i)),mushroom_ptr->mushroom(j))){
                      //Flag the mushroom as being shot
                      mushroom_ptr->mushroom(j)->shot();
                      //Update Score
@@ -106,17 +106,17 @@ void Collider::mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomFi
 }
 
 
-void Collider::playerCollision(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr, Key key){
+void Collider::spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr, Key key){
     
 
     for(auto i = 0; i < mushroom_ptr->size(); i++){
          
-          //Restrict Player from moving to the direction of the Collision
-          if(checkCollision(player_ptr,mushroom_ptr->mushroom(i))){
-              player_ptr->mushroomCollision(true,key);
+          //Restrict spaceship from moving to the direction of the Collision
+          if(checkCollision(spaceship_ptr,mushroom_ptr->mushroom(i))){
+              spaceship_ptr->mushroomCollision(true,key);
                break;
           }
-          else{ player_ptr->mushroomCollision(false,key);}
+          else{ spaceship_ptr->mushroomCollision(false,key);}
             
         }
  
@@ -138,20 +138,20 @@ void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<Mushr
     
 }
 
-void Collider::playerHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr){
+void Collider::spaceshipHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Spaceship> spaceship_ptr){
     
     
      
      for(auto i = 0; i < centipede_ptr->length(); i++){
             
-          if(checkCollision(centipede_ptr->centiSegment(i),player_ptr)){
+          if(checkCollision(centipede_ptr->centiSegment(i),spaceship_ptr)){
            
-                //Player looses a life if hit
-                if(!(player_ptr->ID()==ObjectID::EXPLOSION))
-                      player_ptr->lostLife();
+                //spaceship looses a life if hit
+                if(!(spaceship_ptr->ID()==ObjectID::EXPLOSION))
+                      spaceship_ptr->lostLife();
                   
-                //Explode the player
-                 player_ptr->explode();
+                //Explode the spaceship
+                 spaceship_ptr->explode();
           }
          }
     

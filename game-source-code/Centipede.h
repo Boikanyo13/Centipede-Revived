@@ -16,16 +16,16 @@ public:
     //Move Centipede across screen
     void Move();
     //Return length of Centipede
-    int length();
+    int length(){return length_;};
     //Return the ith CentiSegment
-    shared_ptr<CentiSegment> centiSegment(int i);
+    shared_ptr<CentiSegment> centiSegment(int i){return centipede_[i];};
     //Count the number of destroyed CentiSegments
-    void SegmentDestroyed();
+    void SegmentDestroyed(){numDeadSegments_++;}
     //is The Centipede dead?
-    bool isDead();
+    bool isDead(){return (numDeadSegments_== length_);};
     //Reset centipede to initial conditions
     void reset();
-    ~Centipede();
+    ~Centipede(){};
     
     
 private:
@@ -33,6 +33,7 @@ private:
     vector<shared_ptr <CentiSegment>> centipede_;
     int length_;
     int numDeadSegments_;
+    
 };
 
 #endif // CENTIPEDE_H

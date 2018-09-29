@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef SPACESHIP_H
+#define SPACESHIP_H
 #include "constants.h"
 #include "GameObject.h"
 #include "UserInputs.h"
@@ -9,18 +9,18 @@
 
 
 
-class Player: public GameObject{
+class Spaceship: public GameObject{
 public:
 
-    Player(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
+    Spaceship(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
     virtual void Move(Direction direction) override;
     //Return fired lazer shot
     std::tuple<std::shared_ptr<LazerShot>,int> firedLazerShot(int i) const;
-    //Load the LazerShot gun of the Player
+    //Load the LazerShot gun of the Spaceship
     void load();
     //Fire at the at the target
     void shoot();
-    //Explode the player
+    //Explode the Spaceship
     void explode();
     //Decreement the number of lives
     void lostLife();
@@ -28,12 +28,12 @@ public:
     int Lives();
     //Set Number of lives
     void Lives(int lives);
-    //Reset player to inital conditions
+    //Reset Spaceship to inital conditions
     virtual void reset() override;
     //Take action if there is a mushroomhit
     void mushroomCollision(bool collision,Key key);
     //Destructor
-    virtual ~Player();
+    virtual ~Spaceship();
     
 private:
 
@@ -53,4 +53,4 @@ private:
 };
 
 
-#endif // PLAYER_H
+#endif // SPACESHIP_H

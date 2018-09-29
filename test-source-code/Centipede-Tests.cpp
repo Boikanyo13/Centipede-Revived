@@ -4,7 +4,7 @@
 
 
 
-#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.h"
+#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spaceship.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
@@ -18,7 +18,7 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spider.h"
 
 /*
-#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Spaceship.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Csegment.h"
@@ -40,143 +40,143 @@
      * SCREEN HEIGHT = 640.0f
      */
 
-//Player Test cases
+//Spaceship Test cases
 
-TEST_CASE("Check if player is at starting position"){
+TEST_CASE("Check if Spaceship is at starting position"){
     
-    auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
-    CHECK( P1.getPosition() == PLAYER_START_POSTION);
+    auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
+    CHECK( P1.getPosition() == SPACESHIP_START_POSTION);
     
     }
     
-TEST_CASE("Player cannot be set outside of the game grid"){
+TEST_CASE("Spaceship cannot be set outside of the game grid"){
     
     auto position = vector2D{ORIGINAL_SCREEN_WIDTH + 1.0f,ORIGINAL_SCREEN_HEIGHT + 1.0f};
     
     //Constructor
-    CHECK_THROWS_AS(auto P1 = Player(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position,speed, ObjectID::PLAYER),ObjectOutOfBounds);
+    CHECK_THROWS_AS(auto P1 = Spaceship(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position,speed, ObjectID::SPACESHIP),ObjectOutOfBounds);
     
-    auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION,speed, ObjectID::PLAYER};
+    auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION,speed, ObjectID::SPACESHIP};
     
     //setPostion method
     CHECK_THROWS_AS(P1.setPosition(position),ObjectOutOfBounds);
 }
 
  
-TEST_CASE("Player moves to the left direction"){
+TEST_CASE("Spaceship moves to the left direction"){
     
-      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+      auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
  
       //Expected Distance to be moved
       auto movement = vector2D(speed,0.0f);
     
       P1.Move(Direction::LEFT);
       
-      CHECK(P1.getPosition() == (PLAYER_START_POSTION - movement));
+      CHECK(P1.getPosition() == (SPACESHIP_START_POSTION - movement));
       
     }
     
-TEST_CASE("Player moves to the right direction"){
+TEST_CASE("Spaceship moves to the right direction"){
     
-      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+      auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
  
       //Expected Distance to be moved
       auto movement = vector2D(speed,0.0f);
     
       P1.Move(Direction::RIGHT);
       
-      CHECK(P1.getPosition() == (PLAYER_START_POSTION + movement));
+      CHECK(P1.getPosition() == (SPACESHIP_START_POSTION + movement));
     }
     
-TEST_CASE("Player moves up"){
+TEST_CASE("Spaceship moves up"){
     
-      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+      auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
  
       //Expected Distance to be moved
       auto movement = vector2D(0.0f,speed);
     
       P1.Move(Direction::UP);
       
-      CHECK(P1.getPosition() == (PLAYER_START_POSTION - movement));
+      CHECK(P1.getPosition() == (SPACESHIP_START_POSTION - movement));
     
     }
 
-TEST_CASE("Player moves down"){
+TEST_CASE("Spaceship moves down"){
     
-      auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+      auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
  
       //Expected Distance to be moved
       auto movement = vector2D(0.0f,speed);
     
       P1.Move(Direction::DOWN);
       
-      CHECK(P1.getPosition() == (PLAYER_START_POSTION + movement));
+      CHECK(P1.getPosition() == (SPACESHIP_START_POSTION + movement));
     
     }
     
    
-TEST_CASE("Player does not go over Left window boundry"){
+TEST_CASE("Spaceship does not go over Left window boundry"){
        
       auto newSpeed = 2*ORIGINAL_SCREEN_WIDTH;
     
-     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
+     auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, newSpeed, ObjectID::SPACESHIP};
       
       //Expected Distance to be moved
       auto movement = vector2D{newSpeed,0.0f};
       
       P1.Move(Direction::LEFT);
       
-      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION - movement) );
+      CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION - movement) );
       CHECK(P1.getPosition().x() > 0);
     
     }
 
   
-TEST_CASE("Player does not go over Right window boundry"){
+TEST_CASE("Spaceship does not go over Right window boundry"){
     
       auto newSpeed = 2*ORIGINAL_SCREEN_WIDTH;
     
-     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
+     auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, newSpeed, ObjectID::SPACESHIP};
       
       //Expected Distance to be moved
       auto movement = vector2D{newSpeed,0.0f};
       
       P1.Move(Direction::RIGHT);
       
-      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION + movement) );
+      CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION + movement) );
       CHECK(P1.getPosition().x() < ORIGINAL_SCREEN_WIDTH);
       
     }
 
-TEST_CASE("Player does not go over Up window boundry"){
+TEST_CASE("Spaceship does not go over Up window boundry"){
        
      auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
     
-     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
+     auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, newSpeed, ObjectID::SPACESHIP};
       
       //Expected Distance to be moved
       auto movement = vector2D{0.0f,newSpeed};
       
       P1.Move(Direction::UP);
       
-      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION - movement) );
+      CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION - movement) );
       CHECK(P1.getPosition().y() > 0);
     
 }
     
 
-TEST_CASE("Player does not go over Down window boundry"){
+TEST_CASE("Spaceship does not go over Down window boundry"){
     
      auto newSpeed = 2*ORIGINAL_SCREEN_HEIGHT;
     
-     auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, newSpeed, ObjectID::PLAYER};
+     auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, newSpeed, ObjectID::SPACESHIP};
       
       //Expected Distance to be moved
       auto movement = vector2D{0.0f,newSpeed};
       
       P1.Move(Direction::UP);
       
-      CHECK_FALSE(P1.getPosition() == (PLAYER_START_POSTION + movement) );
+      CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION + movement) );
       CHECK(P1.getPosition().y() < ORIGINAL_SCREEN_HEIGHT);
 }
 
@@ -191,15 +191,15 @@ TEST_CASE("LazerShot cannot be set out of game grid Boundary"){
     }
      
  
-TEST_CASE("LazerShot is loaded to the Player"){
+TEST_CASE("LazerShot is loaded to the Spaceship"){
         
          auto lazershot_pos = vector2D{0.0f,0.0f};
          auto L1 = LazerShot{vector2D{5.0f,10.0f},lazershot_pos,speed, ObjectID::BULLET};
-         auto P1 = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+         auto P1 = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
         
         CHECK_FALSE(L1.getPosition()==P1.getPosition());
         
-        //Load Bullet to player
+        //Load Bullet to Spaceship
         L1.Load(P1.getPosition());
       
         CHECK(L1.getPosition()==P1.getPosition());
@@ -230,45 +230,46 @@ TEST_CASE("LazerShot is allowed to go over UP game grid boundry"){
 }
 
 
-//LazerShot + Player Test
+//LazerShot + Spaceship Test
 
-TEST_CASE("LazerShot is loaded onto the LazerShot Gun of the Player"){
+TEST_CASE("LazerShot is loaded onto the LazerShot Gun of the Spaceship"){
     
-    auto expectedLoadedShot = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},PLAYER_START_POSTION, 1.0f, ObjectID::BULLET);
+    auto expectedLoadedShot = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},SPACESHIP_START_POSTION, 1.0f, ObjectID::BULLET);
     
-     auto player = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+     auto spaceship = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
     
-    //Load the Player's LazerGun three times
-     player.load();
-     player.load();
-     player.load();
+    //Load the Spaceship's LazerGun three times
+     spaceship.load();
+     spaceship.load();
+     spaceship.load();
+   
      
      auto expectedNoOfLazerShots = 3;   
      
      //All the lazershots are identical, choose the 1st one   
-     auto loadedLazerShot =  std::get<0>(player.firedLazerShot(0));
-     auto noOflazershots = std::get<1>(player.firedLazerShot(0));
+     auto loadedLazerShot =  std::get<0>(spaceship.firedLazerShot(0));
+     auto noOflazershots = std::get<1>(spaceship.firedLazerShot(0));
      
      CHECK(loadedLazerShot->getPosition() == expectedLoadedShot->getPosition());
      CHECK(noOflazershots==expectedNoOfLazerShots );
      
 }
 
-TEST_CASE("Player Shoots LazerShots"){
+TEST_CASE("Spaceship Shoots LazerShots"){
     
-    auto player = Player{vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},PLAYER_START_POSTION, speed, ObjectID::PLAYER};
+    auto spaceship = Spaceship{vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, speed, ObjectID::SPACESHIP};
      
-    player.load();
+   spaceship.load();
     
-    auto loadedLazerShot= std::get<0>(player.firedLazerShot(0));
+    auto loadedLazerShot= std::get<0>(spaceship.firedLazerShot(0));
     
-    //LazerShot is loaded at Player
-    CHECK(loadedLazerShot->getPosition()==player.getPosition());
+    //LazerShot is loaded at Spaceship
+    CHECK(loadedLazerShot->getPosition()==spaceship.getPosition());
     
-    player.shoot();
+   spaceship.shoot();
    
     //LazerShot shoots up
-    auto expectedPosition = vector2D{PLAYER_START_POSTION.x(),( PLAYER_START_POSTION.y()-loadedLazerShot->getSpeed())};
+    auto expectedPosition = vector2D{SPACESHIP_START_POSTION.x(),( SPACESHIP_START_POSTION.y()-loadedLazerShot->getSpeed())};
     
     CHECK(loadedLazerShot->getPosition()==expectedPosition); 
     
@@ -458,7 +459,7 @@ TEST_CASE("Horizontal collision between two Gameobjects is detected"){
      auto newSpeed = 25.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
-     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto P1 = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position1, newSpeed, ObjectID::SPACESHIP);
      auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
     
      
@@ -504,62 +505,62 @@ TEST_CASE("Dead object cannot collide"){
     
 }  
 
-TEST_CASE("Player looses life if hit"){
+TEST_CASE("Spaceship looses life if hit"){
     
      auto collider = Collider{};
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
      
-     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto P1 = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position1, newSpeed, ObjectID::SPACESHIP);
      auto centipede = std::make_shared<Centipede>(1);
      centipede->centiSegment(0)->setPosition(position2);
      
-     //Player has 3 lives initially
+     //Spaceship has 3 lives initially
       P1->Lives(3);
       
      CHECK(P1->Lives()==3);
      
      centipede->Move();
      
-     collider.playerHit(centipede,P1);
+     collider.spaceshipHit(centipede,P1);
      
      CHECK(P1->Lives()==2);
     
 }
 
 
-TEST_CASE("Player explodes if hit"){
+TEST_CASE("Spaceship explodes if hit"){
     
      auto collider = Collider{};
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
      
-     auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+     auto P1 = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position1, newSpeed, ObjectID::SPACESHIP);
       P1->Lives(3);
      auto centipede = std::make_shared<Centipede>(1);
      
      //set the centipede ready for collision
      centipede->centiSegment(0)->setPosition(position2);
      
-    //Collide the centipede with the player
+    //Collide the centipede with the Spaceship
      centipede->Move();
-     collider.playerHit(centipede,P1);
+     collider.spaceshipHit(centipede,P1);
      
     
      CHECK(P1->ID() == ObjectID::EXPLOSION);
     
 }
 
-TEST_CASE("Player  is declared dead if number of lives is 0"){
+TEST_CASE("Spaceship  is declared dead if number of lives is 0"){
     
     auto collider = Collider{};
     auto newSpeed = 20.0f;
     auto position1 = vector2D{250.0f,100.0f};
     auto position2 = vector2D{250.0f - newSpeed,100.0f};
      
-    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position1, newSpeed, ObjectID::PLAYER);
+    auto P1 = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position1, newSpeed, ObjectID::SPACESHIP);
     //set number of lives to zero
     P1->Lives(1);
     auto centipede = std::make_shared<Centipede>(1);
@@ -567,9 +568,9 @@ TEST_CASE("Player  is declared dead if number of lives is 0"){
     //set the centipede ready for collision
     centipede->centiSegment(0)->setPosition(position2);
     
-    //Collide the centipede with the player
+    //Collide the centipede with the Spaceship
     centipede->Move();
-    collider.playerHit(centipede,P1);
+    collider.spaceshipHit(centipede,P1);
   
     CHECK(P1->Lives() == 0);
     CHECK(P1->isDead());
@@ -592,7 +593,7 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
      
     auto mushroom_field = std::make_shared<MushroomField>(1);
      
-    auto P1 = std::make_shared<Player>(vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE},position2, newSpeed, ObjectID::PLAYER);
+    auto P1 = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position2, newSpeed, ObjectID::SPACESHIP);
     //Load Lazershot
     P1->load();
     //Set the LazerShot speed
@@ -735,6 +736,7 @@ TEST_CASE("Spider Moves"){
     
     
     auto S1 = Spider{SPIDER_SIZE,SPIDER_INIT_POSITION,speed,ObjectID::SPIDER};
+    S1.Move();
     S1.Move();
     CHECK_FALSE(S1.getPosition()==SPIDER_INIT_POSITION);
     

@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
 #include "GameFiles.h"
-#include "Player.h"
+#include "Spaceship.h"
 #include "Centipede.h"
 #include "SplashScreen.h"
 #include "MushroomField.h"
@@ -23,7 +23,7 @@ public:
     //Check if Display is Open
     bool isOpen() const;
     //Draw fired Lazershots
-    void drawLazerShot(shared_ptr<Player> player_ptr);
+    void drawLazerShot(shared_ptr<Spaceship> spaceship_ptr);
     //Draw Centipede
     void drawCentipede(shared_ptr<Centipede> centi_ptr);
     //Draw Mushroom Field

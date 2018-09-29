@@ -1,7 +1,7 @@
 #ifndef COLLIDER_H
 #define COLLIDER_H
 #include "GameObject.h"
-#include "Player.h"
+#include "Spaceship.h"
 #include "MushroomField.h"
 #include "UserInputs.h"
 #include <memory>
@@ -17,23 +17,23 @@ public:
     Collider(shared_ptr<Score> score_ptr);
     Collider(){}
     //Handle LazerShot and Centipede Collisons
-    void targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr);
-    //Handle Centipede and Player Collison
-    void playerHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<Player> player_ptr);
+    void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr);
+    //Handle Centipede and Spaceship Collison
+    void spaceshipHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<Spaceship> spaceship_ptr);
     //Check Collison of gameObjects
     bool checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr);
     //Handle Centipede and Mushroom collission
     void mushroomHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<MushroomField> mushroom_ptr);
     //Handle Mushroom Bullet Collision
-    void mushroomShot(shared_ptr<Player> player_ptr, shared_ptr<MushroomField> mushroom_ptr);
-    //Handle Player mushroom collision
-    void playerCollision(shared_ptr<Player> player_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
-    //Handle Collision between Spider and Player
-    void playerHit(shared_ptr<Spider> spider_ptr, shared_ptr<Player> player_ptr);
+    void mushroomShot(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr);
+    //Handle Spaceship mushroom collision
+    void spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
+    //Handle Collision between Spider and Spaceship
+    void spaceshipHit(shared_ptr<Spider> spider_ptr, shared_ptr<Spaceship> spaceship_ptr);
     //Handle Spider Mushroom Collision
     void mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<MushroomField> mushroom_ptr);
     //Handle spider Lazershot Collison
-    void targetDestroyed(shared_ptr<Player> player_ptr, shared_ptr<Spider> spider_ptr);
+    void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Spider> spider_ptr);
     ~Collider();
     
 private:

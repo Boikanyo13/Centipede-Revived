@@ -115,7 +115,7 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
             gameobject_SFML.setTexture(&textures_[1]);
             break;
         
-        case ObjectID::PLAYER:
+        case ObjectID::SPACESHIP:
             gameobject_SFML.setTexture(&textures_[0]);
             break;
         case ObjectID::CENTIPEDE:
@@ -162,13 +162,13 @@ void Display::drawObject(shared_ptr<GameObject> gameobject_ptr){
     
 }
 
-void Display::drawLazerShot(shared_ptr<Player> player_ptr){
+void Display::drawLazerShot(shared_ptr<Spaceship> spaceship_ptr){
     
-   auto lazershots =std::get<1>(player_ptr->firedLazerShot(0));
+   auto lazershots =std::get<1>(spaceship_ptr->firedLazerShot(0));
     
     for(auto i = 0; i < lazershots; i++){
        
-       drawObject(std::get<0>(player_ptr->firedLazerShot(i)));
+       drawObject(std::get<0>(spaceship_ptr->firedLazerShot(i)));
        }
 }
 

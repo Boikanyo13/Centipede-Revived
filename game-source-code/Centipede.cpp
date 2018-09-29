@@ -7,30 +7,14 @@ Centipede::Centipede(int length):length_{length}{
 }
 
 
-int Centipede::length(){ 
-    
-    return length_;
- 
-}
-
 void Centipede::Move(){
     
-    for(auto i= 0; i < length_ ; i++){
+    for(auto i= 0; i != length_ ; i++){
         
         centipede_[i]->Move();
     }
 }
 
-void Centipede::SegmentDestroyed(){
-    
-    numDeadSegments_++;
-}
-
-bool Centipede::isDead(){
-    
-    return (numDeadSegments_== length_);
-    
-}
 
 void Centipede::initialConditions(){
     
@@ -39,14 +23,14 @@ void Centipede::initialConditions(){
     numDeadSegments_ = 0;
     
     centipede_.push_back(std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE, CENTIPEDE_Y_SIZE},
-            vector2D{x_pos, y_pos},PLAYER_SPEED, ObjectID::CHEAD));
+            vector2D{x_pos, y_pos},SPACESHIP_SPEED, ObjectID::CHEAD));
             y_pos -= 1.2*CENTIPEDE_Y_SIZE;
     
-    for (auto i = 0; i < length_ - 1; i++){
+    for (auto i = 0; i != length_ - 1; i++){
         
         
         centipede_.push_back(std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE, CENTIPEDE_Y_SIZE},
-            vector2D{x_pos, y_pos},PLAYER_SPEED, ObjectID::CENTIPEDE));
+            vector2D{x_pos, y_pos},SPACESHIP_SPEED, ObjectID::CENTIPEDE));
             
         y_pos -= 1.2*CENTIPEDE_Y_SIZE;
     }
@@ -56,12 +40,7 @@ void Centipede::initialConditions(){
 void Centipede::reset(){
     
     //clear the vector 
-    centipede_.erase(centipede_.begin(), centipede_.end());
+    centipede_.erase(centipede_.begin(), centipede_.end());    
     initialConditions();
+    
     }
-    
-shared_ptr<CentiSegment> Centipede::centiSegment(int i)
-{return centipede_[i] ; }
-
-    
-Centipede::~Centipede(){}

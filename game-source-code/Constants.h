@@ -10,10 +10,10 @@ const auto ORIGINAL_SCREEN_HEIGHT = 640.0f;
 const auto CENTIPEDE_X_SIZE = 20.0f;
 const auto CENTIPEDE_Y_SIZE= 20.0f;
 const auto CENTIPEDE_SIZE = vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE};
-const auto PLAYER_X_SIZE= 20.0f;
-const auto PLAYER_Y_SIZE = 20.0f;
-const auto PLAYER_SIZE = vector2D{PLAYER_X_SIZE,PLAYER_Y_SIZE};
-const auto PLAYER_START_POSTION = vector2D{280.0f,620.0f};
+const auto SPACESHIP_X_SIZE= 20.0f;
+const auto SPACESHIP_Y_SIZE = 20.0f;
+const auto SPACESHIP_SIZE = vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE};
+const auto SPACESHIP_START_POSTION = vector2D{280.0f,620.0f};
 const auto CENTIPEDE_LENGTH = 13;
 const auto CENTIPEDE_INIT_X = ORIGINAL_SCREEN_WIDTH/2.0f;
 const auto CENTIPEDE_INIT_Y = 0.0f;
@@ -23,7 +23,7 @@ const auto SPIDER_SIZE = vector2D{25.0f,25.0f};
 const auto SPIDER_SPEED = 0.3f;
 const auto CENTIPEDE_SPEED = 1.5f;
 const auto BULLET_SIZE = vector2D{2.0f,10.0f};
-const auto PLAYER_SPEED = 1.0f;
+const auto SPACESHIP_SPEED = 1.0f;
 
 //Button dimensions
 const auto BUTTON_X_SIZE = 100.0f;

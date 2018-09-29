@@ -1,7 +1,7 @@
 #include "GameLoop.h"
 
 GameLoop::GameLoop():
-player_ptr{make_shared<Player>(vector2D{PLAYER_X_SIZE ,PLAYER_Y_SIZE},PLAYER_START_POSTION, PLAYER_SPEED, ObjectID::PLAYER)},
+spaceship_ptr{make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE ,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, SPACESHIP_SPEED, ObjectID::SPACESHIP)},
 display_ptr{make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT)},
 userinput_ptr{make_shared<UserInputs>()},
 score_ptr{make_shared<Score>()},
@@ -50,25 +50,25 @@ void GameLoop::Opening(){
 void GameLoop::PlayGame(){
     
         display_ptr->clearDisplay();
-        display_ptr->gameWindow(score_ptr, player_ptr->Lives());
+        display_ptr->gameWindow(score_ptr, spaceship_ptr->Lives());
         display_ptr->drawMushroomField(mushroomfield_ptr);
           
         //Keys to play the game
          if(userinput_ptr->pressedKey()==Key::UP){
              
-             player_ptr->Move(Direction::UP);
+             spaceship_ptr->Move(Direction::UP);
              }
         if(userinput_ptr->pressedKey()==Key::DOWN){
              
-              player_ptr->Move(Direction::DOWN);
+              spaceship_ptr->Move(Direction::DOWN);
             }
           if(userinput_ptr->pressedKey()==Key::LEFT){
              
-             player_ptr->Move(Direction::LEFT);
+             spaceship_ptr->Move(Direction::LEFT);
              }
          if(userinput_ptr->pressedKey()==Key::RIGHT){
              
-             player_ptr->Move(Direction::RIGHT);
+             spaceship_ptr->Move(Direction::RIGHT);
             }
         
         //move the centipede across the screen
@@ -78,42 +78,42 @@ void GameLoop::PlayGame(){
         
         collision_ptr->mushroomDestroyed(spider_ptr,mushroomfield_ptr);
         
-        collision_ptr->playerHit(spider_ptr,player_ptr);
+        collision_ptr->spaceshipHit(spider_ptr,spaceship_ptr);
          
          //detect if the centipede collides with a mushroom
         collision_ptr->mushroomHit(centipede_ptr,mushroomfield_ptr);
         
-        //detect if a player collides with a mushroom
-        collision_ptr->playerCollision(player_ptr,mushroomfield_ptr,userinput_ptr->pressedKey());
+        //detect if a spaceship collides with a mushroom
+        collision_ptr->spaceshipCollision(spaceship_ptr,mushroomfield_ptr,userinput_ptr->pressedKey());
        
        
-        if(display_ptr->spaceKey() && !player_ptr->isDead() && !(player_ptr->ID()==ObjectID::EXPLOSION)){
+        if(display_ptr->spaceKey() && !spaceship_ptr->isDead() && !(spaceship_ptr->ID()==ObjectID::EXPLOSION)){
             
-            player_ptr->load();
+            spaceship_ptr->load();
             shooting_ = true;
            
             }
             
-         player_ptr->shoot();
+         spaceship_ptr->shoot();
           
-         if(shooting_ && !player_ptr->isDead()){
+         if(shooting_ && !spaceship_ptr->isDead()){
              
-            display_ptr->drawLazerShot(player_ptr);
-            collision_ptr->mushroomShot(player_ptr,mushroomfield_ptr);  
-            collision_ptr->targetDestroyed(player_ptr,centipede_ptr,mushroomfield_ptr);
-            collision_ptr->targetDestroyed(player_ptr,spider_ptr);
+            display_ptr->drawLazerShot(spaceship_ptr);
+            collision_ptr->mushroomShot(spaceship_ptr,mushroomfield_ptr);  
+            collision_ptr->targetDestroyed(spaceship_ptr,centipede_ptr,mushroomfield_ptr);
+            collision_ptr->targetDestroyed(spaceship_ptr,spider_ptr);
          }
          
-         collision_ptr->playerHit(centipede_ptr,player_ptr);
+         collision_ptr->spaceshipHit(centipede_ptr,spaceship_ptr);
          display_ptr->drawObject(spider_ptr);
-         display_ptr->drawObject(player_ptr);
+         display_ptr->drawObject(spaceship_ptr);
          display_ptr->drawCentipede(centipede_ptr);
          display_ptr->display();
          
-         //player explodes if hit
-         if(player_ptr->ID() == ObjectID::EXPLOSION){
+         //spaceship explodes if hit
+         if(spaceship_ptr->ID() == ObjectID::EXPLOSION){
              
-             player_ptr->reset();
+             spaceship_ptr->reset();
              centipede_ptr->reset();
              spider_ptr->reset();
              shooting_ = false;
@@ -121,7 +121,7 @@ void GameLoop::PlayGame(){
          
          if(centipede_ptr->isDead()){
              
-             player_ptr->reset();
+             spaceship_ptr->reset();
              centipede_ptr->reset();
              mushroomfield_ptr->reset();
               usleep(20000);
@@ -129,8 +129,8 @@ void GameLoop::PlayGame(){
              
              }
          
-         //End game if player is dead
-          if( player_ptr->isDead() ||  centipede_ptr->isDead()){
+         //End game if spaceship is dead
+          if( spaceship_ptr->isDead() ||  centipede_ptr->isDead()){
               isPlaying_ = false;
               gameOver_ = true;
               shooting_ = false;
@@ -190,14 +190,14 @@ void GameLoop::GameOver(){
         display_ptr->clearDisplay();
         isPlaying_ = false;
          
-        if(player_ptr->isDead()) 
+        if(spaceship_ptr->isDead()) 
             display_ptr->splashscreen().YouLoose(score_ptr->score());
 
         else {
            display_ptr->splashscreen().YouWin(score_ptr->score());
         }
                 
-        player_ptr->reset();
+        spaceship_ptr->reset();
         mushroomfield_ptr->reset();
         display_ptr->display();
         usleep(3000000);
@@ -205,9 +205,9 @@ void GameLoop::GameOver(){
         gameOver_ = false;
         opening_ = true;
         centipede_ptr->reset();
-        player_ptr->Lives(3);
-        player_ptr->setObjectID(ObjectID::PLAYER);
-        player_ptr->updateState(State::ALIVE);
+        spaceship_ptr->Lives(3);
+        spaceship_ptr->setObjectID(ObjectID::SPACESHIP);
+        spaceship_ptr->updateState(State::ALIVE);
         score_ptr->reset(); 
 
             

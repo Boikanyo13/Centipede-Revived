@@ -1,7 +1,7 @@
 #include "Spaceship.h"
 #include <iostream>
 
-Player::Player(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
+Spaceship::Spaceship(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 GameObject{size,position,speed,objectid}
 {   
     noOfLazerShots_ = 0;
@@ -13,7 +13,7 @@ GameObject{size,position,speed,objectid}
     down_ = true;
     }
 
-void Player::Move(Direction direction){  
+void Spaceship::Move(Direction direction){  
 
     switch(direction){
         
@@ -41,13 +41,13 @@ void Player::Move(Direction direction){
         
     }
     
- void Player::Lives(int lives){
+ void Spaceship::Lives(int lives){
      
      lives_ = lives;
      
      }
 
-void Player::shoot(){
+void Spaceship::shoot(){
     
     for(auto i = 0; i != noOfLazerShots_; i++){
         
@@ -62,7 +62,7 @@ void Player::shoot(){
          }
 }
 
-void Player::load(){
+void Spaceship::load(){
     
     lazerShotsGun_.push_back(std::make_shared<LazerShot>(BULLET_SIZE,vector2D{0.0f,0.0f}, 1.0f, ObjectID::BULLET));
     lazerShotsGun_[noOfLazerShots_]->Load(getPosition());
@@ -70,20 +70,20 @@ void Player::load(){
     
 }
 
-std::tuple<std::shared_ptr<LazerShot>, int> Player::firedLazerShot(int i) const
+std::tuple<std::shared_ptr<LazerShot>, int> Spaceship::firedLazerShot(int i) const
 {
 return std::tie(lazerShotsGun_[i], noOfLazerShots_);
 }
    
-void Player::explode(){
+void Spaceship::explode(){
     
     setObjectID(ObjectID::EXPLOSION);
     }
         
-void Player::reset(){
+void Spaceship::reset(){
     
-    setObjectID(ObjectID::PLAYER);
-    setPosition(PLAYER_START_POSTION);
+    setObjectID(ObjectID::SPACESHIP);
+    setPosition(SPACESHIP_START_POSTION);
 
     //clear the vector 
      if(lazerShotsGun_.size()>0){
@@ -93,7 +93,7 @@ void Player::reset(){
    
 }
 
-void Player::mushroomCollision(bool collision, Key key){
+void Spaceship::mushroomCollision(bool collision, Key key){
     
     //If there is a collision bounce back by bounce
     auto bounce = 1.0f;
@@ -144,7 +144,7 @@ void Player::mushroomCollision(bool collision, Key key){
 }
       
       
-void Player::moveLeft(){
+void Spaceship::moveLeft(){
     
     //Check if at boundary
         auto left =  getPosition().x() - getSpeed();
@@ -153,7 +153,7 @@ void Player::moveLeft(){
         }
     }
         
-void Player::moveRight(){
+void Spaceship::moveRight(){
     
       //Check if at boundary
         auto right = getSpeed() + getPosition().x();
@@ -162,7 +162,7 @@ void Player::moveRight(){
                 }
     }
     
-void Player::moveDown(){
+void Spaceship::moveDown(){
     
      //Check if at boundary
         auto down =  getPosition().y() + getSpeed();
@@ -172,7 +172,7 @@ void Player::moveDown(){
     }
     
 
-void Player::moveUp(){
+void Spaceship::moveUp(){
     
      //Check if at boundary
         auto up = getPosition().y() - getSpeed();
@@ -181,7 +181,7 @@ void Player::moveUp(){
             }
     }
     
-void Player::lostLife(){
+void Spaceship::lostLife(){
     
     if(!isDead()){
        lives_--;
@@ -193,10 +193,10 @@ void Player::lostLife(){
     
 }
 
-int Player::Lives(){
+int Spaceship::Lives(){
     return lives_;
     }
-Player::~Player()
+Spaceship::~Spaceship()
 {
 }
 
