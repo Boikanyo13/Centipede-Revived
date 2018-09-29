@@ -70,7 +70,7 @@ TEST_CASE("Spaceship moves to the left direction"){
       //Expected Distance to be moved
       auto movement = vector2D(speed,0.0f);
     
-      P1.Move(Direction::LEFT);
+      P1.moveLeft();
       
       CHECK(P1.getPosition() == (SPACESHIP_START_POSTION - movement));
       
@@ -83,7 +83,7 @@ TEST_CASE("Spaceship moves to the right direction"){
       //Expected Distance to be moved
       auto movement = vector2D(speed,0.0f);
     
-      P1.Move(Direction::RIGHT);
+      P1.moveRight();
       
       CHECK(P1.getPosition() == (SPACESHIP_START_POSTION + movement));
     }
@@ -95,7 +95,7 @@ TEST_CASE("Spaceship moves up"){
       //Expected Distance to be moved
       auto movement = vector2D(0.0f,speed);
     
-      P1.Move(Direction::UP);
+      P1.moveUp();
       
       CHECK(P1.getPosition() == (SPACESHIP_START_POSTION - movement));
     
@@ -108,7 +108,7 @@ TEST_CASE("Spaceship moves down"){
       //Expected Distance to be moved
       auto movement = vector2D(0.0f,speed);
     
-      P1.Move(Direction::DOWN);
+      P1.moveDown();
       
       CHECK(P1.getPosition() == (SPACESHIP_START_POSTION + movement));
     
@@ -124,7 +124,7 @@ TEST_CASE("Spaceship does not go over Left window boundry"){
       //Expected Distance to be moved
       auto movement = vector2D{newSpeed,0.0f};
       
-      P1.Move(Direction::LEFT);
+      P1.moveLeft();
       
       CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION - movement) );
       CHECK(P1.getPosition().x() > 0);
@@ -141,7 +141,7 @@ TEST_CASE("Spaceship does not go over Right window boundry"){
       //Expected Distance to be moved
       auto movement = vector2D{newSpeed,0.0f};
       
-      P1.Move(Direction::RIGHT);
+      P1.moveRight();
       
       CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION + movement) );
       CHECK(P1.getPosition().x() < ORIGINAL_SCREEN_WIDTH);
@@ -157,7 +157,7 @@ TEST_CASE("Spaceship does not go over Up window boundry"){
       //Expected Distance to be moved
       auto movement = vector2D{0.0f,newSpeed};
       
-      P1.Move(Direction::UP);
+      P1.moveUp();
       
       CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION - movement) );
       CHECK(P1.getPosition().y() > 0);
@@ -174,7 +174,7 @@ TEST_CASE("Spaceship does not go over Down window boundry"){
       //Expected Distance to be moved
       auto movement = vector2D{0.0f,newSpeed};
       
-      P1.Move(Direction::UP);
+      P1.moveUp();
       
       CHECK_FALSE(P1.getPosition() == (SPACESHIP_START_POSTION + movement) );
       CHECK(P1.getPosition().y() < ORIGINAL_SCREEN_HEIGHT);
@@ -684,7 +684,7 @@ TEST_CASE("Mushroom cannot move"){
     
     auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
    
-    CHECK_THROWS_AS(M1.Move(Direction::UP),NonMovableObject);
+    CHECK_THROWS_AS(M1.Move(),NonMovableObject);
     
 
     }

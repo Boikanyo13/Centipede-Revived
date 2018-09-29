@@ -1,16 +1,5 @@
 #include "Mushroom.h"
 
-Mushroom::Mushroom(const vector2D& size, const vector2D& position, float speed, ObjectID objectid):
-GameObject{size,position,speed,objectid}
-{
-    lives_ = 4;
-}
-
-int Mushroom::lives() const{
-    
-return lives_;    
-}
-
 void Mushroom::shot(){
     
     if(!isDead()){
@@ -43,14 +32,6 @@ void Mushroom::reset(){
     updateState(State::ALIVE);
     
     }
-void Mushroom::Move(Direction direction){
+
     
-    throw NonMovableObject{};
-    
-    }
-    
-    
-Mushroom::~Mushroom()
-{
-}
 

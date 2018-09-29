@@ -55,7 +55,7 @@ void GameLoop::PlayGame(){
         display_ptr->drawMushroomField(mushroomfield_ptr);
           
         //move the spaceship
-        player_ptr->move();
+        player_ptr->Move();
             
         
         //move the centipede across the screen

@@ -13,7 +13,7 @@ public:
     spaceship_ptr_{spaceship_ptr}, userinput_ptr_{userinput_ptr}
     {}
     //Player moves the spaceship
-    void move();
+    void Move();
     ~Player(){}
     
 private:

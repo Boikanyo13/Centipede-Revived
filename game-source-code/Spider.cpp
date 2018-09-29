@@ -2,18 +2,6 @@
 #include <cstdlib>
 #include <ctime>
 
-Spider::Spider(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
-GameObject{size,position,speed,objectid}
-{ 
-    up_ = false;
-    zigzag_ = true;
-}
-
-void Spider::Move(Direction direction){
-    
-    //Do nothing
-}
-    
 void Spider::Move(){
     
     //Introduce randomness

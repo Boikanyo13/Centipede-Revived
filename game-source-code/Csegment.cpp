@@ -1,49 +1,4 @@
 #include "Csegment.h"
-
-
-CentiSegment::CentiSegment(const vector2D& size, const vector2D& position, float speed, ObjectID objectid):
-GameObject{size,position,speed,objectid}{
-    forward_ = true;
-    up_ = false;
-    atBoundry_ = false;
-}
-
-
-void CentiSegment::Move(Direction direction){
-    
-    switch(direction){
-        
-        case Direction::UP:
-                moveUp();
-            break;
-        
-        case Direction::DOWN:
-                moveDown();
-            break;
-            
-        case Direction::LEFT:
-                moveLeft();
-            break;
-            
-        case Direction::RIGHT:
-                moveRight();
-            break;
-        
-        default:
-        break;
-        }
-    
-    }
-
-void CentiSegment::head(){
-    
-    setObjectID(ObjectID::CHEAD);
-    }
-    
-bool CentiSegment::isHead() const
-{
-    return (ID()==ObjectID::CHEAD);
-    }
     
 void CentiSegment::mushroomHit(){
     
@@ -58,11 +13,6 @@ void CentiSegment::mushroomHit(){
     
 }
     
-    
-void CentiSegment::reset(){
-     
- }   
-
 void CentiSegment::Move(){
     
     if(getPosition().y() <= getSize().y()/*/2.0f*/) { entrance(); }
@@ -71,13 +21,13 @@ void CentiSegment::Move(){
         
             if(atBoundry_){
                 
-                if(!up_) Move(Direction::DOWN);
-                else Move(Direction::UP);
+                if(!up_) moveDown();
+                else moveUp();
             }
 
           else{
-                if(forward_) Move(Direction::RIGHT);
-                else Move(Direction::LEFT);}
+                if(forward_) moveRight();
+                else moveLeft();}
     }
 }
 
@@ -131,6 +81,3 @@ void CentiSegment::entrance(){
     setPosition(vector2D{getPosition().x(),movement});
 }
     
-CentiSegment::~CentiSegment(){
-    
-}

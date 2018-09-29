@@ -21,7 +21,7 @@ public:
     //Indicate current state of object in the game(dead or alive?)
     void updateState(State state);
     //Move the object in the window
-    virtual void Move(Direction direction) = 0;
+    virtual void Move() = 0;
     //Check the existance of the object in the Game
     bool isDead() const {return isDead_;}
     //Get speed of the object

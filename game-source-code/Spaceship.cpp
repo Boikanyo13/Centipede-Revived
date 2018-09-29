@@ -4,48 +4,8 @@
 Spaceship::Spaceship(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
 GameObject{size,position,speed,objectid}
 {   
-    noOfLazerShots_ = 0;
-    lives_ = 3;
     tempSpeed_ = speed;
-    left_ = true;
-    right_ = true;
-    up_ = true;
-    down_ = true;
     }
-
-void Spaceship::Move(Direction direction){  
-
-    switch(direction){
-        
-        case Direction::UP:
-                moveUp();
-            break;
-        
-        case Direction::DOWN:
-                moveDown();
-            break;
-            
-        case Direction::LEFT:
-                moveLeft();
-            break;
-            
-        case Direction::RIGHT:
-                moveRight();
-            break;
-        
-        default:
-        break;
-        }
-        
-        
-        
-    }
-    
- void Spaceship::Lives(int lives){
-     
-     lives_ = lives;
-     
-     }
 
 void Spaceship::shoot(){
     
@@ -70,16 +30,6 @@ void Spaceship::load(){
     
 }
 
-std::tuple<std::shared_ptr<LazerShot>, int> Spaceship::firedLazerShot(int i) const
-{
-return std::tie(lazerShotsGun_[i], noOfLazerShots_);
-}
-   
-void Spaceship::explode(){
-    
-    setObjectID(ObjectID::EXPLOSION);
-    }
-        
 void Spaceship::reset(){
     
     setObjectID(ObjectID::SPACESHIP);
@@ -191,12 +141,5 @@ void Spaceship::lostLife(){
     }
     
     
-}
-
-int Spaceship::Lives(){
-    return lives_;
-    }
-Spaceship::~Spaceship()
-{
 }
 

@@ -1,43 +1,23 @@
 #include "LazerShot.h"
 
-LazerShot::LazerShot(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
-GameObject{size,position,speed,objectid}
-{}
-
-void LazerShot::Move(Direction direction){
+void LazerShot::Move(){
     
     //Bullet only moves UP
-    if(direction==Direction::UP){
+  
     auto newPosition = getPosition().y() - getSpeed();
     
     setPosition(vector2D(getPosition().x(), newPosition));
     
     //LazerShot out of bounds
-     if(getPosition().y() < - getSize().y()){updateState(State::DEAD);}
-    }
-    else{
-        // Do nothing
-     }
+     if(getPosition().y() < 0){updateState(State::DEAD);}
+
 }
 
 void LazerShot::Fire(){
     
    if(!isDead()){
-    Move(Direction::UP);
+    Move();
   }
 }
     
-void LazerShot::Load(const vector2D& position){
-    
-     setPosition(position);
-    
-    }
-    
-void LazerShot::reset(){
-     updateState(State::DEAD);
-    
-}
-    
-LazerShot::~LazerShot()
-{
-}
+

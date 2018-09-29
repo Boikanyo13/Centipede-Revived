@@ -5,9 +5,11 @@
 class Spider: public GameObject{
 
  public:
-      Spider(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
+      Spider(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
+      GameObject{size,position,speed,objectid}
+      {}
      //Move Spider Across Screen
-     void Move();
+     virtual void Move() override;
      //Reset Spider to initial conditions
      virtual void reset() override;
      //Explode the player
@@ -16,7 +18,6 @@ class Spider: public GameObject{
      
 private:
 
-      virtual void Move(Direction direction) override;
       //For down movement
       void moveDown();
       //For up movement
@@ -26,8 +27,8 @@ private:
       //Down movement left or right
       void moveZag();
       
-      bool zigzag_;
-      bool up_;
+      bool zigzag_ = true;
+      bool up_ = false;
 };
 
 #endif // SPIDER_H
