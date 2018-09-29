@@ -9,12 +9,6 @@ GameObject{size,position,speed,objectid}
     zigzag_ = true;
 }
 
-
-void Spider::explode(){
-    
-     setObjectID(ObjectID::EXPLOSION2);
-    }
-
 void Spider::Move(Direction direction){
     
     //Do nothing
@@ -68,9 +62,9 @@ void Spider::Move(){
 
 void Spider::reset(){
     
-    setPosition(vector2D{ORIGINAL_SCREEN_WIDTH-2.0f, 440.0f});
-    updateState(State::ALIVE);
     setObjectID(ObjectID::SPIDER);
+    setPosition(vector2D{1.05f*ORIGINAL_SCREEN_WIDTH, 440.0f});
+    updateState(State::ALIVE);
     zigzag_ = !zigzag_;
     up_ = !up_;
 }
@@ -104,53 +98,104 @@ void Spider::moveUp(){
 
 void Spider::moveZig(){
     
-    auto zig = getPosition().x() + getSpeed();
+    
     auto zag = getPosition().y() + getSpeed();
 
-    
-    if(zag < (ORIGINAL_SCREEN_HEIGHT)  && zig <= (ORIGINAL_SCREEN_WIDTH))
-    { 
-        setPosition(vector2D{zig,zag});
+    if(zigzag_){
+        
+        auto zig = getPosition().x() - getSpeed();
+        
+        //At bounds?
+        if(zag < (ORIGINAL_SCREEN_HEIGHT)  && zig >= getSize().x())
+        { 
+            setPosition(vector2D{zig,zag});
         }
-    else{
+        else{
             
-         if(zig >=  (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
+            //Rotate Position horizontally
+            if(zig >=  (ORIGINAL_SCREEN_WIDTH - getSize().x()/2.0f)){
              
-             setPosition(vector2D{-getSize().x()/*/2.0f+2.0f*/,zag});
+             setPosition(vector2D{1.05f*ORIGINAL_SCREEN_WIDTH,getPosition().y()});
+             }
+             else{  zigzag_ = !zigzag_; 
+                    up_ = !up_;
+                  }
+         
+        }
+        
+     }
+    else{
+        
+        //At bounds?
+         auto zig = getPosition().x() + getSpeed();
+        
+        if(zag < (ORIGINAL_SCREEN_HEIGHT)  && zig <= ORIGINAL_SCREEN_WIDTH)
+         { 
+            setPosition(vector2D{zig,zag});
+         }
+        else{
+            
+            //Rotate Position horizontally
+            if(zig >  (ORIGINAL_SCREEN_WIDTH)){
+             
+                setPosition(vector2D{-2.0f*getSize().x(),getPosition().y()});
              }
              else{zigzag_ = !zigzag_; 
                    up_ = !up_;
                   }
          
+            }
         }
-        
 }
     
 void Spider::moveZag(){
     
-    auto zig = getPosition().x() - getSpeed();
+    
     auto zag = getPosition().y() - getSpeed();
     
-    
-    if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= -(getSize().x()/2.0f))
-    { 
-        setPosition(vector2D{zig,zag});
-        }
-    else{
+    if(zigzag_){
         
-         if(zig <= -(getSize().x()/2.0f)){
+        auto zig = getPosition().x() - getSpeed();
+        
+        //At bounds?
+        if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig >= -(getSize().x()/2.0f))
+        { 
+            setPosition(vector2D{zig,zag});
+        }
+        else{
+            
+             //Rotate Position horizontally
+            if(zig <= -(getSize().x()/2.0f)){
              
-             setPosition(vector2D{ORIGINAL_SCREEN_WIDTH /*- getSize().x()/2.0f-2.0f*/,zag});
+             setPosition(vector2D{1.01f*ORIGINAL_SCREEN_WIDTH, getPosition().y()});
              }
              else{zigzag_ = !zigzag_;
                     up_ = !up_;
                    }
-        
+            }
         }
-    
+        
+    else{
+           auto zig = getPosition().x() + getSpeed();
+           
+           //At bounds?
+           if(zag >= 2.0f*(ORIGINAL_SCREEN_HEIGHT/3)  && zig <= ORIGINAL_SCREEN_WIDTH)
+            { 
+                setPosition(vector2D{zig,zag});
+                }
+            else{
+                
+                 //Rotate Position horizontally
+                if(zig <= -(getSize().x()/2.0f)){
+             
+                    setPosition(vector2D{-2.0f*(getSize().x()/2.0f), getPosition().y()});
+                    }
+                 else{  zigzag_ = !zigzag_;
+                        up_ = !up_;
+                   }
+        
+            }
+        }
 }
 
-Spider::~Spider()
-{
-}
 
