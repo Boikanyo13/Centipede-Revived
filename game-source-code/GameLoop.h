@@ -1,6 +1,7 @@
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 #include "Spaceship.h"
+#include "Player.h"
 #include "LazerShot.h"
 #include "Display.h"
 #include "Constants.h"
@@ -35,11 +36,13 @@ private:
     shared_ptr<Spaceship> spaceship_ptr;
     shared_ptr<Display> display_ptr;
     shared_ptr<UserInputs> userinput_ptr;
+    shared_ptr<Player> player_ptr;
     shared_ptr<Score> score_ptr;
     shared_ptr<Centipede> centipede_ptr;
     shared_ptr<MushroomField> mushroomfield_ptr;
     shared_ptr<Collider> collision_ptr;
     shared_ptr<Spider> spider_ptr;
+    
 
     bool shooting_;
     bool isPlaying_;

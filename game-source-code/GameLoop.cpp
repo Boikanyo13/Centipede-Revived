@@ -4,12 +4,13 @@ GameLoop::GameLoop():
 spaceship_ptr{make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE ,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, SPACESHIP_SPEED, ObjectID::SPACESHIP)},
 display_ptr{make_shared<Display>(ORIGINAL_SCREEN_WIDTH,ORIGINAL_SCREEN_HEIGHT)},
 userinput_ptr{make_shared<UserInputs>()},
+player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
 score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
 mushroomfield_ptr{make_shared<MushroomField>(35)},
 collision_ptr{make_shared<Collider>(score_ptr)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)}
-{
+{   
     shooting_ = false;
     isPlaying_ = false;
     help_ = false;
@@ -53,23 +54,9 @@ void GameLoop::PlayGame(){
         display_ptr->gameWindow(score_ptr, spaceship_ptr->Lives());
         display_ptr->drawMushroomField(mushroomfield_ptr);
           
-        //Keys to play the game
-         if(userinput_ptr->pressedKey()==Key::UP){
-             
-             spaceship_ptr->Move(Direction::UP);
-             }
-        if(userinput_ptr->pressedKey()==Key::DOWN){
-             
-              spaceship_ptr->Move(Direction::DOWN);
-            }
-          if(userinput_ptr->pressedKey()==Key::LEFT){
-             
-             spaceship_ptr->Move(Direction::LEFT);
-             }
-         if(userinput_ptr->pressedKey()==Key::RIGHT){
-             
-             spaceship_ptr->Move(Direction::RIGHT);
-            }
+        //move the spaceship
+        player_ptr->move();
+            
         
         //move the centipede across the screen
         centipede_ptr->Move();
