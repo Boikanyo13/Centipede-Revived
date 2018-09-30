@@ -106,17 +106,18 @@ void Collider::mushroomShot(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Mush
 }
 
 
-void Collider::spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr, Key key){
+void Collider::spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr, shared_ptr<Player> player_ptr){
     
 
     for(auto i = 0; i < mushroom_ptr->size(); i++){
          
           //Restrict spaceship from moving to the direction of the Collision
           if(checkCollision(spaceship_ptr,mushroom_ptr->mushroom(i))){
-              spaceship_ptr->mushroomCollision(true,key);
+              //spaceship_ptr->mushroomCollision(true,key);
+              player_ptr->mushroomCollision(true);
                break;
           }
-          else{ spaceship_ptr->mushroomCollision(false,key);}
+          
             
         }
  

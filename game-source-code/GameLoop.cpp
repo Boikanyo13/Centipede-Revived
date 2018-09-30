@@ -7,7 +7,7 @@ userinput_ptr{make_shared<UserInputs>()},
 player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
 score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
-mushroomfield_ptr{make_shared<MushroomField>(35)},
+mushroomfield_ptr{make_shared<MushroomField>(50)},
 collision_ptr{make_shared<Collider>(score_ptr)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)}
 {   
@@ -71,7 +71,7 @@ void GameLoop::PlayGame(){
         collision_ptr->mushroomHit(centipede_ptr,mushroomfield_ptr);
         
         //detect if a spaceship collides with a mushroom
-        collision_ptr->spaceshipCollision(spaceship_ptr,mushroomfield_ptr,userinput_ptr->pressedKey());
+        collision_ptr->spaceshipCollision(spaceship_ptr,mushroomfield_ptr,player_ptr);
        
        
         if(display_ptr->spaceKey() && !spaceship_ptr->isDead() && !(spaceship_ptr->ID()==ObjectID::EXPLOSION)){

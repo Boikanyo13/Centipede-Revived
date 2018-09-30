@@ -4,11 +4,12 @@
 #include "Spaceship.h"
 #include "MushroomField.h"
 #include "UserInputs.h"
-#include <memory>
 #include "Centipede.h"
 #include "Score.h"
 #include "Spider.h"
+#include "Player.h"
 
+#include <memory>
 using std::shared_ptr;
 
 class Collider
@@ -27,7 +28,7 @@ public:
     //Handle Mushroom Bullet Collision
     void mushroomShot(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<MushroomField> mushroom_ptr);
     //Handle Spaceship mushroom collision
-    void spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr,shared_ptr<MushroomField> mushroom_ptr,Key key);
+    void spaceshipCollision(shared_ptr<Spaceship> spaceship_ptr,shared_ptr<MushroomField> mushroom_ptr, shared_ptr<Player> player_ptr);
     //Handle Collision between Spider and Spaceship
     void spaceshipHit(shared_ptr<Spider> spider_ptr, shared_ptr<Spaceship> spaceship_ptr);
     //Handle Spider Mushroom Collision

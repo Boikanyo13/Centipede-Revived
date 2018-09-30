@@ -7,18 +7,14 @@
 #include <memory>
 #include <vector>
 
-
-
 class Spaceship: public GameObject{
 public:
 
-    Spaceship(const vector2D& size,const vector2D& position, float speed, ObjectID objectid);
+    Spaceship(const vector2D& size,const vector2D& position, float speed, ObjectID objectid):
+    GameObject{size,position,speed,objectid}
+    {}
+    //Game Object moves is not used for Spaceship
     virtual void Move() override{};
-    //move spaceship
-    void moveLeft();
-    void moveRight();
-    void moveUp();
-    void moveDown();
     //Return fired lazer shot
     std::tuple<std::shared_ptr<LazerShot>,int> firedLazerShot(int i) const{return std::tie(lazerShotsGun_[i], noOfLazerShots_);}
     //Load the LazerShot gun of the Spaceship
@@ -35,18 +31,11 @@ public:
     void Lives(int lives){lives_ = lives;}
     //Reset Spaceship to inital conditions
     virtual void reset() override;
-    //Take action if there is a mushroomhit
-    void mushroomCollision(bool collision,Key key);
     //Destructor
     virtual ~Spaceship(){}
     
 private:
 
-   bool left_ = true;
-   bool right_ = true;
-   bool up_ = true;
-   bool down_ = true;
-   int tempSpeed_;
    int lives_ = 3;
    int noOfLazerShots_ = 0;
    std::vector<std::shared_ptr<LazerShot>> lazerShotsGun_;
