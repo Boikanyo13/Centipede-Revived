@@ -21,8 +21,6 @@ public:
     void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr);
     //Handle Centipede and Spaceship Collison
     void spaceshipHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<Spaceship> spaceship_ptr);
-    //Check Collison of gameObjects
-    bool checkCollision(shared_ptr<GameObject> this_ptr, shared_ptr<GameObject> other_ptr);
     //Handle Centipede and Mushroom collission
     void mushroomHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<MushroomField> mushroom_ptr);
     //Handle Mushroom Bullet Collision
@@ -38,10 +36,9 @@ public:
     ~Collider();
     
 private:
+   
     shared_ptr<Score> _score_ptr;
-
-  
-
+    shared_ptr<Collision> _collision_ptr;
 };
 
 #endif // COLLIDER_H

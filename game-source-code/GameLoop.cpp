@@ -8,7 +8,7 @@ player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
 score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
 mushroomfield_ptr{make_shared<MushroomField>(50)},
-collision_ptr{make_shared<Collider>(score_ptr)},
+collision_ptr{make_shared<CollisionHandler>(score_ptr)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)},
 splashscreen_ptr{make_shared<SplashScreen>(display_ptr)},
 animate_ptr{make_shared<Animate>(display_ptr)}

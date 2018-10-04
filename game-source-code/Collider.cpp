@@ -1,8 +1,4 @@
-#include "Collider.h"
-
-Collider::Collider(shared_ptr<Score> score_ptr):_score_ptr{score_ptr}{
-
- }
+#include "CollisionHandler.h"
 
 void Collider::targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Centipede> centipede_ptr, shared_ptr<MushroomField> mushroom_ptr)
 {
@@ -81,7 +77,7 @@ void Collider::spaceshipHit(shared_ptr<Spider> spider_ptr, shared_ptr<Spaceship>
                   
                 //Explode the spaceship
                  spaceship_ptr->collisionResponse();
-       }
+}
        
    
 }
@@ -139,7 +135,7 @@ void Collider::mushroomHit(shared_ptr<Centipede> centipede_ptr, shared_ptr<Mushr
     
 }
 
-void Collider::spaceshipHit( shared_ptr<Centipede> centipede_ptr,shared_ptr<Spaceship> spaceship_ptr){
+void Collider::spaceshipHit(shared_ptr<Centipede> centipede_ptr,shared_ptr<Spaceship> spaceship_ptr){
     
     
      

@@ -7,7 +7,7 @@
 #include "Constants.h"
 #include "UserInputs.h"
 #include "Centipede.h"
-#include "Collider.h"
+#include "CollisionHandler.h"
 #include "Mushroom.h"
 #include "Spider.h"
 #include "SplashScreen.h"
@@ -42,7 +42,7 @@ private:
     shared_ptr<Score> score_ptr;
     shared_ptr<Centipede> centipede_ptr;
     shared_ptr<MushroomField> mushroomfield_ptr;
-    shared_ptr<Collider> collision_ptr;
+    shared_ptr<CollisionHandler> collision_ptr;
     shared_ptr<Spider> spider_ptr;
     shared_ptr<SplashScreen> splashscreen_ptr;
     shared_ptr<Animate> animate_ptr;
