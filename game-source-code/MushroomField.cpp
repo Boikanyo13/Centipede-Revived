@@ -1,6 +1,6 @@
 #include "MushroomField.h"
 
-MushroomField::MushroomField(int size):size_{size}
+MushroomField::MushroomField(int size):GameObjectContainer{size}
 {
      //Fill the vectors with all the possible positions
     for(auto i = 0.0f; i < 29.0f; i++){
@@ -21,7 +21,7 @@ void MushroomField::reset(){
     if(_mushrooms_ptr.size()> 0)
        _mushrooms_ptr.erase(_mushrooms_ptr.begin(), _mushrooms_ptr.end());  
        
-    size_ = original_size_;
+    size(original_size_);
     generateField();
 }
 
@@ -33,7 +33,7 @@ void MushroomField::generateField(){
     auto randx = 0;
     
      
-   for(auto i = 0; i <  size_; i++){
+   for(auto i = 0; i <  size(); i++){
         
        //Acces at random indices
         randx = rand()%25;
@@ -45,24 +45,13 @@ void MushroomField::generateField(){
 
     }
 
-void MushroomField::transform(std::shared_ptr<CentiSegment> seg){
+void MushroomField::transform(std::shared_ptr<GameObject> centiSeg_ptr){
     
-_mushrooms_ptr.push_back(std::make_shared<Mushroom>(vector2D{MUSHROOM_SIZE},seg->getPosition(),0.0f,ObjectID::MUSHROOM));
-    size_++;
-    }
-
-int MushroomField::size() const{
+    _mushrooms_ptr.push_back(std::make_shared<Mushroom>(vector2D{MUSHROOM_SIZE},centiSeg_ptr->getPosition(),0.0f,ObjectID::MUSHROOM));
     
-return size_;    
-}
-    
-shared_ptr<Mushroom> MushroomField::mushroom(int i) const {
-    
- return _mushrooms_ptr[i];    
-    
+    auto newSize = size();
+    newSize++;
+    size(newSize);
 }
 
-MushroomField::~MushroomField()
-{
-}
 

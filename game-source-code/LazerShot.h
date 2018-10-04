@@ -16,6 +16,7 @@ public:
     void Fire();
     //destroy Lazershot
     virtual void reset() override {updateState(State::DEAD);}
+    virtual void collisionResponse() override{updateState(State::DEAD);}
     virtual ~LazerShot(){}
      
 };

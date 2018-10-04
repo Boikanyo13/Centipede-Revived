@@ -34,6 +34,8 @@ public:
     ObjectID ID() const{return objectID_;}
     //Reset object to inital conditions
     virtual void reset() = 0;
+    //Action taken on collision
+    virtual void collisionResponse() = 0;
     virtual ~GameObject(){};
 
 private:

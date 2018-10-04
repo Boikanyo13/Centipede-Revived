@@ -11,14 +11,10 @@ public:
     {}
     //Move the CentiSegment across the screen
     virtual void Move() override;
-    //set the CentiSegment to head;
-    void head() {setObjectID(ObjectID::CHEAD);}
-    //Check if it is head
-    bool isHead() const {return (ID()==ObjectID::CHEAD);}
     //set the centipede segment to its inital conditions
     virtual void reset() override{};
     //Take action if hits a mushroom
-    void mushroomHit();
+    virtual void collisionResponse() override;
     //Destructor
     virtual ~CentiSegment(){}
     

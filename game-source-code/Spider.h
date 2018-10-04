@@ -13,7 +13,7 @@ class Spider: public GameObject{
      //Reset Spider to initial conditions
      virtual void reset() override;
      //Explode the player
-     void explode(){ setObjectID(ObjectID::EXPLOSION2); }
+     virtual void collisionResponse() override { setObjectID(ObjectID::EXPLOSION2); }
      virtual ~Spider(){};
      
 private:

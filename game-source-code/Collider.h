@@ -32,7 +32,7 @@ public:
     //Handle Collision between Spider and Spaceship
     void spaceshipHit(shared_ptr<Spider> spider_ptr, shared_ptr<Spaceship> spaceship_ptr);
     //Handle Spider Mushroom Collision
-    void mushroomDestroyed(shared_ptr<Spider> spider_ptr,shared_ptr<MushroomField> mushroom_ptr);
+    void mushroomDestroyed(shared_ptr<GameObject> gameObject_ptr,shared_ptr<GameObjectContainer> gameObjectContainer_ptr);
     //Handle spider Lazershot Collison
     void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Spider> spider_ptr);
     ~Collider();

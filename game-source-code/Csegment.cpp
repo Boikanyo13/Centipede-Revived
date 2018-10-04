@@ -1,8 +1,7 @@
 #include "Csegment.h"
     
-void CentiSegment::mushroomHit(){
+void CentiSegment::collisionResponse(){
     
-       
     if(!up_)
     moveDown();
     else
@@ -15,7 +14,7 @@ void CentiSegment::mushroomHit(){
     
 void CentiSegment::Move(){
     
-    if(getPosition().y() <= getSize().y()/*/2.0f*/) { entrance(); }
+    if(getPosition().y() <= getSize().y()) { entrance(); }
     
     else{
         
@@ -68,7 +67,7 @@ void CentiSegment::moveUp(){
 void CentiSegment::moveDown(){
     
     auto down = getPosition().y() + getSize().y();
-    if(down <= (ORIGINAL_SCREEN_HEIGHT /*-getSize().y()/2.0f*/)){
+    if(down <= (ORIGINAL_SCREEN_HEIGHT)){
         setPosition(vector2D{getPosition().x(), down});
          atBoundry_ = false;
        }

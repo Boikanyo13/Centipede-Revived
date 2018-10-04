@@ -1,37 +1,37 @@
 #ifndef CENTIPEDE_H
 #define CENTIPEDE_H
-#include <vector>
 #include "Csegment.h"
 #include "GameTypes.h"
-#include <memory>
-#include <iostream>
-using std::vector; 
+#include "GameObjectContainer.h"
+
+#include <vector>
+using std::vector;
+
+#include <memory> 
 using std::shared_ptr;
  
 
-class Centipede{
+class Centipede : public GameObjectContainer{
     
 public:
     Centipede(int length);
     //Move Centipede across screen
     void Move();
-    //Return length of Centipede
-    int length(){return length_;};
     //Return the ith CentiSegment
-    shared_ptr<CentiSegment> centiSegment(int i){return centipede_[i];};
+    virtual shared_ptr<GameObject> segment(int i) const override {return centipede_[i];}
     //Count the number of destroyed CentiSegments
     void SegmentDestroyed(){numDeadSegments_++;}
     //is The Centipede dead?
-    bool isDead(){return (numDeadSegments_== length_);};
+    bool isDead(){return (numDeadSegments_== size());}
     //Reset centipede to initial conditions
-    void reset();
+    virtual void reset() override;
     ~Centipede(){};
     
     
 private:
+    
     void initialConditions();
     vector<shared_ptr <CentiSegment>> centipede_;
-    int length_;
     int numDeadSegments_;
     
 };

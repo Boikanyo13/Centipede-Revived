@@ -12,7 +12,7 @@ public:
     GameObject{size,position,speed,objectid}
     {}
     //Take action if Mushroom is shot
-    void shot();
+    virtual void collisionResponse() override;
     //Return the number of lives the Mushroom has
     int lives() const {return lives_; }
     //Move function from parent

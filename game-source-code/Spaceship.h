@@ -1,6 +1,6 @@
 #ifndef SPACESHIP_H
 #define SPACESHIP_H
-#include "constants.h"
+#include "Constants.h"
 #include "GameObject.h"
 #include "UserInputs.h"
 #include "LazerShot.h"
@@ -22,7 +22,7 @@ public:
     //Fire at the at the target
     void shoot();
     //Explode the Spaceship
-    void explode(){setObjectID(ObjectID::EXPLOSION);}
+    virtual void collisionResponse(){setObjectID(ObjectID::EXPLOSION);}
     //Decreement the number of lives
     void lostLife();
     //Get number of lives

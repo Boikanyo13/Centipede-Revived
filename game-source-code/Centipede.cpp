@@ -1,6 +1,6 @@
 #include "Centipede.h"
 
-Centipede::Centipede(int length):length_{length}{
+Centipede::Centipede(int length):GameObjectContainer{length}{
     
     initialConditions();
     
@@ -9,7 +9,7 @@ Centipede::Centipede(int length):length_{length}{
 
 void Centipede::Move(){
     
-    for(auto i= 0; i != length_ ; i++){
+    for(auto i= 0; i != size() ; i++){
         
         centipede_[i]->Move();
     }
@@ -26,7 +26,7 @@ void Centipede::initialConditions(){
             vector2D{x_pos, y_pos},SPACESHIP_SPEED, ObjectID::CHEAD));
             y_pos -= 1.2*CENTIPEDE_Y_SIZE;
     
-    for (auto i = 0; i != length_ - 1; i++){
+    for (auto i = 0; i != size() - 1; i++){
         
         
         centipede_.push_back(std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE, CENTIPEDE_Y_SIZE},

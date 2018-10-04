@@ -3,6 +3,8 @@
 #include "Display.h"
 #include "GameObject.h"
 #include "GameFiles.h"
+#include "GameObjectContainer.h"
+
 #include <vector>
 using std::vector;
 
@@ -16,8 +18,7 @@ public:
     Animate(shared_ptr<Display> display_ptr);
     //Draw the object
     void animate(shared_ptr<GameObject> gameobject_ptr);
-    void animate(shared_ptr<Centipede> centipede_ptr);
-    void animate(shared_ptr<MushroomField> mushroom_ptr);
+    void animate(shared_ptr<GameObjectContainer> gameObjectContainer_ptr);
     void animateLazerShots(shared_ptr<Spaceship> spaceship_ptr);
     ~Animate(){}
     

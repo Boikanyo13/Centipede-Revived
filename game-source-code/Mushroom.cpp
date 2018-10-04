@@ -1,6 +1,6 @@
 #include "Mushroom.h"
 
-void Mushroom::shot(){
+void Mushroom::collisionResponse(){
     
     if(!isDead()){
     lives_--;

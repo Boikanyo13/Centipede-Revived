@@ -17,9 +17,8 @@ window_ptr_(display_ptr->window())
         textures_.push_back(temp);
     
         }
-    
-    
 }
+
 void Animate::animate(shared_ptr<GameObject> gameobject_ptr){
     
     if(!gameobject_ptr->isDead()){
@@ -31,20 +30,12 @@ void Animate::animate(shared_ptr<GameObject> gameobject_ptr){
     }
 }
 
-void Animate::animate(shared_ptr<Centipede> centi_ptr){
-      
-      for (auto i = 0; i < centi_ptr->length() ; i++){
-        
-        animate(centi_ptr->centiSegment(i));
 
-      }
-}
-
-void Animate::animate(shared_ptr<MushroomField> mushroom_ptr){
+void Animate::animate(shared_ptr<GameObjectContainer> gameObjectContainer_ptr){
     
-    for(auto i = 0; i <  mushroom_ptr->size(); i++){
+    for(auto i = 0; i < gameObjectContainer_ptr->size(); i++){
          
-         animate(mushroom_ptr->mushroom(i));
+         animate(gameObjectContainer_ptr->segment(i));
         }
 }
 
