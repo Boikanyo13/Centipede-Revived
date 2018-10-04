@@ -5,6 +5,7 @@
 #include "Score.h"
 #include "GameTypes.h"
 #include "GameFiles.h"
+#include "Display.h"
 #include <tuple>
 #include <memory>
 #include <vector>
@@ -18,7 +19,7 @@ class SplashScreen
 public:
     
     
-    SplashScreen(sf::RenderWindow& window);
+    SplashScreen(shared_ptr<Display> display_ptr);
     //Draws the opening screen 
     void OpeningScreen();
     //Draws the helpscreen
@@ -27,16 +28,16 @@ public:
     void YouLoose(int score);
     void YouWin(int score);
     //Draws the Background of the gamescreen
-    void GameScreen(int score, int lives);
+    void GameScreen(shared_ptr<Score> score_ptr, int lives);
     //Detects which button in the screen is being pressed
     ScreenObjectID DetectButton();
-    ~SplashScreen();
+    ~SplashScreen(){}
    
 private:
 
     //Gets dimensions  of the buttons
    std::tuple <float, float, float, float> ButtonDimension (sf::RectangleShape button);
-   sf::RenderWindow& window_;
+   shared_ptr<sf::RenderWindow> window_;
    //Makes buttons
    sf::RectangleShape DrawScreenObject(const vector2D& size,const vector2D& position, ScreenObjectID ID);
    //Draws high scores

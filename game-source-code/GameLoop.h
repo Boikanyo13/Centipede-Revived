@@ -10,6 +10,8 @@
 #include "Collider.h"
 #include "Mushroom.h"
 #include "Spider.h"
+#include "SplashScreen.h"
+#include "Animate.h"
 #include "MushroomField.h"
 #include <memory>
 
@@ -42,6 +44,8 @@ private:
     shared_ptr<MushroomField> mushroomfield_ptr;
     shared_ptr<Collider> collision_ptr;
     shared_ptr<Spider> spider_ptr;
+    shared_ptr<SplashScreen> splashscreen_ptr;
+    shared_ptr<Animate> animate_ptr;
     
 
     bool shooting_;

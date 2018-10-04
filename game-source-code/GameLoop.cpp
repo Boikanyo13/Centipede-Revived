@@ -9,7 +9,9 @@ score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
 mushroomfield_ptr{make_shared<MushroomField>(50)},
 collision_ptr{make_shared<Collider>(score_ptr)},
-spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)}
+spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)},
+splashscreen_ptr{make_shared<SplashScreen>(display_ptr)},
+animate_ptr{make_shared<Animate>(display_ptr)}
 {   
     shooting_ = false;
     isPlaying_ = false;
@@ -22,7 +24,7 @@ spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,Obj
 void GameLoop::Opening(){
     
          display_ptr->clearDisplay();
-         display_ptr->openingWindow();
+         splashscreen_ptr->OpeningScreen();
          isPlaying_ = false;
          help_ = false;
          
@@ -30,13 +32,13 @@ void GameLoop::Opening(){
          if(display_ptr->leftClick()){
              
              //Play the game
-             if(display_ptr->splashscreen().DetectButton() == ScreenObjectID::START){
+             if(splashscreen_ptr->DetectButton() == ScreenObjectID::START){
                  isPlaying_ = true;
                   opening_ = false;
                 
                  }
              //Show instructions window
-             if(display_ptr->splashscreen().DetectButton() == ScreenObjectID::HELP){
+             if(splashscreen_ptr->DetectButton() == ScreenObjectID::HELP){
                   help_ = true;
                  opening_ = false;
                  
@@ -51,8 +53,8 @@ void GameLoop::Opening(){
 void GameLoop::PlayGame(){
     
         display_ptr->clearDisplay();
-        display_ptr->gameWindow(score_ptr, spaceship_ptr->Lives());
-        display_ptr->drawMushroomField(mushroomfield_ptr);
+        splashscreen_ptr->GameScreen(score_ptr, spaceship_ptr->Lives());
+        animate_ptr->animate(mushroomfield_ptr);
           
         //move the spaceship
         player_ptr->Move();
@@ -85,16 +87,16 @@ void GameLoop::PlayGame(){
           
          if(shooting_ && !spaceship_ptr->isDead()){
              
-            display_ptr->drawLazerShot(spaceship_ptr);
+            animate_ptr->animateLazerShots(spaceship_ptr);
             collision_ptr->mushroomShot(spaceship_ptr,mushroomfield_ptr);  
             collision_ptr->targetDestroyed(spaceship_ptr,centipede_ptr,mushroomfield_ptr);
             collision_ptr->targetDestroyed(spaceship_ptr,spider_ptr);
          }
          
          collision_ptr->spaceshipHit(centipede_ptr,spaceship_ptr);
-         display_ptr->drawObject(spider_ptr);
-         display_ptr->drawObject(spaceship_ptr);
-         display_ptr->drawCentipede(centipede_ptr);
+         animate_ptr->animate(spider_ptr);
+         animate_ptr->animate(spaceship_ptr);
+         animate_ptr->animate(centipede_ptr);
          display_ptr->display();
          
          //spaceship explodes if hit
@@ -156,12 +158,12 @@ void GameLoop::CentipedeGame(){
 void GameLoop::Help(){
     
         display_ptr->clearDisplay();
-        display_ptr->helpWindow();
-            
+        splashscreen_ptr->HelpScreen();
+        
           //detect if back button is pressed in help window  
         if(display_ptr->leftClick()){
                   
-                if(display_ptr->splashscreen().DetectButton() == ScreenObjectID::BACK){
+                if(splashscreen_ptr->DetectButton() == ScreenObjectID::BACK){
                   opening_ = true;
                  }
                  
@@ -178,10 +180,11 @@ void GameLoop::GameOver(){
         isPlaying_ = false;
          
         if(spaceship_ptr->isDead()) 
-            display_ptr->splashscreen().YouLoose(score_ptr->score());
+          splashscreen_ptr->YouLoose(score_ptr->score());
 
         else {
-           display_ptr->splashscreen().YouWin(score_ptr->score());
+        
+            splashscreen_ptr->YouWin(score_ptr->score());
         }
                 
         spaceship_ptr->reset();

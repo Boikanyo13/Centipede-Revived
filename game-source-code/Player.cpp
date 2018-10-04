@@ -16,7 +16,7 @@ void Player::moveSpaceshipLeft(){
     
     //Check if at boundary
         auto left =  _spaceship_ptr->getPosition().x() - _spaceship_ptr->getSpeed();
-        if(left >= (_spaceship_ptr->getSize().x()/2.0f ) /*&& left_*/){
+        if(left >= (_spaceship_ptr->getSize().x()/2.0f )){
                   _spaceship_ptr->setPosition(vector2D{left,  _spaceship_ptr->getPosition().y()});
         }
     }
@@ -25,7 +25,7 @@ void Player::moveSpaceshipRight(){
     
       //Check if at boundary
         auto right = _spaceship_ptr->getSpeed() + _spaceship_ptr->getPosition().x();
-        if(right <= (ORIGINAL_SCREEN_WIDTH - _spaceship_ptr->getSize().x()/2.0f) /*&& right_*/){
+        if(right <= (ORIGINAL_SCREEN_WIDTH - _spaceship_ptr->getSize().x()/2.0f)){
                     _spaceship_ptr->setPosition(vector2D{right,_spaceship_ptr->getPosition().y()});
                 }
     }

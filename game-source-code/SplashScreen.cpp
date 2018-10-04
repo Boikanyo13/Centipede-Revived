@@ -1,6 +1,7 @@
 #include "SplashScreen.h"
 
-SplashScreen::SplashScreen(sf::RenderWindow& window):window_(window)
+SplashScreen::SplashScreen(shared_ptr<Display> display_ptr): 
+window_{display_ptr->window()}
 {
         //Get the file names
         auto fileNames = gamefile_.screenImages();
@@ -27,7 +28,7 @@ sf::RectangleShape SplashScreen::DrawScreenObject(const vector2D& size, const ve
     screenObject.setPosition(position.x() , position.y());
     screenObject.setTexture(&screenObjectTextures_[static_cast<int>(ID)]);
     //draw screen object
-     window_.draw(screenObject);
+     window_->draw(screenObject);
     
     return screenObject;
 }
@@ -73,17 +74,17 @@ std::tuple <float, float, float, float> SplashScreen::ButtonDimension(sf::Rectan
     //Back button
     auto backbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{BACK_X_POS, BACK_Y_POS}, ScreenObjectID::BACK);
     std::tie(q,r,w,t) = ButtonDimension(backbutton);
-    window_.draw(gameText);
+    window_->draw(gameText);
     
      }
 
 ScreenObjectID SplashScreen::DetectButton()
 {
-    sf::Vector2i mousePos  = sf::Mouse::getPosition(window_);
+    sf::Vector2i mousePos  = sf::Mouse::getPosition(*window_);
     
     //For accurate button detection
-    auto aspectRatioX = ORIGINAL_SCREEN_WIDTH/window_.getSize().x;
-    auto aspectRatioY = ORIGINAL_SCREEN_HEIGHT/window_.getSize().y;
+    auto aspectRatioX = ORIGINAL_SCREEN_WIDTH/window_->getSize().x;
+    auto aspectRatioY = ORIGINAL_SCREEN_HEIGHT/window_->getSize().y;
                 
     
             if( (aspectRatioX*mousePos.x >= a)   && (aspectRatioX*mousePos.x <= b))  {
@@ -112,10 +113,10 @@ ScreenObjectID SplashScreen::DetectButton()
   return ScreenObjectID::BACKGROUND1;
 }
 
-void SplashScreen::GameScreen(int score, int lives){
+void SplashScreen::GameScreen(shared_ptr<Score> score_ptr, int lives){
     
     //Background2
-    auto score_ = std::to_string(score);
+    auto score_ = std::to_string(score_ptr->score());
     auto posX = 100.0f;
      DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
      
@@ -131,7 +132,7 @@ void SplashScreen::GameScreen(int score, int lives){
     gameText.setCharacterSize(20);
     gameText.setPosition(20.0f, 5.0f);
     gameText.setString(score_);
-    window_.draw(gameText);
+    window_->draw(gameText);
     
     //highscore
     auto scores = gamefile_.scorefile();
@@ -139,7 +140,7 @@ void SplashScreen::GameScreen(int score, int lives){
     gameText.setFillColor(sf::Color::Green);
     gameText.setPosition(220.0f, 5.0f);
     gameText.setString(highscore);
-    window_.draw(gameText);
+    window_->draw(gameText);
      
     }
     
@@ -152,7 +153,7 @@ void SplashScreen::YouLoose(int score){
     gameText.setCharacterSize(55);
     gameText.setPosition(120, 110);
     gameText.setString(TEXT_2);
-    window_.draw(gameText);
+    window_->draw(gameText);
     HighScores(score);
     
 }
@@ -166,7 +167,7 @@ void SplashScreen::YouWin(int score){
     gameText.setCharacterSize(55);
     gameText.setPosition(120, 110);
     gameText.setString(TEXT_3);
-    window_.draw(gameText);
+    window_->draw(gameText);
     
     HighScores(score);
 }
@@ -179,7 +180,7 @@ void SplashScreen::HighScores(int score){
    auto  delyaY  = 0;
    gameText.setPosition(110, 180);
    gameText.setString("\n Your score : "+ score_ + " \n \n HIGH SCORES");
-   window_.draw(gameText);
+   window_->draw(gameText);
 
   
    for(auto i = 0u; i < highscores.size(); i++ )
@@ -187,13 +188,11 @@ void SplashScreen::HighScores(int score){
        gameText.setString(std::to_string(highscores[i]));
        gameText.setPosition(200, 280+delyaY);
        
-        window_.draw(gameText);
+        window_->draw(gameText);
    }
    
      
  }
  
-SplashScreen::~SplashScreen()
-{
-}
+
 
