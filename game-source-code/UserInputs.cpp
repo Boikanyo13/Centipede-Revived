@@ -14,6 +14,10 @@ Key UserInputs::pressedKey(){
          return Key::DOWN;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
          return Key::SPACE;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::P))
+         return Key::PAUSE;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
+         return Key::RESUME;
     else{
         return  Key::OTHERS;
         }

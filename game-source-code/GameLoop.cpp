@@ -18,6 +18,7 @@ animate_ptr{make_shared<Animate>(display_ptr)}
     help_ = false;
     opening_ = true;
     gameOver_ = false;
+    pause_ = false;
     
 }
 
@@ -51,6 +52,8 @@ void GameLoop::Opening(){
 }
 
 void GameLoop::PlayGame(){
+    
+      
     
         display_ptr->clearDisplay();
         splashscreen_ptr->GameScreen(score_ptr, spaceship_ptr->Lives());
@@ -130,6 +133,11 @@ void GameLoop::PlayGame(){
               
               spider_ptr->reset();
               }
+              
+          if(userinput_ptr->pressedKey()==Key::PAUSE){
+              pause_ = true;
+              isPlaying_ = false;
+              }
     
 }
 
@@ -150,6 +158,9 @@ void GameLoop::CentipedeGame(){
         
         else if(gameOver_)
             GameOver();
+        else if(pause_){
+            pause();
+            }
          
     }
     
@@ -186,11 +197,11 @@ void GameLoop::GameOver(){
         
             splashscreen_ptr->YouWin(score_ptr->score());
         }
-                
+              
         spaceship_ptr->reset();
         mushroomfield_ptr->reset();
         display_ptr->display();
-        usleep(3000000);
+         usleep(2000000);  
               
         gameOver_ = false;
         opening_ = true;
@@ -199,9 +210,30 @@ void GameLoop::GameOver(){
         spaceship_ptr->setObjectID(ObjectID::SPACESHIP);
         spaceship_ptr->updateState(State::ALIVE);
         score_ptr->reset(); 
+        
 
             
 }
+
+void GameLoop::pause(){
+
+    isPlaying_ = false;
+    
+    display_ptr->clearDisplay();
+    splashscreen_ptr->GameScreen(score_ptr, spaceship_ptr->Lives());
+    splashscreen_ptr->Pause();
+   
+    display_ptr->display();
+   
+    
+    if(userinput_ptr->pressedKey()==Key::RESUME){
+        
+        isPlaying_ = true;
+        pause_ = false;
+        }
+}
+
+
 GameLoop::~GameLoop()
 {
 }

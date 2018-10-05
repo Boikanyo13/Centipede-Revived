@@ -14,6 +14,7 @@
 #include "Animate.h"
 #include "MushroomField.h"
 #include <memory>
+#include <windows.h>
 
 using std::shared_ptr;
 using std::make_shared;
@@ -26,6 +27,8 @@ public:
     void PlayGame();
     //Show the opening window
     void Opening();
+    //pause game
+    void pause();
     //The entire game
     void CentipedeGame();
     //show instructions window
@@ -53,6 +56,7 @@ private:
     bool gameOver_ ;
     bool help_;
     bool opening_ ;
+    bool pause_;
 
 
 

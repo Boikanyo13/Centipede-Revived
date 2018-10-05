@@ -35,7 +35,7 @@ const auto HELP_Y_POS  = 460.0f;
 const auto BACK_X_POS = START_X_POS;
 const auto BACK_Y_POS =  520.0f ;
 
-const auto TEXT_1 = "Instructions \n \n \n To Shoot: space \n \n Move Up: Up Arrow \n \n Move Down: Down Arrow \n \n Move Left: Left Arrow \n \n Move Right: Right Arrow";
+const auto TEXT_1 = "Instructions \n \n To Shoot:  Space \n Move Up:  Up Arrow \n Move Down:  Down Arrow \n Move Left:  Left Arrow \n Move Right:  Right Arrow \n Pause:  Press P \n Resume:  Press R ";
 const auto TEXT_2 = "You Loose!";
 const auto TEXT_3 = "You Win!";
 

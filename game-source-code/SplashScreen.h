@@ -29,6 +29,7 @@ public:
     void YouWin(int score);
     //Draws the Background of the gamescreen
     void GameScreen(shared_ptr<Score> score_ptr, int lives);
+    void Pause();
     //Detects which button in the screen is being pressed
     ScreenObjectID DetectButton();
     ~SplashScreen(){}

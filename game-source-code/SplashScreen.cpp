@@ -67,8 +67,8 @@ std::tuple <float, float, float, float> SplashScreen::ButtonDimension(sf::Rectan
     
     //Text for instructions
     gameText.setFillColor(sf::Color::Red);
-    gameText.setCharacterSize(25);
-    gameText.setPosition(65, 100);
+    gameText.setCharacterSize(30);
+    gameText.setPosition(70, 100);
     gameText.setString(TEXT_1);
     
     //Back button
@@ -112,6 +112,17 @@ ScreenObjectID SplashScreen::DetectButton()
                
   return ScreenObjectID::BACKGROUND1;
 }
+
+void SplashScreen::Pause(){
+    
+    gameText.setFillColor(sf::Color::Red);
+    gameText.setCharacterSize(35);
+    gameText.setPosition(25.0f, 285.5f);
+    gameText.setString("\t\t\t   p a u s e d ! \np r e s s  r  t o  r e s u m e");
+    
+    window_->draw(gameText);
+    
+    }
 
 void SplashScreen::GameScreen(shared_ptr<Score> score_ptr, int lives){
     
