@@ -2,7 +2,7 @@
 #define USERINPUTS_H
 #include <SFML/Graphics.hpp>
 
-enum class Key{LEFT,RIGHT,UP,DOWN,SPACE,OTHERS,PAUSE,RESUME};
+enum class Key{LEFT,RIGHT,UP,DOWN,SPACE,OTHERS,PAUSE,RESUME,ESC,QUIT};
 
 class UserInputs
 {

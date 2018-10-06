@@ -52,6 +52,8 @@ private:
    sf::Font gameFont;
    sf::Text gameText;
    
+   bool blink_ = true;
+   
    GameFiles gamefile_;
   
 

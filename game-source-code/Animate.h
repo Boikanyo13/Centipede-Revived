@@ -3,6 +3,7 @@
 #include "Display.h"
 #include "GameObject.h"
 #include "GameFiles.h"
+#include "Spaceship.h"
 #include "GameObjectContainer.h"
 
 #include <vector>

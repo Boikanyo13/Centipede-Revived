@@ -18,6 +18,10 @@ Key UserInputs::pressedKey(){
          return Key::PAUSE;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
          return Key::RESUME;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape))
+         return Key::ESC;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q))
+         return Key::QUIT;
     else{
         return  Key::OTHERS;
         }

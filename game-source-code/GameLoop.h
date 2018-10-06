@@ -57,6 +57,7 @@ private:
     bool help_;
     bool opening_ ;
     bool pause_;
+    bool reset_ = true;
 
 
 

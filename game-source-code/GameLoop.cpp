@@ -1,4 +1,5 @@
 #include "GameLoop.h"
+#include <iostream>
 
 GameLoop::GameLoop():
 spaceship_ptr{make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE ,SPACESHIP_Y_SIZE},SPACESHIP_START_POSTION, SPACESHIP_SPEED, ObjectID::SPACESHIP)},
@@ -105,7 +106,9 @@ void GameLoop::PlayGame(){
          //spaceship explodes if hit
          if(spaceship_ptr->ID() == ObjectID::EXPLOSION){
              
-             spaceship_ptr->reset();
+             if(spaceship_ptr->Lives())
+                spaceship_ptr->reset();
+             
              centipede_ptr->reset();
              spider_ptr->reset();
              shooting_ = false;
@@ -116,13 +119,12 @@ void GameLoop::PlayGame(){
              spaceship_ptr->reset();
              centipede_ptr->reset();
              mushroomfield_ptr->reset();
-              usleep(20000);
-            shooting_ = false;
+             shooting_ = false;
              
              }
          
          //End game if spaceship is dead
-          if( spaceship_ptr->isDead() ||  centipede_ptr->isDead()){
+          if( spaceship_ptr->isDead()){
               isPlaying_ = false;
               gameOver_ = true;
               shooting_ = false;
@@ -133,11 +135,13 @@ void GameLoop::PlayGame(){
               
               spider_ptr->reset();
               }
-              
+            
+         // Pause?
           if(userinput_ptr->pressedKey()==Key::PAUSE){
               pause_ = true;
               isPlaying_ = false;
-              }
+          }
+          
     
 }
 
@@ -145,7 +149,7 @@ void GameLoop::CentipedeGame(){
     
     while(display_ptr->isOpen()){
          
-        display_ptr->Events();
+        display_ptr->Events(userinput_ptr);
         
         if(opening_)
             Opening();
@@ -176,6 +180,7 @@ void GameLoop::Help(){
                   
                 if(splashscreen_ptr->DetectButton() == ScreenObjectID::BACK){
                   opening_ = true;
+                  help_ = false;
                  }
                  
             }
@@ -186,33 +191,35 @@ void GameLoop::Help(){
 void GameLoop::GameOver(){
 
         //Show game over window with the current score and high scores
-        score_ptr->updateHighscore();
+     
         display_ptr->clearDisplay();
-        isPlaying_ = false;
+        splashscreen_ptr->YouLoose(score_ptr->score());
          
-        if(spaceship_ptr->isDead()) 
-          splashscreen_ptr->YouLoose(score_ptr->score());
-
-        else {
+         
+       //Only perform these actions once;
+        if(reset_){   
+          
+            score_ptr->updateHighscore();
+           
+         }
+                   
+        reset_ = false;  
         
-            splashscreen_ptr->YouWin(score_ptr->score());
-        }
-              
         spaceship_ptr->reset();
         mushroomfield_ptr->reset();
-        display_ptr->display();
-         usleep(2000000);  
-              
-        gameOver_ = false;
-        opening_ = true;
         centipede_ptr->reset();
-        spaceship_ptr->Lives(3);
-        spaceship_ptr->setObjectID(ObjectID::SPACESHIP);
-        spaceship_ptr->updateState(State::ALIVE);
-        score_ptr->reset(); 
-        
-
-            
+   
+         
+        //Check for left click
+        if(display_ptr->leftClick()){
+    
+            if(splashscreen_ptr->DetectButton() == ScreenObjectID::BACK){
+                    opening_ = true;
+                    gameOver_ =  false;
+                    score_ptr->reset(); 
+                 }
+        }
+        display_ptr->display();
 }
 
 void GameLoop::pause(){
@@ -229,6 +236,19 @@ void GameLoop::pause(){
     if(userinput_ptr->pressedKey()==Key::RESUME){
         
         isPlaying_ = true;
+        pause_ = false;
+    }
+    else if(userinput_ptr->pressedKey()==Key::QUIT){
+        
+        spaceship_ptr->reset();
+        mushroomfield_ptr->reset();
+        centipede_ptr->reset();
+        score_ptr->reset();
+        spaceship_ptr->Lives(3);
+         
+        
+        
+        opening_ = true;
         pause_ = false;
         }
 }

@@ -115,10 +115,27 @@ ScreenObjectID SplashScreen::DetectButton()
 
 void SplashScreen::Pause(){
     
-    gameText.setFillColor(sf::Color::Red);
+   if(blink_){  
+ 
+    gameText.setCharacterSize(45);
+    gameText.setFillColor(sf::Color::Yellow);
+    gameText.setPosition(20.0f, 285.5f-2.5*35.0f);
+    gameText.setString("\t\t   p a u s e d !");
+    window_->draw(gameText);
+    }
+    
+    blink_ = !blink_;
+    
     gameText.setCharacterSize(35);
-    gameText.setPosition(25.0f, 285.5f);
-    gameText.setString("\t\t\t   p a u s e d ! \np r e s s  r  t o  r e s u m e");
+    gameText.setFillColor(sf::Color::Yellow);
+    gameText.setPosition(20.0f, 285.5f-35.0f);
+    gameText.setString("\np r e s s  r  t o  r e s u m e");
+    window_->draw(gameText);
+     
+    gameText.setFillColor(sf::Color::Red);
+    gameText.setPosition(-4.0f, 285.5f+17.5f);
+    gameText.setString("\n\t\t\t\t p r e s s  Q  \n t o  q u i t to m a i n   m e n u");
+    
     
     window_->draw(gameText);
     
@@ -157,12 +174,19 @@ void SplashScreen::GameScreen(shared_ptr<Score> score_ptr, int lives){
     
 void SplashScreen::YouLoose(int score){
     
+   
+     
+     
+     
     //Background2
-     DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
+    DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
+     //Back button
+    auto backbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{BACK_X_POS, BACK_Y_POS}, ScreenObjectID::BACK);
+    std::tie(q,r,w,t) = ButtonDimension(backbutton);
     //set the text for the game lost
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(55);
-    gameText.setPosition(120, 110);
+    gameText.setPosition(100, 110);
     gameText.setString(TEXT_2);
     window_->draw(gameText);
     HighScores(score);
@@ -188,16 +212,28 @@ void SplashScreen::HighScores(int score){
    auto score_ = std::to_string(score);
    auto highscores =  gamefile_.scorefile();
    gameText.setCharacterSize(30);
-   auto  delyaY  = 0;
-   gameText.setPosition(110, 180);
-   gameText.setString("\n Your score : "+ score_ + " \n \n HIGH SCORES");
+   auto  deltaY  = 0;
+   gameText.setPosition(130, 170);
+   gameText.setFillColor(sf::Color::Yellow);
+   gameText.setString("\n Your score : "+ score_ +"\n" );
+   window_->draw(gameText);
+   gameText.setFillColor(sf::Color::Red);
+    gameText.setPosition(160, 250);
+   gameText.setString("HIGH SCORES");
    window_->draw(gameText);
 
   
    for(auto i = 0u; i < highscores.size(); i++ )
-   {    delyaY +=40;
+   {    deltaY +=40;
+   
+       if(score==highscores[i]){
+           gameText.setFillColor(sf::Color::Yellow); 
+       }
+       else{
+           gameText.setFillColor(sf::Color::Red);
+        }
        gameText.setString(std::to_string(highscores[i]));
-       gameText.setPosition(200, 280+delyaY);
+       gameText.setPosition(225, 260+deltaY);
        
         window_->draw(gameText);
    }

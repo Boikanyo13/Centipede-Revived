@@ -3,12 +3,8 @@
 
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "GameObject.h"
-#include "GameFiles.h"
-#include "Spaceship.h"
-#include "Centipede.h"
-#include "MushroomField.h"
 #include <unistd.h>
+#include "UserInputs.h"
 
 using std::shared_ptr;
 using std::make_shared;
@@ -22,7 +18,7 @@ public:
     //Check for the press of space key
     bool spaceKey(){return space_;}
     //Poll for events
-    void Events();
+    void Events(shared_ptr<UserInputs> userinput_ptr);
     //Check if Display is Open
     bool isOpen() const{return window_->isOpen();}
     //Check if mouse is clicked on the left side

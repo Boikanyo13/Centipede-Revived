@@ -3,12 +3,12 @@
 
 Display::Display(float screenWidth, float screenHeight):
 screenWidth_(screenWidth),screenHeight_(screenHeight),
-window_{make_shared<sf::RenderWindow>(sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived", sf::Style::Default)}
+window_{make_shared<sf::RenderWindow>(sf::VideoMode(screenWidth_,screenHeight_),"Centipede Revived!", sf::Style::Default)}
 { 
     window_->setFramerateLimit(600);
 }
 
-void Display::Events(){
+void Display::Events(shared_ptr<UserInputs> userinput_ptr){
     
            sf::Event event;
         
@@ -31,11 +31,13 @@ void Display::Events(){
                       }
             }
                 //Shoot?
-            if(event.type ==sf::Event::KeyPressed){
             
-                    if(event.key.code== sf::Keyboard::Space) space_ = true;
-            }
-            
+            if(userinput_ptr->pressedKey()==Key::SPACE){
+                space_ = true;
+                }
+            if(userinput_ptr->pressedKey()==Key::ESC){
+                window_->close();
+                }
             //Mouse clicked on left?
             if(event.type == sf::Event::MouseButtonPressed){
                     if (event.mouseButton.button == sf::Mouse::Left)

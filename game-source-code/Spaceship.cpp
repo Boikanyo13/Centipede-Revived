@@ -34,6 +34,14 @@ void Spaceship::reset(){
        lazerShotsGun_.erase(lazerShotsGun_.begin(), lazerShotsGun_.end());
       }
       noOfLazerShots_ = 0;
+      
+      if(isDead()){
+            
+            lives_ = 3;
+            setObjectID(ObjectID::SPACESHIP);
+            updateState(State::ALIVE);
+          
+          }
    
 }
       
