@@ -13,11 +13,14 @@
 #include "SplashScreen.h"
 #include "Animate.h"
 #include "MushroomField.h"
-#include <memory>
+#include "Domain.h"
 #include <windows.h>
 
+#include <memory>
 using std::shared_ptr;
 using std::make_shared;
+using std::make_unique;
+using std::unique_ptr;
 
 class GameLoop
 {
@@ -35,9 +38,12 @@ public:
     void Help();
     //show game over window
     void GameOver();
-    ~GameLoop();
+    ~GameLoop(){};
     
 private:
+    
+    //Draw all the GameObjects
+    void render();
     shared_ptr<Spaceship> spaceship_ptr;
     shared_ptr<Display> display_ptr;
     shared_ptr<UserInputs> userinput_ptr;
@@ -45,21 +51,19 @@ private:
     shared_ptr<Score> score_ptr;
     shared_ptr<Centipede> centipede_ptr;
     shared_ptr<MushroomField> mushroomfield_ptr;
-    shared_ptr<CollisionHandler> collision_ptr;
     shared_ptr<Spider> spider_ptr;
     shared_ptr<SplashScreen> splashscreen_ptr;
     shared_ptr<Animate> animate_ptr;
+    shared_ptr<Domain> domain_ptr;
     
 
     bool shooting_;
-    bool isPlaying_;
-    bool gameOver_ ;
-    bool help_;
-    bool opening_ ;
-    bool pause_;
+    bool isPlaying_ = false;
+    bool gameOver_ = false;
+    bool help_ = false;
+    bool opening_ =true;
+    bool pause_  = false;
     bool reset_ = true;
-
-
 
 };
 

@@ -9,19 +9,11 @@ player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
 score_ptr{make_shared<Score>()},
 centipede_ptr{make_shared<Centipede>(CENTIPEDE_LENGTH)},
 mushroomfield_ptr{make_shared<MushroomField>(50)},
-collision_ptr{make_shared<CollisionHandler>(score_ptr)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)},
 splashscreen_ptr{make_shared<SplashScreen>(display_ptr)},
-animate_ptr{make_shared<Animate>(display_ptr)}
-{   
-    shooting_ = false;
-    isPlaying_ = false;
-    help_ = false;
-    opening_ = true;
-    gameOver_ = false;
-    pause_ = false;
-    
-}
+animate_ptr{make_shared<Animate>(display_ptr)},
+domain_ptr{make_shared<Domain>(spaceship_ptr,spider_ptr,centipede_ptr,mushroomfield_ptr,score_ptr)}
+{}
 
 void GameLoop::Opening(){
     
@@ -29,6 +21,7 @@ void GameLoop::Opening(){
          splashscreen_ptr->OpeningScreen();
          isPlaying_ = false;
          help_ = false;
+         reset_ = true;
          
          //Detect which button is pressed on the opening window
          if(display_ptr->leftClick()){
@@ -48,102 +41,43 @@ void GameLoop::Opening(){
          }
          
         display_ptr->display();
-           
-    
+        
 }
 
 void GameLoop::PlayGame(){
     
-      
-    
         display_ptr->clearDisplay();
         splashscreen_ptr->GameScreen(score_ptr, spaceship_ptr->Lives());
-        animate_ptr->animate(mushroomfield_ptr);
-          
-        //move the spaceship
-        player_ptr->Move();
-            
         
-        //move the centipede across the screen
-        centipede_ptr->Move();
+        domain_ptr->update();
+        domain_ptr->handleGameObjectCollisions();
         
-        spider_ptr->Move();
-        
-        collision_ptr->mushroomDestroyed(spider_ptr,mushroomfield_ptr);
-        
-        collision_ptr->spaceshipHit(spider_ptr,spaceship_ptr);
-         
-         //detect if the centipede collides with a mushroom
-        collision_ptr->mushroomHit(centipede_ptr,mushroomfield_ptr);
-        
-        //detect if a spaceship collides with a mushroom
-        collision_ptr->spaceshipCollision(spaceship_ptr,mushroomfield_ptr,player_ptr);
-       
-       
-        if(display_ptr->spaceKey() && !spaceship_ptr->isDead() && !(spaceship_ptr->ID()==ObjectID::EXPLOSION)){
-            
-            spaceship_ptr->load();
-            shooting_ = true;
-           
+        domain_ptr->shoot(display_ptr->spaceKey());
+  
+        if(domain_ptr->shootingInProgress()){
+                
+                 domain_ptr->handleShootingCollisions();
+                 animate_ptr->animateLazerShots(spaceship_ptr);
             }
+      
+        domain_ptr->deathHandler();
+        render();
+        display_ptr->display();
+         
+      
             
-         spaceship_ptr->shoot();
-          
-         if(shooting_ && !spaceship_ptr->isDead()){
-             
-            animate_ptr->animateLazerShots(spaceship_ptr);
-            collision_ptr->mushroomShot(spaceship_ptr,mushroomfield_ptr);  
-            collision_ptr->targetDestroyed(spaceship_ptr,centipede_ptr,mushroomfield_ptr);
-            collision_ptr->targetDestroyed(spaceship_ptr,spider_ptr);
-         }
-         
-         collision_ptr->spaceshipHit(centipede_ptr,spaceship_ptr);
-         animate_ptr->animate(spider_ptr);
-         animate_ptr->animate(spaceship_ptr);
-         animate_ptr->animate(centipede_ptr);
-         display_ptr->display();
-         
-         //spaceship explodes if hit
-         if(spaceship_ptr->ID() == ObjectID::EXPLOSION){
-             
-             if(spaceship_ptr->Lives())
-                spaceship_ptr->reset();
-             
-             centipede_ptr->reset();
-             spider_ptr->reset();
-             shooting_ = false;
-             }
-         
-         if(centipede_ptr->isDead()){
-             
-             spaceship_ptr->reset();
-             centipede_ptr->reset();
-             mushroomfield_ptr->reset();
-             shooting_ = false;
-             
-             }
-         
-         //End game if spaceship is dead
-          if( spaceship_ptr->isDead()){
-              isPlaying_ = false;
-              gameOver_ = true;
-              shooting_ = false;
-           
-              }
-           //Revive the Spider if Shot   
-          if(spider_ptr->ID()==ObjectID::EXPLOSION2){
+          if(domain_ptr->gameover()){
+               isPlaying_ = false;
+               gameOver_ = true;
               
-              spider_ptr->reset();
               }
-            
          // Pause?
           if(userinput_ptr->pressedKey()==Key::PAUSE){
               pause_ = true;
               isPlaying_ = false;
           }
-          
-    
-}
+    }
+
 
 void GameLoop::CentipedeGame(){
     
@@ -198,9 +132,7 @@ void GameLoop::GameOver(){
          
        //Only perform these actions once;
         if(reset_){   
-          
             score_ptr->updateHighscore();
-           
          }
                    
         reset_ = false;  
@@ -208,6 +140,7 @@ void GameLoop::GameOver(){
         spaceship_ptr->reset();
         mushroomfield_ptr->reset();
         centipede_ptr->reset();
+        spider_ptr->reset();
    
          
         //Check for left click
@@ -240,21 +173,18 @@ void GameLoop::pause(){
     }
     else if(userinput_ptr->pressedKey()==Key::QUIT){
         
-        spaceship_ptr->reset();
-        mushroomfield_ptr->reset();
-        centipede_ptr->reset();
-        score_ptr->reset();
-        spaceship_ptr->Lives(3);
-         
-        
-        
+        domain_ptr->masterReset();
         opening_ = true;
         pause_ = false;
         }
 }
 
-
-GameLoop::~GameLoop()
-{
-}
+void GameLoop::render(){
+    
+    animate_ptr->animate(mushroomfield_ptr);
+    animate_ptr->animate(spider_ptr);
+    animate_ptr->animate(spaceship_ptr);
+    animate_ptr->animate(centipede_ptr);
+    
+    }
 
