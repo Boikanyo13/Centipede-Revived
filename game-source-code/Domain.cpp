@@ -74,6 +74,14 @@ void Domain::deathHandler(){
             }
 }
 
+tuple<bool,bool,bool> Domain::states(){
+    
+    auto spaceshipExplosion = (spaceship_ptr->ID()==ObjectID::EXPLOSION);
+    auto spiderExplosion = (spider_ptr->ID() == ObjectID::EXPLOSION2);
+    auto centipedDeath = centipede_ptr->isDead();
+    return tie(spaceshipExplosion,spiderExplosion,centipedDeath);
+    }
+
 void Domain::masterReset(){
     
         spaceship_ptr->reset();

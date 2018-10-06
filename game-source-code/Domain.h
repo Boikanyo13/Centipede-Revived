@@ -16,6 +16,10 @@
 using std::shared_ptr;
 using std::make_shared;
 
+#include <tuple>
+using std::tie;
+using std::tuple;
+
 class Domain
 {
     
@@ -40,6 +44,7 @@ public:
     bool gameover(){return spaceship_ptr->isDead();}
     bool shootingInProgress(){return isShooting_;}
     void masterReset();
+    tuple<bool,bool,bool> states();
     ~Domain(){};
     
 private:

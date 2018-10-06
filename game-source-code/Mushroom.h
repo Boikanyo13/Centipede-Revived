@@ -17,8 +17,6 @@ public:
     int lives() const {return lives_; }
     //Move function from parent
     virtual void Move() override{throw NonMovableObject{}; } 
-    //Turn a CentiSegment into a Mushroom
-    void transform(std::shared_ptr<CentiSegment> seg);
     //Reset Mushroom to intial conditions
     virtual void reset() override;
     virtual ~Mushroom(){}
