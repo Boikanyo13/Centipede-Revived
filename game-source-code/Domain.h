@@ -10,6 +10,7 @@
 #include "Mushroom.h"
 #include "Spider.h"
 #include "MushroomField.h"
+#include "Timer.h"
 
 
 #include <memory>
@@ -34,7 +35,8 @@ public:
     userinput_ptr{make_shared<UserInputs>()},
     player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
     score_ptr{score},
-    collision_ptr{make_shared<CollisionHandler>(score_ptr)}
+    collision_ptr{make_shared<CollisionHandler>(score_ptr)},
+    timer_ptr{make_shared<Timer>()}
     {}
     void update();
     void shoot(bool shoot);
@@ -57,9 +59,10 @@ private:
     shared_ptr<Player> player_ptr;
     shared_ptr<Score> score_ptr;
     shared_ptr<CollisionHandler> collision_ptr;
+    shared_ptr<Timer> timer_ptr;
     
     bool isShooting_ = false;
-  
+ 
 };
 
 #endif // DOMAIN_H

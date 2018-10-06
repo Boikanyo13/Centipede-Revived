@@ -3,11 +3,22 @@
 
 void Domain::update(){
     
+
+     if(timer_ptr->elapsedTime()==0){
+         timer_ptr->start();
+         }
+         
+         
      player_ptr->Move();
      centipede_ptr->Move();
-     spider_ptr->Move();
      spaceship_ptr->shoot();
-    
+     
+     timer_ptr->end();
+     
+     if(!spider_ptr->isDead() && timer_ptr->elapsedTime() >= 3.5){
+         
+        spider_ptr->Move();
+         }
 }
     
 void Domain::shoot(bool shoot){
@@ -56,12 +67,14 @@ void Domain::deathHandler(){
              
              centipede_ptr->reset();
              spider_ptr->reset();
+             timer_ptr->reset();
              isShooting_ = false;
              }
     
       //Revive the Spider if Shot   
        if(spider_ptr->ID()==ObjectID::EXPLOSION2){
               spider_ptr->reset();
+              timer_ptr->reset();
               }
               
       if(centipede_ptr->isDead()){
@@ -72,6 +85,7 @@ void Domain::deathHandler(){
              isShooting_ = false;
              
             }
+    
 }
 
 tuple<bool,bool,bool> Domain::states(){
