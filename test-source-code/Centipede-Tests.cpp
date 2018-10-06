@@ -4,7 +4,7 @@
 
 
 
-#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spaceship.h"
+/*#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spaceship.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
@@ -17,10 +17,10 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\MushroomField.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spider.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Player.cpp"
-#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\UserInputs.cpp"
+#include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\UserInputs.cpp"*/
 
 
-/*
+
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Spaceship.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -31,11 +31,13 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Display.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameFiles.cpp"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\GameObject.h"
-#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collider.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\MushroomField.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Mushroom.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Score.h"
-  */ 
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\CollisionHandler.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collision.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
+
     float speed = 1.5f;
     
     /*
@@ -412,10 +414,10 @@ TEST_CASE("Check if Centipede segment changes direction at turn"){
     
     //Centipede Tests
     
-TEST_CASE("Check if length of centipede corresponds to the number of segments "){
+TEST_CASE("Check if size of centipede corresponds to the number of segments "){
         
     auto centipede = Centipede{CENTIPEDE_LENGTH};
-    CHECK(centipede.length() == CENTIPEDE_LENGTH);
+    CHECK(centipede.size() == CENTIPEDE_LENGTH);
         
     }
 
@@ -462,7 +464,7 @@ TEST_CASE("Check if operator - returns correct answer"){
 
 TEST_CASE("Vertical Collision between two GameObject is detected"){
     
-     auto collider = Collider{};
+     auto collision = Collision{};
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f,100.0f - newSpeed};
@@ -470,17 +472,17 @@ TEST_CASE("Vertical Collision between two GameObject is detected"){
      auto L1 = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},position1,newSpeed, ObjectID::BULLET);
      auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
      
-     CHECK_FALSE(collider.checkCollision(L1,Cs1));
+     CHECK_FALSE(collision.checkCollision(L1,Cs1));
      
      L1->Fire();
      
-     CHECK(collider.checkCollision(L1,Cs1));
+     CHECK(collision.checkCollision(L1,Cs1));
      
     }
     
 TEST_CASE("Horizontal collision between two Gameobjects is detected"){
     
-     auto collider = Collider{};
+     auto collision = Collision{};
      auto newSpeed = 25.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
@@ -488,15 +490,15 @@ TEST_CASE("Horizontal collision between two Gameobjects is detected"){
      auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position2,newSpeed, ObjectID::CENTIPEDE);
     
      
-     CHECK_FALSE(collider.checkCollision(Cs1,spaceship));
+     CHECK_FALSE(collision.checkCollision(Cs1,spaceship));
      Cs1->Move();
-     CHECK(collider.checkCollision(Cs1,spaceship));
+     CHECK(collision.checkCollision(Cs1,spaceship));
     
     }
     
 TEST_CASE("The other object dies after collision"){
     
-     auto collider = Collider{};
+     auto collision = Collision{};
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f,100.0f - newSpeed};
@@ -508,38 +510,38 @@ TEST_CASE("The other object dies after collision"){
      
      L1->Fire();
      //The second argument into the function is the other
-     CHECK(collider.checkCollision(L1,Cs1));
+     CHECK(collision.checkCollision(L1,Cs1));
      CHECK(Cs1->isDead());
      
 } 
 
 TEST_CASE("Dead object cannot collide"){
     
-     auto collider = Collider{};
+     auto collision = Collision{};
     auto position = vector2D{250.0f,100.0f};
    
    //Objects at the same place
     auto L1 = std::make_shared<LazerShot>(vector2D{5.0f,10.0f},position,speed, ObjectID::BULLET);
     auto Cs1 = std::make_shared<CentiSegment>(vector2D{CENTIPEDE_X_SIZE,CENTIPEDE_Y_SIZE},position,speed, ObjectID::CENTIPEDE);
     
-    CHECK(collider.checkCollision(Cs1,L1));
+    CHECK(collision.checkCollision(Cs1,L1));
 
     Cs1->updateState(State::DEAD);
     
-    CHECK_FALSE(collider.checkCollision(Cs1,L1));
+    CHECK_FALSE(collision.checkCollision(Cs1,L1));
     
 }  
 
 TEST_CASE("Spaceship looses life if hit"){
-    
-     auto collider = Collider{};
+ 
+     auto collision = std::make_shared<CollisionHandler>(nullptr);
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
      
      auto spaceship = std::make_shared<Spaceship>(vector2D{SPACESHIP_X_SIZE,SPACESHIP_Y_SIZE},position1, newSpeed, ObjectID::SPACESHIP);
      auto centipede = std::make_shared<Centipede>(1);
-     centipede->centiSegment(0)->setPosition(position2);
+     centipede->segment(0)->setPosition(position2);
      
      //Spaceship has 3 lives initially
       spaceship->Lives(3);
@@ -548,7 +550,7 @@ TEST_CASE("Spaceship looses life if hit"){
      
      centipede->Move();
      
-     collider.spaceshipHit(centipede,spaceship);
+     collision->spaceshipHit(centipede,spaceship);
      
      CHECK(spaceship->Lives()==2);
     
@@ -557,7 +559,7 @@ TEST_CASE("Spaceship looses life if hit"){
 
 TEST_CASE("Spaceship explodes if hit"){
     
-     auto collider = Collider{};
+     auto collision = std::make_shared<CollisionHandler>(nullptr);
      auto newSpeed = 20.0f;
      auto position1 = vector2D{250.0f,100.0f};
      auto position2 = vector2D{250.0f - newSpeed,100.0f};
@@ -567,11 +569,11 @@ TEST_CASE("Spaceship explodes if hit"){
      auto centipede = std::make_shared<Centipede>(1);
      
      //set the centipede ready for collision
-     centipede->centiSegment(0)->setPosition(position2);
+     centipede->segment(0)->setPosition(position2);
      
     //Collide the centipede with the Spaceship
      centipede->Move();
-     collider.spaceshipHit(centipede,spaceship);
+     collision->spaceshipHit(centipede,spaceship);
      
     
      CHECK(spaceship->ID() == ObjectID::EXPLOSION);
@@ -580,7 +582,7 @@ TEST_CASE("Spaceship explodes if hit"){
 
 TEST_CASE("Spaceship  is declared dead if number of lives is 0"){
     
-    auto collider = Collider{};
+    auto collision = std::make_shared<CollisionHandler>(nullptr);
     auto newSpeed = 20.0f;
     auto position1 = vector2D{250.0f,100.0f};
     auto position2 = vector2D{250.0f - newSpeed,100.0f};
@@ -591,11 +593,11 @@ TEST_CASE("Spaceship  is declared dead if number of lives is 0"){
     auto centipede = std::make_shared<Centipede>(1);
     
     //set the centipede ready for collision
-    centipede->centiSegment(0)->setPosition(position2);
+    centipede->segment(0)->setPosition(position2);
     
     //Collide the centipede with the Spaceship
     centipede->Move();
-    collider.spaceshipHit(centipede,spaceship);
+    collision->spaceshipHit(centipede,spaceship);
   
     CHECK(spaceship->Lives() == 0);
     CHECK(spaceship->isDead());
@@ -606,7 +608,7 @@ TEST_CASE("Spaceship  is declared dead if number of lives is 0"){
 TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     
     auto score = std::make_shared<Score>();
-    auto collider = Collider{score};
+    auto collision = std::make_shared<CollisionHandler>(score);
     auto newSpeed = 20.0f;
     
     auto position1 = vector2D{250.0f ,120.0f- newSpeed};
@@ -614,7 +616,7 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     
     auto centipede = std::make_shared<Centipede>(1);
     //Set the position just next to the LazerShot
-    centipede->centiSegment(0)->setPosition(position1);
+    centipede->segment(0)->setPosition(position1);
      
     auto mushroom_field = std::make_shared<MushroomField>(1);
      
@@ -626,7 +628,7 @@ TEST_CASE("Centipede is dead if all CentiSegments are destroyed"){
     //Fire Lazershot at target
     spaceship->shoot();
         
-     collider.targetDestroyed(spaceship,centipede,mushroom_field);
+     collision->targetDestroyed(spaceship,centipede,mushroom_field);
     
     
     CHECK(centipede->isDead());
@@ -720,7 +722,7 @@ TEST_CASE("Mushroom loses life if shot"){
      
        //Mushroom has 4 lives initially
       CHECK(M1.lives()==4);
-      M1.shot();
+      M1.collisionResponse();
       CHECK(M1.lives()==3);
     
     }
@@ -731,9 +733,9 @@ TEST_CASE("Mushroom chips if shot"){
      auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
      
      
-      M1.shot();
+      M1.collisionResponse();
       CHECK(M1.ID()==ObjectID::MUSHROO);
-      M1.shot();
+      M1.collisionResponse();
      CHECK(M1.ID()==ObjectID::MUSHRO);
     
     
@@ -745,11 +747,11 @@ TEST_CASE("If number of lives is zero Mushroom is Dead"){
      auto M1 = Mushroom{vector2D{20.0f,20.0f},vector2D{100.0f,240.0f}, 0.0f, ObjectID::MUSHROOM};
      
      //Simulate the Mushroom being shot 3 times
-     M1.shot();
+     M1.collisionResponse();
      CHECK_FALSE(M1.isDead());
-     M1.shot();
-     M1.shot();
-     M1.shot();
+     M1.collisionResponse();
+     M1.collisionResponse();
+     M1.collisionResponse();
      
      CHECK(M1.lives()==0);
      CHECK(M1.isDead());
