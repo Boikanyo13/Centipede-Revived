@@ -22,7 +22,7 @@ public:
     //Fire at the at the target
     void shoot();
     //Explode the Spaceship
-    virtual void collisionResponse(){setObjectID(ObjectID::EXPLOSION);}
+    virtual void collisionResponse() override;
     //Decreement the number of lives
     void lostLife();
     //Get number of lives

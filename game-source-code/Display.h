@@ -1,13 +1,18 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#include <memory>
+
 #include <SFML/Graphics.hpp>
 #include <unistd.h>
 #include "UserInputs.h"
 
+#include <memory>
 using std::shared_ptr;
 using std::make_shared;
+
+#include <tuple>
+using std::tuple;
+using std::tie;
 
 class Display
 {
@@ -27,6 +32,8 @@ public:
     void clearDisplay(){ window_->clear();}
     //return window
     shared_ptr<sf::RenderWindow> window(){return window_;}
+    //
+    void delayer(tuple<bool,bool,bool> delays){tie(explosion1_,centiDeath_,explosion2_) = delays;};
     ~Display(){}
     
 private:
@@ -35,8 +42,9 @@ private:
     float screenHeight_;
     bool space_ = false;
     bool leftClick_ = false;
-    bool delay = false;
-    bool delay2 = false;
+    bool explosion1_ = false;
+    bool explosion2_ = false;
+    bool centiDeath_ = false;
     shared_ptr<sf::RenderWindow> window_;
 };
 

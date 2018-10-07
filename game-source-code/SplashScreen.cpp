@@ -174,38 +174,24 @@ void SplashScreen::GameScreen(shared_ptr<Score> score_ptr, int lives){
     
 void SplashScreen::YouLoose(int score){
     
-   
-     
-     
-     
+
     //Background2
     DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
      //Back button
     auto backbutton = DrawScreenObject(vector2D{BUTTON_X_SIZE, BUTTON_Y_SIZE}, vector2D{BACK_X_POS, BACK_Y_POS}, ScreenObjectID::BACK);
     std::tie(q,r,w,t) = ButtonDimension(backbutton);
     //set the text for the game lost
+    if(blink_){
     gameText.setFillColor(sf::Color::Red);
     gameText.setCharacterSize(55);
     gameText.setPosition(100, 110);
     gameText.setString(TEXT_2);
-    window_->draw(gameText);
+    window_->draw(gameText);}
+    blink_ = !blink_;
     HighScores(score);
     
 }
 
-void SplashScreen::YouWin(int score){
-    
-    //Background2
-     DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
-    //Set text for game won
-    gameText.setFillColor(sf::Color::Green);
-    gameText.setCharacterSize(55);
-    gameText.setPosition(120, 110);
-    gameText.setString(TEXT_3);
-    window_->draw(gameText);
-    
-    HighScores(score);
-}
 
 void SplashScreen::HighScores(int score){
    
@@ -241,5 +227,22 @@ void SplashScreen::HighScores(int score){
      
  }
  
+void SplashScreen::getReady(){
+    
+    //Background2
+    window_->clear();
+    window_->clear();
+    DrawScreenObject(vector2D{1080.0f, 600.0f},vector2D{0.0f,0.0f}, ScreenObjectID::BACKGROUND2);
+  
+ 
+    gameText.setCharacterSize(45);
+    gameText.setFillColor(sf::Color::Yellow);
+    gameText.setPosition(20.0f, 285.5f);
+    gameText.setString("\t  g e t  r e a d y !");
+    window_->draw(gameText);
+    
 
+    window_->draw(gameText);
+    
+    }
 

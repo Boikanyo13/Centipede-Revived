@@ -26,10 +26,12 @@ public:
     void HelpScreen();
     //Draws the game over screen
     void YouLoose(int score);
-    void YouWin(int score);
     //Draws the Background of the gamescreen
     void GameScreen(shared_ptr<Score> score_ptr, int lives);
+    //Pause Message
     void Pause();
+    //In between Message
+    void getReady();
     //Detects which button in the screen is being pressed
     ScreenObjectID DetectButton();
     ~SplashScreen(){}

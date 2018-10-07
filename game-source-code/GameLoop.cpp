@@ -51,19 +51,30 @@ void GameLoop::PlayGame(){
         
         domain_ptr->update();
         domain_ptr->handleGameObjectCollisions();
+    
         
         domain_ptr->shoot(display_ptr->spaceKey());
   
         if(domain_ptr->shootingInProgress()){
                 
                  domain_ptr->handleShootingCollisions();
+                     
                  animate_ptr->animateLazerShots(spaceship_ptr);
             }
-      
-        domain_ptr->deathHandler();
+            
+        display_ptr->delayer(domain_ptr->states());
+        
+        if((std::get<0>(domain_ptr->states())||std::get<1>(domain_ptr->states()) )&& !domain_ptr->gameover()){
+              splashscreen_ptr->getReady();
+              
+            }
+       
         render();
+        
         display_ptr->display();
-         
+        
+        
+        domain_ptr->deathHandler();
       
             
           if(domain_ptr->gameover()){

@@ -58,13 +58,14 @@ void Display::display(){
       space_ = false;
       leftClick_ = false;
       
-      if(delay){
-          usleep(500000);
-          delay = false;
+      if(explosion1_ || centiDeath_){
+          usleep(1000000);
+          explosion1_ = false;
+          centiDeath_ = false;
       }
-      if(delay2){
+      if(explosion2_){
           usleep(100000);
-          delay2 = false;
+          explosion2_= false;
           }
 }
 

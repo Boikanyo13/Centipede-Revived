@@ -28,6 +28,7 @@ void Spaceship::reset(){
     
     setObjectID(ObjectID::SPACESHIP);
     setPosition(SPACESHIP_START_POSTION);
+    setSize(SPACESHIP_SIZE);
 
     //clear the vector 
      if(lazerShotsGun_.size()>0){
@@ -38,7 +39,6 @@ void Spaceship::reset(){
       if(isDead()){
             
             lives_ = 3;
-            setObjectID(ObjectID::SPACESHIP);
             updateState(State::ALIVE);
           
           }
@@ -56,3 +56,8 @@ void Spaceship::lostLife(){
     }
 }
 
+void Spaceship::collisionResponse(){
+
+   setSize(vector2D{30.0f,30.0f});    
+   setObjectID(ObjectID::EXPLOSION);
+}
