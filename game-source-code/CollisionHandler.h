@@ -8,6 +8,7 @@
 #include "Score.h"
 #include "Spider.h"
 #include "Player.h"
+#include "Scorpion.h"
 #include "Collision.h"
 
 #include <memory>
@@ -39,6 +40,7 @@ public:
     void mushroomDestroyed(shared_ptr<GameObject> gameObject_ptr,shared_ptr<GameObjectContainer> gameObjectContainer_ptr);
     //Handle spider Lazershot Collison
     void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Spider> spider_ptr);
+    void targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Scorpion> scorpion_ptr);
     ~CollisionHandler(){};
     
 private:

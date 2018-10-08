@@ -152,5 +152,20 @@ void CollisionHandler::spaceshipHit(shared_ptr<Centipede> centipede_ptr,shared_p
 }
 
 
-
-
+void CollisionHandler::targetDestroyed(shared_ptr<Spaceship> spaceship_ptr, shared_ptr<Scorpion> scorpion_ptr){
+    
+    
+       auto lazershots =std::get<1>(spaceship_ptr->firedLazerShot(0));
+     
+     for(auto i = 0; i < lazershots; i++){
+         
+         if(_collision_ptr->checkCollision(std::get<0>(spaceship_ptr->firedLazerShot(i)),scorpion_ptr)){
+             //Add to score
+             _score_ptr->scorpionDestroyed();
+             //Explode the spider
+             scorpion_ptr->collisionResponse();
+             }
+     }
+    
+    
+    }

@@ -15,6 +15,8 @@ public:
     void mushroomDestroyed();
     //increment score by 300
     void spiderDestroyed();
+    //increment score by 1000
+    void scorpionDestroyed();
     //get score
     int score() const;
     //reset score 

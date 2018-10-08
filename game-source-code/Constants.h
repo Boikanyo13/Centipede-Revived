@@ -21,9 +21,14 @@ const auto MUSHROOM_SIZE = vector2D{16.0f,16.0f};
 const auto SPIDER_INIT_POSITION =  vector2D{-15.0f, 440.0f};
 const auto SPIDER_SIZE = vector2D{25.0f,25.0f};
 const auto SPIDER_SPEED = 0.3f;
-const auto CENTIPEDE_SPEED = 1.5f;
+const auto CENTIPEDE_SPEED = 1.0f;
 const auto BULLET_SIZE = vector2D{2.0f,10.0f};
 const auto SPACESHIP_SPEED = 1.0f;
+const auto SCORPION_SIZE = vector2D{40.0f,40.0f};
+const auto SCORPION_SPEED = 0.2f;
+const auto SCORPION_INIT_POSITION_L = vector2D{-35.0f, 320.0f};
+const auto SCORPION_INIT_POSITION_R= vector2D{1.10*ORIGINAL_SCREEN_WIDTH, 320.0f};
+
 
 //Button dimensions
 const auto BUTTON_X_SIZE = 100.0f;

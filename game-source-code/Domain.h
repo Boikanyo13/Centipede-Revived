@@ -10,6 +10,7 @@
 #include "Mushroom.h"
 #include "Spider.h"
 #include "MushroomField.h"
+#include "Scorpion.h"
 #include "Timer.h"
 
 
@@ -27,7 +28,7 @@ class Domain
 public:
 
     Domain(shared_ptr<Spaceship> spaceship,shared_ptr<Spider> spider, 
-    shared_ptr<Centipede> centipede,shared_ptr<MushroomField> mushroomfield, shared_ptr<Score> score):
+    shared_ptr<Centipede> centipede,shared_ptr<MushroomField> mushroomfield, shared_ptr<Score> score, shared_ptr<Scorpion> scorpion):
     spaceship_ptr{spaceship},
     centipede_ptr{centipede},
     mushroomfield_ptr{mushroomfield},
@@ -36,7 +37,8 @@ public:
     player_ptr{make_shared<Player>(spaceship_ptr, userinput_ptr)},
     score_ptr{score},
     collision_ptr{make_shared<CollisionHandler>(score_ptr)},
-    timer_ptr{make_shared<Timer>()}
+    timer_ptr{make_shared<Timer>()},
+    scorpion_ptr{scorpion}
     {}
     void update();
     void shoot(bool shoot);
@@ -60,6 +62,7 @@ private:
     shared_ptr<Score> score_ptr;
     shared_ptr<CollisionHandler> collision_ptr;
     shared_ptr<Timer> timer_ptr;
+    shared_ptr<Scorpion> scorpion_ptr;
     
     bool isShooting_ = false;
  

@@ -54,7 +54,9 @@ private:
     shared_ptr<Spider> spider_ptr;
     shared_ptr<SplashScreen> splashscreen_ptr;
     shared_ptr<Animate> animate_ptr;
+    shared_ptr<Scorpion> scorpion_ptr;
     shared_ptr<Domain> domain_ptr;
+   
     
 
     bool shooting_;

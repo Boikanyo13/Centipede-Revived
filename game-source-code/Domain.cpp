@@ -12,12 +12,15 @@ void Domain::update(){
      player_ptr->Move();
      centipede_ptr->Move();
      spaceship_ptr->shoot();
-     
+    
      timer_ptr->end();
      
      if(!spider_ptr->isDead() && timer_ptr->elapsedTime() >= 3.5){
          
         spider_ptr->Move();
+     }
+     if(!centipede_ptr->isDead() && timer_ptr->elapsedTime()>= 5.0){
+          scorpion_ptr->Move();
          }
 }
     
@@ -40,6 +43,7 @@ void Domain::handleShootingCollisions(){
             collision_ptr->mushroomShot(spaceship_ptr,mushroomfield_ptr);  
             collision_ptr->targetDestroyed(spaceship_ptr,centipede_ptr,mushroomfield_ptr);
             collision_ptr->targetDestroyed(spaceship_ptr,spider_ptr);
+            collision_ptr->targetDestroyed(spaceship_ptr,scorpion_ptr);
          }
 }
 
@@ -76,6 +80,10 @@ void Domain::deathHandler(){
               spider_ptr->reset();
               timer_ptr->reset();
               }
+        if(scorpion_ptr->ID()==ObjectID::EXPLOSION2){
+            
+              scorpion_ptr->reset();
+            }      
               
       if(centipede_ptr->isDead()){
              
@@ -91,7 +99,7 @@ void Domain::deathHandler(){
 tuple<bool,bool,bool> Domain::states(){
     
     auto spaceshipExplosion = (spaceship_ptr->ID()==ObjectID::EXPLOSION)&&(!spaceship_ptr->isDead());
-    auto spiderExplosion = (spider_ptr->ID() == ObjectID::EXPLOSION2);
+    auto spiderExplosion = (spider_ptr->ID() == ObjectID::EXPLOSION2) || (scorpion_ptr->ID()==ObjectID::EXPLOSION2);
     auto centipedDeath = centipede_ptr->isDead();
     return tie(spaceshipExplosion,centipedDeath,spiderExplosion);
     }

@@ -16,7 +16,7 @@ objectID_{objectid}
             }
         
         }
-       else if(objectid == ObjectID::SPIDER){
+       else if(objectid == ObjectID::SPIDER || objectid == ObjectID::SCORPION_L || objectid == ObjectID::SCORPION_R||objectid==ObjectID::EXPLOSION2){
            
             if(position.y() < 0 ||position.y() > ORIGINAL_SCREEN_HEIGHT){
                 throw ObjectOutOfBounds{};
@@ -30,7 +30,8 @@ objectID_{objectid}
             if(position.x() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
                     throw ObjectOutOfBounds{};
                 }
-                else{position_=position;}
+             else{
+             position_=position;}
            
            }
 
@@ -52,7 +53,7 @@ void GameObject::setPosition(const vector2D& position){
             }
         
         }
-       else if(objectID_ == ObjectID::SPIDER){
+       else if(objectID_== ObjectID::SPIDER || objectID_ == ObjectID::SCORPION_L || objectID_ == ObjectID::SCORPION_R||objectID_==ObjectID::EXPLOSION2){
            
             if(position.y() < 0 ||position.y() > ORIGINAL_SCREEN_HEIGHT){
                 throw ObjectOutOfBounds{};
@@ -66,7 +67,8 @@ void GameObject::setPosition(const vector2D& position){
             if(position.x() < 0 ||position.x() > ORIGINAL_SCREEN_WIDTH || position.y() > ORIGINAL_SCREEN_HEIGHT){
                     throw ObjectOutOfBounds{};
                 }
-                else{position_=position;}
+                else{
+                position_=position;}
            }
 
 

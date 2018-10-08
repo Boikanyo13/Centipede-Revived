@@ -4,7 +4,7 @@
 
 
 
-#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spaceship.h"
+/*#include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Spaceship.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Constants.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\LazerShot.h"
 #include "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Csegment.h"
@@ -21,8 +21,8 @@
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Collision.h"
 #include  "C:\Users\elias\Dropbox\YOS3\SM2\ELEN3009\Project\project-repo\game-source-code\Timer.h"
 
+*/
 
-/*
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Spaceship.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Constants.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\LazerShot.h"
@@ -39,7 +39,9 @@
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\CollisionHandler.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Collision.h"
 #include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Player.h"
-*/
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Timer.h"
+#include  "C:\Users\bvrad\Dropbox\Boikanyo\elen3009\PROJECT\2018-project-1386807-Radiokana-1427726-Sepuru\game-source-code\Scorpion.h"
+
     float speed = 1.5f;
     
     /*
@@ -423,7 +425,7 @@ TEST_CASE("Check if size of centipede corresponds to the number of segments "){
         
     }
 
-    //Vector2D Tests
+//Vector2D Tests
     
 TEST_CASE("Check if x and y are set correctly"){
     
@@ -847,4 +849,70 @@ TEST_CASE("Timer can be reset"){
     CHECK(runTime ==0 );
     
     }
+
+//Scorpion Tests
+
+TEST_CASE("scorpion Moves"){
+    
+    auto scorpion = Scorpion{SCORPION_SIZE,SCORPION_INIT_POSITION_L,SCORPION_SPEED, ObjectID::SCORPION_R};
+    scorpion.Move();
+    
+    CHECK(scorpion.getPosition() ==  (SCORPION_INIT_POSITION_L + vector2D{SCORPION_SPEED,0.0f}));
+   
+    }
+    
+TEST_CASE("Scorpion can be set outside Horizontal Boundries"){
+    
+    auto outofHorizontalBoundsPosition1 = vector2D{2*ORIGINAL_SCREEN_WIDTH,100.0f};
+    auto outofHorizontalBoundsPosition2 = vector2D{-89.0f,100.0f};
+    
+    //Check Constructor
+    CHECK_NOTHROW(auto scorpion = Scorpion(SCORPION_SIZE,outofHorizontalBoundsPosition1,SCORPION_SPEED, ObjectID::SCORPION_R));
+    CHECK_NOTHROW(auto scorpion = Scorpion(SCORPION_SIZE,outofHorizontalBoundsPosition2,SCORPION_SPEED, ObjectID::SCORPION_R));
+    
+    //Check setPosition function
+    auto scorpion = Scorpion{SCORPION_SIZE,SCORPION_INIT_POSITION_L,SCORPION_SPEED, ObjectID::SCORPION_R};
+    
+    CHECK_NOTHROW(scorpion.setPosition(outofHorizontalBoundsPosition1));
+    CHECK_NOTHROW(scorpion.setPosition(outofHorizontalBoundsPosition2));
+
+
+    }
+
+TEST_CASE("Scorpion cannot be set outside Vertical Boundries"){
+    
+    auto outofVerticalBoundsPosition1 = vector2D{100.0f, 2*ORIGINAL_SCREEN_WIDTH};
+    auto outofVerticalBoundsPosition2 = vector2D{100.0f,-89.0f};
+    
+    //Check constructor
+    CHECK_THROWS_AS(auto scorpion = Scorpion(SCORPION_SIZE,outofVerticalBoundsPosition1,SCORPION_SPEED, ObjectID::SCORPION_R), ObjectOutOfBounds);
+    CHECK_THROWS_AS(auto scorpion = Scorpion(SCORPION_SIZE,outofVerticalBoundsPosition2,SCORPION_SPEED, ObjectID::SCORPION_R), ObjectOutOfBounds);
+    
+   //Check setPosition function
+    auto scorpion = Scorpion{SCORPION_SIZE,SCORPION_INIT_POSITION_L,SCORPION_SPEED, ObjectID::SCORPION_R};
+    
+    CHECK_THROWS_AS(scorpion.setPosition(outofVerticalBoundsPosition1), ObjectOutOfBounds);
+    CHECK_THROWS_AS(scorpion.setPosition(outofVerticalBoundsPosition2), ObjectOutOfBounds);
+    
+    }
+
+TEST_CASE("Scorpion changes direction if Out of Horizontal Boundries"){
+    
+    auto edgePosition = vector2D{1.2*ORIGINAL_SCREEN_WIDTH, 20.0f};
+    auto scorpion = Scorpion{SCORPION_SIZE,edgePosition,SCORPION_SPEED, ObjectID::SCORPION_L};
+    scorpion.Move();
+   
+    CHECK(scorpion.ID() == ObjectID::SCORPION_R);
+    
+    }
+    
+TEST_CASE("Scorpion changes direction if reset"){
+    
+    auto scorpion = Scorpion{SCORPION_SIZE,SCORPION_INIT_POSITION_R,SCORPION_SPEED, ObjectID::SCORPION_L};
+   
+    scorpion.reset();
+    CHECK(scorpion.ID() == ObjectID::SCORPION_R);
+    
+    }
+    
     

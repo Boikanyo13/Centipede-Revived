@@ -23,6 +23,11 @@ void Score::spiderDestroyed(){
     score_+=300;
     }
 
+void Score::scorpionDestroyed(){
+    score_+=1000;
+    
+    }
+
 int Score::score() const {
  return score_;
 }

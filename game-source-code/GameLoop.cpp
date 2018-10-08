@@ -12,7 +12,8 @@ mushroomfield_ptr{make_shared<MushroomField>(50)},
 spider_ptr{make_shared<Spider>(SPIDER_SIZE,SPIDER_INIT_POSITION,SPIDER_SPEED,ObjectID::SPIDER)},
 splashscreen_ptr{make_shared<SplashScreen>(display_ptr)},
 animate_ptr{make_shared<Animate>(display_ptr)},
-domain_ptr{make_shared<Domain>(spaceship_ptr,spider_ptr,centipede_ptr,mushroomfield_ptr,score_ptr)}
+scorpion_ptr{make_shared<Scorpion>(SCORPION_SIZE,SCORPION_INIT_POSITION_L,SCORPION_SPEED,ObjectID::SCORPION_L)},
+domain_ptr{make_shared<Domain>(spaceship_ptr,spider_ptr,centipede_ptr,mushroomfield_ptr,score_ptr,scorpion_ptr)}
 {}
 
 void GameLoop::Opening(){
@@ -196,6 +197,7 @@ void GameLoop::render(){
     animate_ptr->animate(spider_ptr);
     animate_ptr->animate(spaceship_ptr);
     animate_ptr->animate(centipede_ptr);
+    animate_ptr->animate(scorpion_ptr);
     
     }
 
