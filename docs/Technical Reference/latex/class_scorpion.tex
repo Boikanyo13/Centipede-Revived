@@ -1,0 +1,86 @@
+\hypertarget{class_scorpion}{}\section{Scorpion Class Reference}
+\label{class_scorpion}\index{Scorpion@{Scorpion}}
+
+
+{\ttfamily \#include $<$Scorpion.\+h$>$}
+
+Inheritance diagram for Scorpion\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scorpion}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scorpion_a0046bcdb8f478bf54032acba20ba44e5}{Scorpion}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_scorpion}{Scorpion}} Class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_a4f5a88977dd4dd19dd5c61a8114f43a5}\label{class_scorpion_a4f5a88977dd4dd19dd5c61a8114f43a5}} 
+virtual void \mbox{\hyperlink{class_scorpion_a4f5a88977dd4dd19dd5c61a8114f43a5}{collision\+Response}} () override
+\begin{DoxyCompactList}\small\item\em Take action if \mbox{\hyperlink{class_scorpion}{Scorpion}} is shot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_acf8d302a008882781a701df5854d2c75}\label{class_scorpion_acf8d302a008882781a701df5854d2c75}} 
+virtual void \mbox{\hyperlink{class_scorpion_acf8d302a008882781a701df5854d2c75}{Move}} () override
+\begin{DoxyCompactList}\small\item\em Move function from parent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_a9de22ed90e1a48e06291317fbe558e41}\label{class_scorpion_a9de22ed90e1a48e06291317fbe558e41}} 
+virtual void \mbox{\hyperlink{class_scorpion_a9de22ed90e1a48e06291317fbe558e41}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset \mbox{\hyperlink{class_scorpion}{Scorpion}} to intial conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_af44080430b68b2f9ea07b3cc9df03453}\label{class_scorpion_af44080430b68b2f9ea07b3cc9df03453}} 
+virtual \mbox{\hyperlink{class_scorpion_af44080430b68b2f9ea07b3cc9df03453}{$\sim$\+Scorpion}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_scorpion}{Scorpion}} Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scorpion_ac455b0a8472ddfec0c8a3e2bef8e87a6}\label{class_scorpion_ac455b0a8472ddfec0c8a3e2bef8e87a6}} 
+void \mbox{\hyperlink{class_scorpion_ac455b0a8472ddfec0c8a3e2bef8e87a6}{move\+Left}} ()
+\begin{DoxyCompactList}\small\item\em move \mbox{\hyperlink{class_scorpion}{Scorpion}} to the left direction \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_a6220ca4cfc5c17f4a96ab4e35b198bc7}\label{class_scorpion_a6220ca4cfc5c17f4a96ab4e35b198bc7}} 
+void \mbox{\hyperlink{class_scorpion_a6220ca4cfc5c17f4a96ab4e35b198bc7}{move\+Right}} ()
+\begin{DoxyCompactList}\small\item\em move \mbox{\hyperlink{class_scorpion}{Scorpion}} to the right direction \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_a039d9e95b6e72d6d6767e3ffe0160aa6}\label{class_scorpion_a039d9e95b6e72d6d6767e3ffe0160aa6}} 
+void \mbox{\hyperlink{class_scorpion_a039d9e95b6e72d6d6767e3ffe0160aa6}{right\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em reset the scorpion to start at the right \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_scorpion_aaf8a8405cf42b12bfac85c25880e1447}\label{class_scorpion_aaf8a8405cf42b12bfac85c25880e1447}} 
+void \mbox{\hyperlink{class_scorpion_aaf8a8405cf42b12bfac85c25880e1447}{left\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em reset the scorpion to start at the left \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_scorpion_a9cb4ba3041279cfc5463f53544606e88}\label{class_scorpion_a9cb4ba3041279cfc5463f53544606e88}} 
+bool {\bfseries forward\+\_\+} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_scorpion_a0046bcdb8f478bf54032acba20ba44e5}\label{class_scorpion_a0046bcdb8f478bf54032acba20ba44e5}} 
+\index{Scorpion@{Scorpion}!Scorpion@{Scorpion}}
+\index{Scorpion@{Scorpion}!Scorpion@{Scorpion}}
+\subsubsection{\texorpdfstring{Scorpion()}{Scorpion()}}
+{\footnotesize\ttfamily Scorpion\+::\+Scorpion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of the \mbox{\hyperlink{class_scorpion}{Scorpion}} Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_scorpion}{Scorpion}} \\
+\hline
+{\em position} & of the \mbox{\hyperlink{class_scorpion}{Scorpion}} \\
+\hline
+{\em speed} & of the \mbox{\hyperlink{class_scorpion}{Scorpion}} \\
+\hline
+{\em objectid} & ID of the \mbox{\hyperlink{class_scorpion}{Scorpion}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_scorpion_8h}{Scorpion.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Scorpion.\+cpp\end{DoxyCompactItemize}

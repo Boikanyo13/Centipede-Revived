@@ -1,0 +1,99 @@
+\hypertarget{class_centipede}{}\section{Centipede Class Reference}
+\label{class_centipede}\index{Centipede@{Centipede}}
+
+
+{\ttfamily \#include $<$Centipede.\+h$>$}
+
+Inheritance diagram for Centipede\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_centipede}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_centipede_a694d8add5c6962a8a89eb3e0a556d4a0}\label{class_centipede_a694d8add5c6962a8a89eb3e0a556d4a0}} 
+\mbox{\hyperlink{class_centipede_a694d8add5c6962a8a89eb3e0a556d4a0}{Centipede}} (int length)
+\begin{DoxyCompactList}\small\item\em Constructor accepts length of the \mbox{\hyperlink{class_centipede}{Centipede}} to be created. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_centipede_ae460a56f2f7d875ffafa16166aa5d6b6}\label{class_centipede_ae460a56f2f7d875ffafa16166aa5d6b6}} 
+void \mbox{\hyperlink{class_centipede_ae460a56f2f7d875ffafa16166aa5d6b6}{Move}} ()
+\begin{DoxyCompactList}\small\item\em Moves \mbox{\hyperlink{class_centipede}{Centipede}} across screen. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ \mbox{\hyperlink{class_centipede_ae722488780d0d19e63510647b5fe108c}{segment}} (int i) const override
+\begin{DoxyCompactList}\small\item\em Returns the ith \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_centipede_a850f32fbd537efc5d226d48e04b91d7f}\label{class_centipede_a850f32fbd537efc5d226d48e04b91d7f}} 
+void \mbox{\hyperlink{class_centipede_a850f32fbd537efc5d226d48e04b91d7f}{Segment\+Destroyed}} ()
+\begin{DoxyCompactList}\small\item\em Count the number of destroyed Centi\+Segments. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_centipede_a3d69f0ef4b57cf4b9c1beb1284f2f738}{is\+Dead}} ()
+\begin{DoxyCompactList}\small\item\em checks if \mbox{\hyperlink{class_centipede}{Centipede}} is dead \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_centipede_a1fa0123a0ea08fb9b76305ec67692793}\label{class_centipede_a1fa0123a0ea08fb9b76305ec67692793}} 
+virtual void \mbox{\hyperlink{class_centipede_a1fa0123a0ea08fb9b76305ec67692793}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset centipede to initial conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_centipede_af887a67031a6c63897f3fad86a0076c2}\label{class_centipede_af887a67031a6c63897f3fad86a0076c2}} 
+virtual \mbox{\hyperlink{class_centipede_af887a67031a6c63897f3fad86a0076c2}{$\sim$\+Centipede}} ()
+\begin{DoxyCompactList}\small\item\em destroys the \mbox{\hyperlink{class_centipede}{Centipede}} Objects \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_centipede_a8e63cbd49eea28d05a47ff898a4cea66}\label{class_centipede_a8e63cbd49eea28d05a47ff898a4cea66}} 
+void \mbox{\hyperlink{class_centipede_a8e63cbd49eea28d05a47ff898a4cea66}{initial\+Conditions}} ()
+\begin{DoxyCompactList}\small\item\em reconstructs the \mbox{\hyperlink{class_centipede}{Centipede}} to initial Conditions \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_centipede_ab1427df87d3fb7b723c0fb8dce7e1e1c}\label{class_centipede_ab1427df87d3fb7b723c0fb8dce7e1e1c}} 
+vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}} $>$ $>$ {\bfseries centipede\+\_\+}
+\item 
+\mbox{\Hypertarget{class_centipede_a32527f4884c64cf17ea28310f9532f52}\label{class_centipede_a32527f4884c64cf17ea28310f9532f52}} 
+int {\bfseries num\+Dead\+Segments\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_centipede_a3d69f0ef4b57cf4b9c1beb1284f2f738}\label{class_centipede_a3d69f0ef4b57cf4b9c1beb1284f2f738}} 
+\index{Centipede@{Centipede}!is\+Dead@{is\+Dead}}
+\index{is\+Dead@{is\+Dead}!Centipede@{Centipede}}
+\subsubsection{\texorpdfstring{is\+Dead()}{isDead()}}
+{\footnotesize\ttfamily bool Centipede\+::is\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+checks if \mbox{\hyperlink{class_centipede}{Centipede}} is dead 
+
+\begin{DoxyReturn}{Returns}
+boolean 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_centipede_ae722488780d0d19e63510647b5fe108c}\label{class_centipede_ae722488780d0d19e63510647b5fe108c}} 
+\index{Centipede@{Centipede}!segment@{segment}}
+\index{segment@{segment}!Centipede@{Centipede}}
+\subsubsection{\texorpdfstring{segment()}{segment()}}
+{\footnotesize\ttfamily virtual shared\+\_\+ptr$<$\mbox{\hyperlink{class_game_object}{Game\+Object}}$>$ Centipede\+::segment (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns the ith \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & is the ith \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+shared pointer to the ith \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_game_object_container_affa50b43ca7b82d54055b6499e024aba}{Game\+Object\+Container}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_centipede_8h}{Centipede.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Centipede.\+cpp\end{DoxyCompactItemize}

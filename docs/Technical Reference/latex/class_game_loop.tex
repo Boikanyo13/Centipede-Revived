@@ -1,0 +1,111 @@
+\hypertarget{class_game_loop}{}\section{Game\+Loop Class Reference}
+\label{class_game_loop}\index{Game\+Loop@{Game\+Loop}}
+
+
+{\ttfamily \#include $<$Game\+Loop.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_loop_a1b3a349263c8c243400c8cc8fe718655}\label{class_game_loop_a1b3a349263c8c243400c8cc8fe718655}} 
+\mbox{\hyperlink{class_game_loop_a1b3a349263c8c243400c8cc8fe718655}{Game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_a17a913e989badbbe10581834ca40f308}\label{class_game_loop_a17a913e989badbbe10581834ca40f308}} 
+void \mbox{\hyperlink{class_game_loop_a17a913e989badbbe10581834ca40f308}{Play\+Game}} ()
+\begin{DoxyCompactList}\small\item\em play game \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_ac7bd478c2fa92d6bc8d493f0c7b43189}\label{class_game_loop_ac7bd478c2fa92d6bc8d493f0c7b43189}} 
+void \mbox{\hyperlink{class_game_loop_ac7bd478c2fa92d6bc8d493f0c7b43189}{Opening}} ()
+\begin{DoxyCompactList}\small\item\em Show the opening window. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_a313059f0bc129f869de8059ce822ddfb}\label{class_game_loop_a313059f0bc129f869de8059ce822ddfb}} 
+void \mbox{\hyperlink{class_game_loop_a313059f0bc129f869de8059ce822ddfb}{pause}} ()
+\begin{DoxyCompactList}\small\item\em pause game \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_a3afbb7d2141730850d4ef637f314d4d9}\label{class_game_loop_a3afbb7d2141730850d4ef637f314d4d9}} 
+void \mbox{\hyperlink{class_game_loop_a3afbb7d2141730850d4ef637f314d4d9}{Centipede\+Game}} ()
+\begin{DoxyCompactList}\small\item\em The entire game. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_a62170939aeed0f49b7708e11db9539e2}\label{class_game_loop_a62170939aeed0f49b7708e11db9539e2}} 
+void \mbox{\hyperlink{class_game_loop_a62170939aeed0f49b7708e11db9539e2}{Help}} ()
+\begin{DoxyCompactList}\small\item\em show instructions window \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_a741d6e0139d5a21247402ac77fe953cf}\label{class_game_loop_a741d6e0139d5a21247402ac77fe953cf}} 
+void \mbox{\hyperlink{class_game_loop_a741d6e0139d5a21247402ac77fe953cf}{Game\+Over}} ()
+\begin{DoxyCompactList}\small\item\em show game over window \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_loop_ae6c558d0d751a068dbafe2cae465ec1f}\label{class_game_loop_ae6c558d0d751a068dbafe2cae465ec1f}} 
+\mbox{\hyperlink{class_game_loop_ae6c558d0d751a068dbafe2cae465ec1f}{$\sim$\+Game\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_loop_acf569cf445d5bfeffca7784501097ca5}\label{class_game_loop_acf569cf445d5bfeffca7784501097ca5}} 
+void {\bfseries render} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_loop_a883be839ff47995255be24d4ba27beb5}\label{class_game_loop_a883be839ff47995255be24d4ba27beb5}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spaceship}{Spaceship}} $>$ {\bfseries spaceship\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a481925677c0b272dd769d5747fd50b26}\label{class_game_loop_a481925677c0b272dd769d5747fd50b26}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_display}{Display}} $>$ {\bfseries display\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a1236541eba5f85cf34b5ccfdc4e04b5d}\label{class_game_loop_a1236541eba5f85cf34b5ccfdc4e04b5d}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_user_inputs}{User\+Inputs}} $>$ {\bfseries userinput\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_aaddd8cb422026374b3531d6b18ac5dc0}\label{class_game_loop_aaddd8cb422026374b3531d6b18ac5dc0}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ {\bfseries player\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_ac214d5efc82341ddfe9878aa96bbbad9}\label{class_game_loop_ac214d5efc82341ddfe9878aa96bbbad9}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$ {\bfseries score\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a34fbdac44cbb6f27628ce99b974979c3}\label{class_game_loop_a34fbdac44cbb6f27628ce99b974979c3}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_centipede}{Centipede}} $>$ {\bfseries centipede\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a5c73d495f7afc40199c77ab6bce322a2}\label{class_game_loop_a5c73d495f7afc40199c77ab6bce322a2}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} $>$ {\bfseries mushroomfield\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a517dfbe4c19a9cf55346c943b94094bd}\label{class_game_loop_a517dfbe4c19a9cf55346c943b94094bd}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spider}{Spider}} $>$ {\bfseries spider\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a3dca38af8ecdca9faaffe6ac08c91c95}\label{class_game_loop_a3dca38af8ecdca9faaffe6ac08c91c95}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_splash_screen}{Splash\+Screen}} $>$ {\bfseries splashscreen\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a88c8984ac6b5cd3c641ea0d6b303ac53}\label{class_game_loop_a88c8984ac6b5cd3c641ea0d6b303ac53}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_animate}{Animate}} $>$ {\bfseries animate\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a2a4fb370685af0c12ecd94f7e0d04e88}\label{class_game_loop_a2a4fb370685af0c12ecd94f7e0d04e88}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scorpion}{Scorpion}} $>$ {\bfseries scorpion\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_a32ddc90b0c34d3902e2b2cc70226509b}\label{class_game_loop_a32ddc90b0c34d3902e2b2cc70226509b}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_domain}{Domain}} $>$ {\bfseries domain\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_game_loop_aae583c2abb2f104e742ddb8e278ddeee}\label{class_game_loop_aae583c2abb2f104e742ddb8e278ddeee}} 
+bool {\bfseries shooting\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_loop_ab8c60e59382a9beec33e31a902bba520}\label{class_game_loop_ab8c60e59382a9beec33e31a902bba520}} 
+bool {\bfseries is\+Playing\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_game_loop_ad02a1c45b3bff989b62a6ec06060338a}\label{class_game_loop_ad02a1c45b3bff989b62a6ec06060338a}} 
+bool {\bfseries game\+Over\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_game_loop_a7109ce9428e30f60f42b38d838af63f6}\label{class_game_loop_a7109ce9428e30f60f42b38d838af63f6}} 
+bool {\bfseries help\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_game_loop_ade05dc8cc3f5e46d18319e399f64ed39}\label{class_game_loop_ade05dc8cc3f5e46d18319e399f64ed39}} 
+bool {\bfseries opening\+\_\+} =true
+\item 
+\mbox{\Hypertarget{class_game_loop_a32dcf69311fb136ba9bdd1a804545b15}\label{class_game_loop_a32dcf69311fb136ba9bdd1a804545b15}} 
+bool {\bfseries pause\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_game_loop_aa0ef783e1f12b400d4460062765c9226}\label{class_game_loop_aa0ef783e1f12b400d4460062765c9226}} 
+bool {\bfseries reset\+\_\+} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_game_loop_8h}{Game\+Loop.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Game\+Loop.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,113 @@
+\hypertarget{class_game_files}{}\section{Game\+Files Class Reference}
+\label{class_game_files}\index{Game\+Files@{Game\+Files}}
+
+
+{\ttfamily \#include $<$Game\+Files.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_files_a6e807d5e0b75fd7bf66a5bcc83e808d1}\label{class_game_files_a6e807d5e0b75fd7bf66a5bcc83e808d1}} 
+\mbox{\hyperlink{class_game_files_a6e807d5e0b75fd7bf66a5bcc83e808d1}{Game\+Files}} ()
+\begin{DoxyCompactList}\small\item\em default constructor \end{DoxyCompactList}\item 
+std\+::vector$<$ string $>$ \mbox{\hyperlink{class_game_files_a44e04f4099034508077b8facfb99b829}{object\+Images}} () const
+\begin{DoxyCompactList}\small\item\em returns object images files \end{DoxyCompactList}\item 
+std\+::vector$<$ string $>$ \mbox{\hyperlink{class_game_files_a62b2640ebb37c6c5e68ca7c369955b90}{screen\+Images}} () const
+\begin{DoxyCompactList}\small\item\em return screen images files \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_game_files_ac9c59e01a8a7a5ea98852fb69a76bd1e}{font}} () const
+\begin{DoxyCompactList}\small\item\em return Font files corresponding to Object\+ID \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{class_game_files_a101acdcafdb5ba63e9a1d1358f097f73}{scorefile}} ()
+\begin{DoxyCompactList}\small\item\em return the previous high scores \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_files_a458d9d639a6e93a8fd8c50979b6a8f7f}{scorefile}} (std\+::vector$<$ int $>$ score)
+\begin{DoxyCompactList}\small\item\em store the high scores \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_files_a7dabda22cc24f553fa8c663578eb316c}\label{class_game_files_a7dabda22cc24f553fa8c663578eb316c}} 
+std\+::vector$<$ string $>$ {\bfseries object\+Images\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_files_a5542d6e3b5e847838173ab2c1ce54c76}\label{class_game_files_a5542d6e3b5e847838173ab2c1ce54c76}} 
+std\+::vector$<$ string $>$ {\bfseries screen\+Images\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_files_ac9c59e01a8a7a5ea98852fb69a76bd1e}\label{class_game_files_ac9c59e01a8a7a5ea98852fb69a76bd1e}} 
+\index{Game\+Files@{Game\+Files}!font@{font}}
+\index{font@{font}!Game\+Files@{Game\+Files}}
+\subsubsection{\texorpdfstring{font()}{font()}}
+{\footnotesize\ttfamily std\+::string Game\+Files\+::font (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+return Font files corresponding to Object\+ID 
+
+\begin{DoxyReturn}{Returns}
+game font file 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_files_a44e04f4099034508077b8facfb99b829}\label{class_game_files_a44e04f4099034508077b8facfb99b829}} 
+\index{Game\+Files@{Game\+Files}!object\+Images@{object\+Images}}
+\index{object\+Images@{object\+Images}!Game\+Files@{Game\+Files}}
+\subsubsection{\texorpdfstring{object\+Images()}{objectImages()}}
+{\footnotesize\ttfamily std\+::vector$<$ string $>$ Game\+Files\+::object\+Images (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+returns object images files 
+
+\begin{DoxyReturn}{Returns}
+vector of object\+Images 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_files_a101acdcafdb5ba63e9a1d1358f097f73}\label{class_game_files_a101acdcafdb5ba63e9a1d1358f097f73}} 
+\index{Game\+Files@{Game\+Files}!scorefile@{scorefile}}
+\index{scorefile@{scorefile}!Game\+Files@{Game\+Files}}
+\subsubsection{\texorpdfstring{scorefile()}{scorefile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Game\+Files\+::scorefile (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return the previous high scores 
+
+\begin{DoxyReturn}{Returns}
+vector of top 5 scores 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_files_a458d9d639a6e93a8fd8c50979b6a8f7f}\label{class_game_files_a458d9d639a6e93a8fd8c50979b6a8f7f}} 
+\index{Game\+Files@{Game\+Files}!scorefile@{scorefile}}
+\index{scorefile@{scorefile}!Game\+Files@{Game\+Files}}
+\subsubsection{\texorpdfstring{scorefile()}{scorefile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Game\+Files\+::scorefile (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$}]{score }\end{DoxyParamCaption})}
+
+
+
+store the high scores 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & to be store in the highscore file \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_files_a62b2640ebb37c6c5e68ca7c369955b90}\label{class_game_files_a62b2640ebb37c6c5e68ca7c369955b90}} 
+\index{Game\+Files@{Game\+Files}!screen\+Images@{screen\+Images}}
+\index{screen\+Images@{screen\+Images}!Game\+Files@{Game\+Files}}
+\subsubsection{\texorpdfstring{screen\+Images()}{screenImages()}}
+{\footnotesize\ttfamily std\+::vector$<$ string $>$ Game\+Files\+::screen\+Images (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+return screen images files 
+
+\begin{DoxyReturn}{Returns}
+vector of screen\+Images 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_game_files_8h}{Game\+Files.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Game\+Files.\+cpp\end{DoxyCompactItemize}

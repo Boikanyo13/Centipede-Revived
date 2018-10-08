@@ -1,0 +1,117 @@
+\hypertarget{class_game_object_container}{}\section{Game\+Object\+Container Class Reference}
+\label{class_game_object_container}\index{Game\+Object\+Container@{Game\+Object\+Container}}
+
+
+{\ttfamily \#include $<$Game\+Object\+Container.\+h$>$}
+
+Inheritance diagram for Game\+Object\+Container\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game_object_container}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_container_ad3b33550acd14414d6434e6836885f3c}{Game\+Object\+Container}} (int \mbox{\hyperlink{class_game_object_container_a4502e18e58c774b681e7ef8e6319910d}{size}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ \mbox{\hyperlink{class_game_object_container_affa50b43ca7b82d54055b6499e024aba}{segment}} (int i) const =0
+\begin{DoxyCompactList}\small\item\em return segment of the game\+Object\+Container \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_container_a13ed0612c4c8226f196c9c219f38cb65}\label{class_game_object_container_a13ed0612c4c8226f196c9c219f38cb65}} 
+virtual void \mbox{\hyperlink{class_game_object_container_a13ed0612c4c8226f196c9c219f38cb65}{reset}} ()=0
+\begin{DoxyCompactList}\small\item\em Resize \mbox{\hyperlink{class_game_object}{Game\+Object}} Container. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_container_a4502e18e58c774b681e7ef8e6319910d}{size}} (int size)
+\begin{DoxyCompactList}\small\item\em set size of \mbox{\hyperlink{class_game_object_container}{Game\+Object\+Container}} \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_game_object_container_afda69d0805c2ee12dd2b972fd66b34c9}{size}} ()
+\begin{DoxyCompactList}\small\item\em get size of Game\+Object\+Conatiner \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_container_a84e10f78eae954c67c6c0ac30797a8bf}\label{class_game_object_container_a84e10f78eae954c67c6c0ac30797a8bf}} 
+virtual \mbox{\hyperlink{class_game_object_container_a84e10f78eae954c67c6c0ac30797a8bf}{$\sim$\+Game\+Object\+Container}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_object_container_a49c7e858bdedb0c05cbab00d0a0bd46f}\label{class_game_object_container_a49c7e858bdedb0c05cbab00d0a0bd46f}} 
+int {\bfseries size\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_object_container_ad3b33550acd14414d6434e6836885f3c}\label{class_game_object_container_ad3b33550acd14414d6434e6836885f3c}} 
+\index{Game\+Object\+Container@{Game\+Object\+Container}!Game\+Object\+Container@{Game\+Object\+Container}}
+\index{Game\+Object\+Container@{Game\+Object\+Container}!Game\+Object\+Container@{Game\+Object\+Container}}
+\subsubsection{\texorpdfstring{Game\+Object\+Container()}{GameObjectContainer()}}
+{\footnotesize\ttfamily Game\+Object\+Container\+::\+Game\+Object\+Container (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the container \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_object_container_affa50b43ca7b82d54055b6499e024aba}\label{class_game_object_container_affa50b43ca7b82d54055b6499e024aba}} 
+\index{Game\+Object\+Container@{Game\+Object\+Container}!segment@{segment}}
+\index{segment@{segment}!Game\+Object\+Container@{Game\+Object\+Container}}
+\subsubsection{\texorpdfstring{segment()}{segment()}}
+{\footnotesize\ttfamily virtual shared\+\_\+ptr$<$\mbox{\hyperlink{class_game_object}{Game\+Object}}$>$ Game\+Object\+Container\+::segment (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+return segment of the game\+Object\+Container 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & iterator to container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ith segment of the container 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_centipede_ae722488780d0d19e63510647b5fe108c}{Centipede}}, and \mbox{\hyperlink{class_mushroom_field_a478cc3df9deaf0e7a0b48fd2d128eeb8}{Mushroom\+Field}}.
+
+\mbox{\Hypertarget{class_game_object_container_a4502e18e58c774b681e7ef8e6319910d}\label{class_game_object_container_a4502e18e58c774b681e7ef8e6319910d}} 
+\index{Game\+Object\+Container@{Game\+Object\+Container}!size@{size}}
+\index{size@{size}!Game\+Object\+Container@{Game\+Object\+Container}}
+\subsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Game\+Object\+Container\+::size (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set size of \mbox{\hyperlink{class_game_object_container}{Game\+Object\+Container}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the container \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_object_container_afda69d0805c2ee12dd2b972fd66b34c9}\label{class_game_object_container_afda69d0805c2ee12dd2b972fd66b34c9}} 
+\index{Game\+Object\+Container@{Game\+Object\+Container}!size@{size}}
+\index{size@{size}!Game\+Object\+Container@{Game\+Object\+Container}}
+\subsubsection{\texorpdfstring{size()}{size()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Game\+Object\+Container\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get size of Game\+Object\+Conatiner 
+
+\begin{DoxyReturn}{Returns}
+size of the container 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_game_object_container_8h}{Game\+Object\+Container.\+h}}\end{DoxyCompactItemize}

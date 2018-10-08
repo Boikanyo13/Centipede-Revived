@@ -1,0 +1,168 @@
+\hypertarget{class_display}{}\section{Display Class Reference}
+\label{class_display}\index{Display@{Display}}
+
+
+{\ttfamily \#include $<$Display.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_display_aeb2f7390982338b48d8bb9a61f159bc3}\label{class_display_aeb2f7390982338b48d8bb9a61f159bc3}} 
+\mbox{\hyperlink{class_display_aeb2f7390982338b48d8bb9a61f159bc3}{Display}} (float screen\+Width, float Screen\+Height)
+\begin{DoxyCompactList}\small\item\em initialize the \mbox{\hyperlink{class_display}{Display}} \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_aa3ab70ec7b76fa3ed139d19e53e72283}\label{class_display_aa3ab70ec7b76fa3ed139d19e53e72283}} 
+void \mbox{\hyperlink{class_display_aa3ab70ec7b76fa3ed139d19e53e72283}{display}} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_display}{Display}} drawn object on display. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_display_a2d8a021131e48ba0388c24754dd5286c}{space\+Key}} ()
+\begin{DoxyCompactList}\small\item\em Check for the press of space key. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_afd34049cad61f21d56f8d64c53282cea}{Events}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_user_inputs}{User\+Inputs}} $>$ userinput\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Poll for events. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_display_a45a76d7780b8b35251a4510849cd58e8}{is\+Open}} () const
+\begin{DoxyCompactList}\small\item\em Check if \mbox{\hyperlink{class_display}{Display}} is Open. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_display_a1b81707d811188dbfd98be312679223f}{left\+Click}} ()
+\begin{DoxyCompactList}\small\item\em Check if mouse is clicked on the left side. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_display_a9ce27466645f406154c1e48f4cbe5857}\label{class_display_a9ce27466645f406154c1e48f4cbe5857}} 
+void \mbox{\hyperlink{class_display_a9ce27466645f406154c1e48f4cbe5857}{clear\+Display}} ()
+\begin{DoxyCompactList}\small\item\em Clear the window. \end{DoxyCompactList}\item 
+shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ \mbox{\hyperlink{class_display_a5e7a8c62af3817bbd66c7727943bbef9}{window}} ()
+\begin{DoxyCompactList}\small\item\em return a shared pointer to the window \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_display_ab1de6d8b7911336e30999b78f3f6cbe3}{delayer}} (tuple$<$ bool, bool, bool $>$ delays)
+\begin{DoxyCompactList}\small\item\em Receives flags from the game logic to delay. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_display_ac2607a6bb236c55547a4223d40d85d1f}{$\sim$\+Display}} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_display_a4947394667563143d700dafbdd0efe66}\label{class_display_a4947394667563143d700dafbdd0efe66}} 
+float {\bfseries screen\+Width\+\_\+}
+\item 
+\mbox{\Hypertarget{class_display_a5f8665b38c1e1a97f9dd81b6cd1ac2e8}\label{class_display_a5f8665b38c1e1a97f9dd81b6cd1ac2e8}} 
+float {\bfseries screen\+Height\+\_\+}
+\item 
+\mbox{\Hypertarget{class_display_ad779eb92e98ca808927911643fa204e0}\label{class_display_ad779eb92e98ca808927911643fa204e0}} 
+bool {\bfseries space\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_display_a6ae5ccee0b26e0e931a70e7e6f81714b}\label{class_display_a6ae5ccee0b26e0e931a70e7e6f81714b}} 
+bool {\bfseries left\+Click\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_display_a9e1fdef4cf2bcac717ef7bc7980903f6}\label{class_display_a9e1fdef4cf2bcac717ef7bc7980903f6}} 
+bool {\bfseries explosion1\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_display_a068681e5d3dd92d054292035dd11b064}\label{class_display_a068681e5d3dd92d054292035dd11b064}} 
+bool {\bfseries explosion2\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_display_ae437f98aef102dbfa4c5c1c663c44de5}\label{class_display_ae437f98aef102dbfa4c5c1c663c44de5}} 
+bool {\bfseries centi\+Death\+\_\+} = false
+\item 
+\mbox{\Hypertarget{class_display_a6ce64beac32a0fa76365a63692e8ef97}\label{class_display_a6ce64beac32a0fa76365a63692e8ef97}} 
+shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ {\bfseries window\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_display_ac2607a6bb236c55547a4223d40d85d1f}\label{class_display_ac2607a6bb236c55547a4223d40d85d1f}} 
+\index{Display@{Display}!````~Display@{$\sim$\+Display}}
+\index{````~Display@{$\sim$\+Display}!Display@{Display}}
+\subsubsection{\texorpdfstring{$\sim$\+Display()}{~Display()}}
+{\footnotesize\ttfamily Display\+::$\sim$\+Display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+destroy the \mbox{\hyperlink{class_display}{Display}} 
+\end{DoxyReturn}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_display_ab1de6d8b7911336e30999b78f3f6cbe3}\label{class_display_ab1de6d8b7911336e30999b78f3f6cbe3}} 
+\index{Display@{Display}!delayer@{delayer}}
+\index{delayer@{delayer}!Display@{Display}}
+\subsubsection{\texorpdfstring{delayer()}{delayer()}}
+{\footnotesize\ttfamily void Display\+::delayer (\begin{DoxyParamCaption}\item[{tuple$<$ bool, bool, bool $>$}]{delays }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Receives flags from the game logic to delay. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delays} & tuple of flags \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_afd34049cad61f21d56f8d64c53282cea}\label{class_display_afd34049cad61f21d56f8d64c53282cea}} 
+\index{Display@{Display}!Events@{Events}}
+\index{Events@{Events}!Display@{Display}}
+\subsubsection{\texorpdfstring{Events()}{Events()}}
+{\footnotesize\ttfamily void Display\+::\+Events (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_user_inputs}{User\+Inputs}} $>$}]{userinput\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Poll for events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em userinput\+\_\+ptr} & inputs from the user \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_display_a45a76d7780b8b35251a4510849cd58e8}\label{class_display_a45a76d7780b8b35251a4510849cd58e8}} 
+\index{Display@{Display}!is\+Open@{is\+Open}}
+\index{is\+Open@{is\+Open}!Display@{Display}}
+\subsubsection{\texorpdfstring{is\+Open()}{isOpen()}}
+{\footnotesize\ttfamily bool Display\+::is\+Open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if \mbox{\hyperlink{class_display}{Display}} is Open. 
+
+\begin{DoxyReturn}{Returns}
+boolean signaling whether window is open or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_display_a1b81707d811188dbfd98be312679223f}\label{class_display_a1b81707d811188dbfd98be312679223f}} 
+\index{Display@{Display}!left\+Click@{left\+Click}}
+\index{left\+Click@{left\+Click}!Display@{Display}}
+\subsubsection{\texorpdfstring{left\+Click()}{leftClick()}}
+{\footnotesize\ttfamily bool Display\+::left\+Click (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if mouse is clicked on the left side. 
+
+\begin{DoxyReturn}{Returns}
+boolean signaling whether a mouse is clicked on the left or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_display_a2d8a021131e48ba0388c24754dd5286c}\label{class_display_a2d8a021131e48ba0388c24754dd5286c}} 
+\index{Display@{Display}!space\+Key@{space\+Key}}
+\index{space\+Key@{space\+Key}!Display@{Display}}
+\subsubsection{\texorpdfstring{space\+Key()}{spaceKey()}}
+{\footnotesize\ttfamily bool Display\+::space\+Key (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check for the press of space key. 
+
+\begin{DoxyReturn}{Returns}
+boolean signaling for the press of the space key 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_display_a5e7a8c62af3817bbd66c7727943bbef9}\label{class_display_a5e7a8c62af3817bbd66c7727943bbef9}} 
+\index{Display@{Display}!window@{window}}
+\index{window@{window}!Display@{Display}}
+\subsubsection{\texorpdfstring{window()}{window()}}
+{\footnotesize\ttfamily shared\+\_\+ptr$<$sf\+::\+Render\+Window$>$ Display\+::window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return a shared pointer to the window 
+
+\begin{DoxyReturn}{Returns}
+shared pointer to the window 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_display_8h}{Display.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Display.\+cpp\end{DoxyCompactItemize}

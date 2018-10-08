@@ -1,0 +1,89 @@
+\hypertarget{class_mushroom}{}\section{Mushroom Class Reference}
+\label{class_mushroom}\index{Mushroom@{Mushroom}}
+
+
+{\ttfamily \#include $<$Mushroom.\+h$>$}
+
+Inheritance diagram for Mushroom\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mushroom}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mushroom_afa955bb8eaaddc45571725b3e04c4c09}{Mushroom}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_mushroom}{Mushroom}} Class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_aa8d02f56dc9de6e73f61f8b68f8db5da}\label{class_mushroom_aa8d02f56dc9de6e73f61f8b68f8db5da}} 
+virtual void \mbox{\hyperlink{class_mushroom_aa8d02f56dc9de6e73f61f8b68f8db5da}{collision\+Response}} () override
+\begin{DoxyCompactList}\small\item\em Take action if \mbox{\hyperlink{class_mushroom}{Mushroom}} is shot. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_mushroom_afe84a485e2eb67e1efadd49ef77cb79e}{lives}} () const
+\begin{DoxyCompactList}\small\item\em Return the number of lives the \mbox{\hyperlink{class_mushroom}{Mushroom}} has. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_a83ecffb484e4c3931e3dbd7eaa085e59}\label{class_mushroom_a83ecffb484e4c3931e3dbd7eaa085e59}} 
+virtual void \mbox{\hyperlink{class_mushroom_a83ecffb484e4c3931e3dbd7eaa085e59}{Move}} () override
+\begin{DoxyCompactList}\small\item\em Move function from parent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_a9801ad2b960bee6bf66851434ba64b21}\label{class_mushroom_a9801ad2b960bee6bf66851434ba64b21}} 
+virtual void \mbox{\hyperlink{class_mushroom_a9801ad2b960bee6bf66851434ba64b21}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset \mbox{\hyperlink{class_mushroom}{Mushroom}} to intial conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_a0cf0e035c2fcc711a4ae378eafa59fab}\label{class_mushroom_a0cf0e035c2fcc711a4ae378eafa59fab}} 
+virtual \mbox{\hyperlink{class_mushroom_a0cf0e035c2fcc711a4ae378eafa59fab}{$\sim$\+Mushroom}} ()
+\begin{DoxyCompactList}\small\item\em Destroy \mbox{\hyperlink{class_mushroom}{Mushroom}} Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mushroom_a4fb3b9d849a6c27234b998685da2dad1}\label{class_mushroom_a4fb3b9d849a6c27234b998685da2dad1}} 
+int {\bfseries lives\+\_\+} = 4
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mushroom_afa955bb8eaaddc45571725b3e04c4c09}\label{class_mushroom_afa955bb8eaaddc45571725b3e04c4c09}} 
+\index{Mushroom@{Mushroom}!Mushroom@{Mushroom}}
+\index{Mushroom@{Mushroom}!Mushroom@{Mushroom}}
+\subsubsection{\texorpdfstring{Mushroom()}{Mushroom()}}
+{\footnotesize\ttfamily Mushroom\+::\+Mushroom (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of the \mbox{\hyperlink{class_mushroom}{Mushroom}} Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_mushroom}{Mushroom}} \\
+\hline
+{\em position} & of the \mbox{\hyperlink{class_mushroom}{Mushroom}} \\
+\hline
+{\em speed} & of the \mbox{\hyperlink{class_mushroom}{Mushroom}} \\
+\hline
+{\em objectid} & ID of the \mbox{\hyperlink{class_mushroom}{Mushroom}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mushroom_afe84a485e2eb67e1efadd49ef77cb79e}\label{class_mushroom_afe84a485e2eb67e1efadd49ef77cb79e}} 
+\index{Mushroom@{Mushroom}!lives@{lives}}
+\index{lives@{lives}!Mushroom@{Mushroom}}
+\subsubsection{\texorpdfstring{lives()}{lives()}}
+{\footnotesize\ttfamily int Mushroom\+::lives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the number of lives the \mbox{\hyperlink{class_mushroom}{Mushroom}} has. 
+
+\begin{DoxyReturn}{Returns}
+number of lives 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_mushroom_8h}{Mushroom.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Mushroom.\+cpp\end{DoxyCompactItemize}

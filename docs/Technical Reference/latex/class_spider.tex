@@ -1,0 +1,89 @@
+\hypertarget{class_spider}{}\section{Spider Class Reference}
+\label{class_spider}\index{Spider@{Spider}}
+
+
+{\ttfamily \#include $<$Spider.\+h$>$}
+
+Inheritance diagram for Spider\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_spider}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spider_afa46831c19ecd0e22b1b186cf3ff38d8}{Spider}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_spider}{Spider}} Class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a7a5c1f3cfa2c11f1167cea5a4fff32d5}\label{class_spider_a7a5c1f3cfa2c11f1167cea5a4fff32d5}} 
+virtual void \mbox{\hyperlink{class_spider_a7a5c1f3cfa2c11f1167cea5a4fff32d5}{Move}} () override
+\begin{DoxyCompactList}\small\item\em Move \mbox{\hyperlink{class_spider}{Spider}} Across Screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a99d8b17abd435ac612ec05cfa49839ec}\label{class_spider_a99d8b17abd435ac612ec05cfa49839ec}} 
+virtual void \mbox{\hyperlink{class_spider_a99d8b17abd435ac612ec05cfa49839ec}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset \mbox{\hyperlink{class_spider}{Spider}} to initial conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a5548b1fc8a2dfc3be40cf06ed13e698f}\label{class_spider_a5548b1fc8a2dfc3be40cf06ed13e698f}} 
+virtual void \mbox{\hyperlink{class_spider_a5548b1fc8a2dfc3be40cf06ed13e698f}{collision\+Response}} () override
+\begin{DoxyCompactList}\small\item\em Explode the spider. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a1f6a4d46d39696b253a924effb156971}\label{class_spider_a1f6a4d46d39696b253a924effb156971}} 
+virtual \mbox{\hyperlink{class_spider_a1f6a4d46d39696b253a924effb156971}{$\sim$\+Spider}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_spider_ace407f694d63ed88367963310747c739}\label{class_spider_ace407f694d63ed88367963310747c739}} 
+void \mbox{\hyperlink{class_spider_ace407f694d63ed88367963310747c739}{move\+Down}} ()
+\begin{DoxyCompactList}\small\item\em For down movement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a456d9495aca3a636e584b3d8678596fd}\label{class_spider_a456d9495aca3a636e584b3d8678596fd}} 
+void \mbox{\hyperlink{class_spider_a456d9495aca3a636e584b3d8678596fd}{move\+Up}} ()
+\begin{DoxyCompactList}\small\item\em For up movement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a7ef566f45e66889f34b3e9d058ac58d0}\label{class_spider_a7ef566f45e66889f34b3e9d058ac58d0}} 
+void \mbox{\hyperlink{class_spider_a7ef566f45e66889f34b3e9d058ac58d0}{move\+Zig}} ()
+\begin{DoxyCompactList}\small\item\em Up movement left or right. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spider_a64bb1061c1e7bf1a3598e817bffe3538}\label{class_spider_a64bb1061c1e7bf1a3598e817bffe3538}} 
+void \mbox{\hyperlink{class_spider_a64bb1061c1e7bf1a3598e817bffe3538}{move\+Zag}} ()
+\begin{DoxyCompactList}\small\item\em Down movement left or right. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_spider_adc12c0ff82343b7123401aa7fd53fca8}\label{class_spider_adc12c0ff82343b7123401aa7fd53fca8}} 
+bool {\bfseries zigzag\+\_\+} = true
+\item 
+\mbox{\Hypertarget{class_spider_a2bcc5037a10a7995cb10f7be6299780b}\label{class_spider_a2bcc5037a10a7995cb10f7be6299780b}} 
+bool {\bfseries up\+\_\+} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_spider_afa46831c19ecd0e22b1b186cf3ff38d8}\label{class_spider_afa46831c19ecd0e22b1b186cf3ff38d8}} 
+\index{Spider@{Spider}!Spider@{Spider}}
+\index{Spider@{Spider}!Spider@{Spider}}
+\subsubsection{\texorpdfstring{Spider()}{Spider()}}
+{\footnotesize\ttfamily Spider\+::\+Spider (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of the \mbox{\hyperlink{class_spider}{Spider}} Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_spider}{Spider}} \\
+\hline
+{\em position} & of the \mbox{\hyperlink{class_spider}{Spider}} \\
+\hline
+{\em speed} & of the \mbox{\hyperlink{class_spider}{Spider}} \\
+\hline
+{\em objectid} & ID of the \mbox{\hyperlink{class_spider}{Spider}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_spider_8h}{Spider.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Spider.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,170 @@
+\hypertarget{class_domain}{}\section{Domain Class Reference}
+\label{class_domain}\index{Domain@{Domain}}
+
+
+{\ttfamily \#include $<$Domain.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_domain_ad8bf2e62e2425901b6b1cfb3c46a5545}{Domain}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spaceship}{Spaceship}} $>$ spaceship, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spider}{Spider}} $>$ spider, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_centipede}{Centipede}} $>$ centipede, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} $>$ mushroomfield, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$ score, shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scorpion}{Scorpion}} $>$ scorpion)
+\begin{DoxyCompactList}\small\item\em Constructor to \mbox{\hyperlink{class_domain}{Domain}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_a9cb54e1d6a48ac2f18644e3c81b1d615}\label{class_domain_a9cb54e1d6a48ac2f18644e3c81b1d615}} 
+void \mbox{\hyperlink{class_domain_a9cb54e1d6a48ac2f18644e3c81b1d615}{update}} ()
+\begin{DoxyCompactList}\small\item\em update Logic \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_domain_abac8643664087595ce3f46eb038e973f}{shoot}} (bool shoot)
+\begin{DoxyCompactList}\small\item\em shoot at enemy Objects \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_aaa64201c4c2e32c031125599b3cab606}\label{class_domain_aaa64201c4c2e32c031125599b3cab606}} 
+void \mbox{\hyperlink{class_domain_aaa64201c4c2e32c031125599b3cab606}{handle\+Shooting\+Collisions}} ()
+\begin{DoxyCompactList}\small\item\em Handle shooting collisions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_ada593a3293443a881bd1747bed14a3b0}\label{class_domain_ada593a3293443a881bd1747bed14a3b0}} 
+void \mbox{\hyperlink{class_domain_ada593a3293443a881bd1747bed14a3b0}{handle\+Game\+Object\+Collisions}} ()
+\begin{DoxyCompactList}\small\item\em handle Game\+Objects Collisions \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_a0dd81d0b3e57a98a21f49b41bc46bd9d}\label{class_domain_a0dd81d0b3e57a98a21f49b41bc46bd9d}} 
+void \mbox{\hyperlink{class_domain_a0dd81d0b3e57a98a21f49b41bc46bd9d}{death\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Handle the death of Game Objects. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_domain_acdd42563f2efe7a6c91e7c968f1e2f8b}{gameover}} ()
+\begin{DoxyCompactList}\small\item\em Check if game is Over. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_domain_a2c965d6ecca1739641f4959e183fe80c}{shooting\+In\+Progress}} ()
+\begin{DoxyCompactList}\small\item\em check if shooting is in progress \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_ac9d5fae35815f68b9449f76da3770e9e}\label{class_domain_ac9d5fae35815f68b9449f76da3770e9e}} 
+void \mbox{\hyperlink{class_domain_ac9d5fae35815f68b9449f76da3770e9e}{master\+Reset}} ()
+\begin{DoxyCompactList}\small\item\em reset all Game\+Objects \end{DoxyCompactList}\item 
+tuple$<$ bool, bool, bool $>$ \mbox{\hyperlink{class_domain_a28dd947d21159cbf30ec80b1d215772f}{states}} ()
+\begin{DoxyCompactList}\small\item\em returns the state of game objects \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_domain_a29cec9afb2e54c810ba1f3c1a49543a8}\label{class_domain_a29cec9afb2e54c810ba1f3c1a49543a8}} 
+\mbox{\hyperlink{class_domain_a29cec9afb2e54c810ba1f3c1a49543a8}{$\sim$\+Domain}} ()
+\begin{DoxyCompactList}\small\item\em destroy \mbox{\hyperlink{class_domain}{Domain}} object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_domain_af646a300d0fed78a515e32ce4c14a408}\label{class_domain_af646a300d0fed78a515e32ce4c14a408}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spaceship}{Spaceship}} $>$ {\bfseries spaceship\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a8c8d5fdedef9d0718f5871feb84f5e6d}\label{class_domain_a8c8d5fdedef9d0718f5871feb84f5e6d}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_centipede}{Centipede}} $>$ {\bfseries centipede\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a53e2de6c21fd9240da65602de89fdd72}\label{class_domain_a53e2de6c21fd9240da65602de89fdd72}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} $>$ {\bfseries mushroomfield\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_aa235276e5a811580fa5a4f5232270e84}\label{class_domain_aa235276e5a811580fa5a4f5232270e84}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spider}{Spider}} $>$ {\bfseries spider\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a6035ada06530bd88d818d52326e607a4}\label{class_domain_a6035ada06530bd88d818d52326e607a4}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_user_inputs}{User\+Inputs}} $>$ {\bfseries userinput\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a57c8e0cd4b78399313d0db5e434b51b6}\label{class_domain_a57c8e0cd4b78399313d0db5e434b51b6}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_player}{Player}} $>$ {\bfseries player\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_aa55d415c95c3da78da226c39387f28f2}\label{class_domain_aa55d415c95c3da78da226c39387f28f2}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$ {\bfseries score\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a9362a66fdad1e61fa3ff261ee660e6a8}\label{class_domain_a9362a66fdad1e61fa3ff261ee660e6a8}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_collision_handler}{Collision\+Handler}} $>$ {\bfseries collision\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a08b9da8fe2a1d5ef567378ad2ba36c34}\label{class_domain_a08b9da8fe2a1d5ef567378ad2ba36c34}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_timer}{Timer}} $>$ {\bfseries timer\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a82fe0d3b96c7b89471791f24ae1b0be6}\label{class_domain_a82fe0d3b96c7b89471791f24ae1b0be6}} 
+shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scorpion}{Scorpion}} $>$ {\bfseries scorpion\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_domain_a0a57826049d02cc5eab765c928963396}\label{class_domain_a0a57826049d02cc5eab765c928963396}} 
+bool {\bfseries is\+Shooting\+\_\+} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_domain_ad8bf2e62e2425901b6b1cfb3c46a5545}\label{class_domain_ad8bf2e62e2425901b6b1cfb3c46a5545}} 
+\index{Domain@{Domain}!Domain@{Domain}}
+\index{Domain@{Domain}!Domain@{Domain}}
+\subsubsection{\texorpdfstring{Domain()}{Domain()}}
+{\footnotesize\ttfamily Domain\+::\+Domain (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spaceship}{Spaceship}} $>$}]{spaceship,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_spider}{Spider}} $>$}]{spider,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_centipede}{Centipede}} $>$}]{centipede,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} $>$}]{mushroomfield,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$}]{score,  }\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_scorpion}{Scorpion}} $>$}]{scorpion }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor to \mbox{\hyperlink{class_domain}{Domain}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em spaceship} & pointer to Spacship \\
+\hline
+{\em spider} & pointer to \mbox{\hyperlink{class_spider}{Spider}} \\
+\hline
+{\em centipede} & pointer to \mbox{\hyperlink{class_centipede}{Centipede}} \\
+\hline
+{\em mushroomfield} & pointer to \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} \\
+\hline
+{\em score} & pointer to \mbox{\hyperlink{class_score}{Score}} \\
+\hline
+{\em scorpion} & pointer to \mbox{\hyperlink{class_scorpion}{Scorpion}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_domain_acdd42563f2efe7a6c91e7c968f1e2f8b}\label{class_domain_acdd42563f2efe7a6c91e7c968f1e2f8b}} 
+\index{Domain@{Domain}!gameover@{gameover}}
+\index{gameover@{gameover}!Domain@{Domain}}
+\subsubsection{\texorpdfstring{gameover()}{gameover()}}
+{\footnotesize\ttfamily bool Domain\+::gameover (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if game is Over. 
+
+\begin{DoxyReturn}{Returns}
+return boolean indicating whether game is over or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_domain_abac8643664087595ce3f46eb038e973f}\label{class_domain_abac8643664087595ce3f46eb038e973f}} 
+\index{Domain@{Domain}!shoot@{shoot}}
+\index{shoot@{shoot}!Domain@{Domain}}
+\subsubsection{\texorpdfstring{shoot()}{shoot()}}
+{\footnotesize\ttfamily void Domain\+::shoot (\begin{DoxyParamCaption}\item[{bool}]{shoot }\end{DoxyParamCaption})}
+
+
+
+shoot at enemy Objects 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shoot} & boolean to activate shootig \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_domain_a2c965d6ecca1739641f4959e183fe80c}\label{class_domain_a2c965d6ecca1739641f4959e183fe80c}} 
+\index{Domain@{Domain}!shooting\+In\+Progress@{shooting\+In\+Progress}}
+\index{shooting\+In\+Progress@{shooting\+In\+Progress}!Domain@{Domain}}
+\subsubsection{\texorpdfstring{shooting\+In\+Progress()}{shootingInProgress()}}
+{\footnotesize\ttfamily bool Domain\+::shooting\+In\+Progress (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if shooting is in progress 
+
+\begin{DoxyReturn}{Returns}
+boolean indicating whether shooting is in progress or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_domain_a28dd947d21159cbf30ec80b1d215772f}\label{class_domain_a28dd947d21159cbf30ec80b1d215772f}} 
+\index{Domain@{Domain}!states@{states}}
+\index{states@{states}!Domain@{Domain}}
+\subsubsection{\texorpdfstring{states()}{states()}}
+{\footnotesize\ttfamily tuple$<$ bool, bool, bool $>$ Domain\+::states (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+returns the state of game objects 
+
+\begin{DoxyReturn}{Returns}
+a tuple of states 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_domain_8h}{Domain.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Domain.\+cpp\end{DoxyCompactItemize}

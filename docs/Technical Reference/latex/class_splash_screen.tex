@@ -1,0 +1,214 @@
+\hypertarget{class_splash_screen}{}\section{Splash\+Screen Class Reference}
+\label{class_splash_screen}\index{Splash\+Screen@{Splash\+Screen}}
+
+
+{\ttfamily \#include $<$Splash\+Screen.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a1e61f315445dd725cdbeac840e9bba17}\label{class_splash_screen_a1e61f315445dd725cdbeac840e9bba17}} 
+{\bfseries Splash\+Screen} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_display}{Display}} $>$ display\+\_\+ptr)
+\item 
+\mbox{\Hypertarget{class_splash_screen_a3bf88eb0bf0940a7ffd265a9963db192}\label{class_splash_screen_a3bf88eb0bf0940a7ffd265a9963db192}} 
+void \mbox{\hyperlink{class_splash_screen_a3bf88eb0bf0940a7ffd265a9963db192}{Opening\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Draws the opening screen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_splash_screen_a972f1af2a9adf8fd18c934aa703f4c80}\label{class_splash_screen_a972f1af2a9adf8fd18c934aa703f4c80}} 
+void \mbox{\hyperlink{class_splash_screen_a972f1af2a9adf8fd18c934aa703f4c80}{Help\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Draws the helpscreen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_splash_screen_a0fec044f81b02f9ba6c94ca9ed01d100}{You\+Loose}} (int score)
+\begin{DoxyCompactList}\small\item\em Draws the game over screen. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_splash_screen_a239fe0cad561285bd029a8042c2a8039}{Game\+Screen}} (shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$ score\+\_\+ptr, int lives)
+\begin{DoxyCompactList}\small\item\em Draws the Background of the gamescreen. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_splash_screen_a8a91ffe9d78177da94607a9876621850}\label{class_splash_screen_a8a91ffe9d78177da94607a9876621850}} 
+void \mbox{\hyperlink{class_splash_screen_a8a91ffe9d78177da94607a9876621850}{Pause}} ()
+\begin{DoxyCompactList}\small\item\em Pause Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_splash_screen_a98a24e3b73ea0c4500cb6a50316509ba}\label{class_splash_screen_a98a24e3b73ea0c4500cb6a50316509ba}} 
+void \mbox{\hyperlink{class_splash_screen_a98a24e3b73ea0c4500cb6a50316509ba}{get\+Ready}} ()
+\begin{DoxyCompactList}\small\item\em In between Message. \end{DoxyCompactList}\item 
+Screen\+Object\+ID \mbox{\hyperlink{class_splash_screen_a9ee25ec3f5cf41323a5fc4f99b2b1016}{Detect\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Detects which button in the screen is being pressed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::tuple$<$ float, float, float, float $>$ \mbox{\hyperlink{class_splash_screen_aee2130b85a0f8850816f155cf8c4800b}{Button\+Dimension}} (sf\+::\+Rectangle\+Shape button)
+\begin{DoxyCompactList}\small\item\em Gets dimensions of the buttons. \end{DoxyCompactList}\item 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_splash_screen_af34b1a6b28c5fe8f4124ff7d94be6c55}{Draw\+Screen\+Object}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, Screen\+Object\+ID ID)
+\begin{DoxyCompactList}\small\item\em Makes buttons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_splash_screen_ae617c148840201b21946e718414748f4}{High\+Scores}} (int score)
+\begin{DoxyCompactList}\small\item\em Draws high scores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a6e5534a8525379af86dff12d7a973a35}\label{class_splash_screen_a6e5534a8525379af86dff12d7a973a35}} 
+shared\+\_\+ptr$<$ sf\+::\+Render\+Window $>$ {\bfseries window\+\_\+}
+\item 
+\mbox{\Hypertarget{class_splash_screen_ab07847d1ec31f99737ad2a3131c4d985}\label{class_splash_screen_ab07847d1ec31f99737ad2a3131c4d985}} 
+std\+::vector$<$ sf\+::\+Texture $>$ {\bfseries screen\+Object\+Textures\+\_\+}
+\item 
+\mbox{\Hypertarget{class_splash_screen_aafcefbb104c701194a6ae390d3c1015f}\label{class_splash_screen_aafcefbb104c701194a6ae390d3c1015f}} 
+float {\bfseries a}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a9e97934c6104c7df599089ca4fd64f11}\label{class_splash_screen_a9e97934c6104c7df599089ca4fd64f11}} 
+float {\bfseries b}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a74b76a6b24b334f0244440305193e457}\label{class_splash_screen_a74b76a6b24b334f0244440305193e457}} 
+float {\bfseries c}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a474a4444e35bda0797985eef2f642c3c}\label{class_splash_screen_a474a4444e35bda0797985eef2f642c3c}} 
+float {\bfseries d}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a7fa565ee936d4a022b68b4b92fdfa66c}\label{class_splash_screen_a7fa565ee936d4a022b68b4b92fdfa66c}} 
+float {\bfseries e}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a114b8336b153cfbd25053ee6857432f7}\label{class_splash_screen_a114b8336b153cfbd25053ee6857432f7}} 
+float {\bfseries f}
+\item 
+\mbox{\Hypertarget{class_splash_screen_ad2532945a72a48c68f6f6f8da8d27707}\label{class_splash_screen_ad2532945a72a48c68f6f6f8da8d27707}} 
+float {\bfseries g}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a59151d152682fd4f8e7f69da9cfd9e43}\label{class_splash_screen_a59151d152682fd4f8e7f69da9cfd9e43}} 
+float {\bfseries h}
+\item 
+\mbox{\Hypertarget{class_splash_screen_aff4c9ec4c870cd11f9510da0593b895f}\label{class_splash_screen_aff4c9ec4c870cd11f9510da0593b895f}} 
+float {\bfseries q}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a7c4400cf529a50573bd114fb00073e92}\label{class_splash_screen_a7c4400cf529a50573bd114fb00073e92}} 
+float {\bfseries r}
+\item 
+\mbox{\Hypertarget{class_splash_screen_ad7b085e2cbee7c5c8df8f339efc6fe6e}\label{class_splash_screen_ad7b085e2cbee7c5c8df8f339efc6fe6e}} 
+float {\bfseries w}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a19cd9ea9c41709c7c448f6bd805301eb}\label{class_splash_screen_a19cd9ea9c41709c7c448f6bd805301eb}} 
+float {\bfseries t}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a96495c24bbd96b03df2ce250ac85c27d}\label{class_splash_screen_a96495c24bbd96b03df2ce250ac85c27d}} 
+sf\+::\+Font {\bfseries game\+Font}
+\item 
+\mbox{\Hypertarget{class_splash_screen_afdf82e128b52d4d84ea5a2918aab60e8}\label{class_splash_screen_afdf82e128b52d4d84ea5a2918aab60e8}} 
+sf\+::\+Text {\bfseries game\+Text}
+\item 
+\mbox{\Hypertarget{class_splash_screen_a9bd638ad81224ec3881bc959589d03fb}\label{class_splash_screen_a9bd638ad81224ec3881bc959589d03fb}} 
+bool {\bfseries blink\+\_\+} = true
+\item 
+\mbox{\Hypertarget{class_splash_screen_a4e0c6dd83de43428c0eb57e03a74cdb9}\label{class_splash_screen_a4e0c6dd83de43428c0eb57e03a74cdb9}} 
+\mbox{\hyperlink{class_game_files}{Game\+Files}} {\bfseries gamefile\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+bvrad 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_splash_screen_aee2130b85a0f8850816f155cf8c4800b}\label{class_splash_screen_aee2130b85a0f8850816f155cf8c4800b}} 
+\index{Splash\+Screen@{Splash\+Screen}!Button\+Dimension@{Button\+Dimension}}
+\index{Button\+Dimension@{Button\+Dimension}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{Button\+Dimension()}{ButtonDimension()}}
+{\footnotesize\ttfamily std\+::tuple$<$ float, float, float, float $>$ Splash\+Screen\+::\+Button\+Dimension (\begin{DoxyParamCaption}\item[{sf\+::\+Rectangle\+Shape}]{button }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets dimensions of the buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & to be drawn \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+button dimensions 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_splash_screen_a9ee25ec3f5cf41323a5fc4f99b2b1016}\label{class_splash_screen_a9ee25ec3f5cf41323a5fc4f99b2b1016}} 
+\index{Splash\+Screen@{Splash\+Screen}!Detect\+Button@{Detect\+Button}}
+\index{Detect\+Button@{Detect\+Button}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{Detect\+Button()}{DetectButton()}}
+{\footnotesize\ttfamily Screen\+Object\+ID Splash\+Screen\+::\+Detect\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Detects which button in the screen is being pressed. 
+
+\begin{DoxyReturn}{Returns}
+ID of Button 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_splash_screen_af34b1a6b28c5fe8f4124ff7d94be6c55}\label{class_splash_screen_af34b1a6b28c5fe8f4124ff7d94be6c55}} 
+\index{Splash\+Screen@{Splash\+Screen}!Draw\+Screen\+Object@{Draw\+Screen\+Object}}
+\index{Draw\+Screen\+Object@{Draw\+Screen\+Object}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{Draw\+Screen\+Object()}{DrawScreenObject()}}
+{\footnotesize\ttfamily sf\+::\+Rectangle\+Shape Splash\+Screen\+::\+Draw\+Screen\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{Screen\+Object\+ID}]{ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Makes buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of button \\
+\hline
+{\em position} & of button \\
+\hline
+{\em ID} & of button \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+created sf\+::\+Rectangle button 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_splash_screen_a239fe0cad561285bd029a8042c2a8039}\label{class_splash_screen_a239fe0cad561285bd029a8042c2a8039}} 
+\index{Splash\+Screen@{Splash\+Screen}!Game\+Screen@{Game\+Screen}}
+\index{Game\+Screen@{Game\+Screen}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{Game\+Screen()}{GameScreen()}}
+{\footnotesize\ttfamily void Splash\+Screen\+::\+Game\+Screen (\begin{DoxyParamCaption}\item[{shared\+\_\+ptr$<$ \mbox{\hyperlink{class_score}{Score}} $>$}]{score\+\_\+ptr,  }\item[{int}]{lives }\end{DoxyParamCaption})}
+
+
+
+Draws the Background of the gamescreen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score\+\_\+ptr} & to be drawn to window \\
+\hline
+{\em lives} & to be drawn to window \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_splash_screen_ae617c148840201b21946e718414748f4}\label{class_splash_screen_ae617c148840201b21946e718414748f4}} 
+\index{Splash\+Screen@{Splash\+Screen}!High\+Scores@{High\+Scores}}
+\index{High\+Scores@{High\+Scores}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{High\+Scores()}{HighScores()}}
+{\footnotesize\ttfamily void Splash\+Screen\+::\+High\+Scores (\begin{DoxyParamCaption}\item[{int}]{score }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Draws high scores. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & to be drawn \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_splash_screen_a0fec044f81b02f9ba6c94ca9ed01d100}\label{class_splash_screen_a0fec044f81b02f9ba6c94ca9ed01d100}} 
+\index{Splash\+Screen@{Splash\+Screen}!You\+Loose@{You\+Loose}}
+\index{You\+Loose@{You\+Loose}!Splash\+Screen@{Splash\+Screen}}
+\subsubsection{\texorpdfstring{You\+Loose()}{YouLoose()}}
+{\footnotesize\ttfamily void Splash\+Screen\+::\+You\+Loose (\begin{DoxyParamCaption}\item[{int}]{score }\end{DoxyParamCaption})}
+
+
+
+Draws the game over screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em score} & to be drawn on the window \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_splash_screen_8h}{Splash\+Screen.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Splash\+Screen.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,243 @@
+\hypertarget{class_game_object}{}\section{Game\+Object Class Reference}
+\label{class_game_object}\index{Game\+Object@{Game\+Object}}
+
+
+{\ttfamily \#include $<$Game\+Object.\+h$>$}
+
+Inheritance diagram for Game\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.924399cm]{class_game_object}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_object_aeff3db3107cbe82af96169ed5b69c09e}{Game\+Object}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Ensures the creation of a Game\+Objec. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_aa8b57a053c1fee8d3d14912dd9e320c8}{set\+Position}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position)
+\begin{DoxyCompactList}\small\item\em set Position of object in the Game \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_aeb29555a9bb5cebab57da1960a5085f1}{set\+Size}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size)
+\begin{DoxyCompactList}\small\item\em set the size of the object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a80309e81b799b423a25e180044207114}{set\+Speed}} (float speed)
+\begin{DoxyCompactList}\small\item\em set moving speed of the object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a2ba7a56d4fa8a002fb150989287d6b43}{set\+Object\+ID}} (Object\+ID o\+ID)
+\begin{DoxyCompactList}\small\item\em set the object ID \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_object_a77c7875aa47e873967324113060ed2e9}{update\+State}} (State state)
+\begin{DoxyCompactList}\small\item\em Indicate current state of object in the game(dead or alive?) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_a4bc279e0b3da8273e4e869cc7584847d}\label{class_game_object_a4bc279e0b3da8273e4e869cc7584847d}} 
+virtual void \mbox{\hyperlink{class_game_object_a4bc279e0b3da8273e4e869cc7584847d}{Move}} ()=0
+\begin{DoxyCompactList}\small\item\em Move the object in the window. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_game_object_a4a33322fbd4fe9d0d99b56ce872f7d4b}{is\+Dead}} () const
+\begin{DoxyCompactList}\small\item\em Check the existance of the object in the Game. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_object_a70800bd43cf0b786bf6d0f172072b682}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Get speed of the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvector2_d}{vector2D}} \mbox{\hyperlink{class_game_object_a384f1b162b685cbeb8f0c70c03392664}{get\+Position}} () const
+\begin{DoxyCompactList}\small\item\em Get position of the object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classvector2_d}{vector2D}} \mbox{\hyperlink{class_game_object_a2df595e48b25e0377757471f75d89e15}{get\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get size of the object. \end{DoxyCompactList}\item 
+Object\+ID \mbox{\hyperlink{class_game_object_a0c8139d67c763ff80cd384000b908a36}{ID}} () const
+\begin{DoxyCompactList}\small\item\em get ID of the object \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_a3d1fb8fcc7bf0c07b4e619d7dec56b56}\label{class_game_object_a3d1fb8fcc7bf0c07b4e619d7dec56b56}} 
+virtual void \mbox{\hyperlink{class_game_object_a3d1fb8fcc7bf0c07b4e619d7dec56b56}{reset}} ()=0
+\begin{DoxyCompactList}\small\item\em Reset object to inital conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_aafcceed70da5ea5971b82843ea9222e9}\label{class_game_object_aafcceed70da5ea5971b82843ea9222e9}} 
+virtual void \mbox{\hyperlink{class_game_object_aafcceed70da5ea5971b82843ea9222e9}{collision\+Response}} ()=0
+\begin{DoxyCompactList}\small\item\em Action taken on collision. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_object_a224d4f6d9dd75c8a6f9d022eaf586fd9}\label{class_game_object_a224d4f6d9dd75c8a6f9d022eaf586fd9}} 
+virtual \mbox{\hyperlink{class_game_object_a224d4f6d9dd75c8a6f9d022eaf586fd9}{$\sim$\+Game\+Object}} ()
+\begin{DoxyCompactList}\small\item\em destroy game object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_object_acf579a65776c0c65955ee6049046c97c}\label{class_game_object_acf579a65776c0c65955ee6049046c97c}} 
+\mbox{\hyperlink{classvector2_d}{vector2D}} {\bfseries size\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_object_a31345500e5c1c68ffd86565e04d698f9}\label{class_game_object_a31345500e5c1c68ffd86565e04d698f9}} 
+\mbox{\hyperlink{classvector2_d}{vector2D}} {\bfseries position\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_object_a4ac0cfeb4b4fb47f7069f737d24a8de6}\label{class_game_object_a4ac0cfeb4b4fb47f7069f737d24a8de6}} 
+float {\bfseries speed\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_object_a3eb63952725ada8dc08282c52a6beb04}\label{class_game_object_a3eb63952725ada8dc08282c52a6beb04}} 
+Object\+ID {\bfseries object\+I\+D\+\_\+}
+\item 
+\mbox{\Hypertarget{class_game_object_a09d2296a020d75e0ffaceee9768405f5}\label{class_game_object_a09d2296a020d75e0ffaceee9768405f5}} 
+bool {\bfseries is\+Dead\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+bvrad 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_object_aeff3db3107cbe82af96169ed5b69c09e}\label{class_game_object_aeff3db3107cbe82af96169ed5b69c09e}} 
+\index{Game\+Object@{Game\+Object}!Game\+Object@{Game\+Object}}
+\index{Game\+Object@{Game\+Object}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{Game\+Object()}{GameObject()}}
+{\footnotesize\ttfamily Game\+Object\+::\+Game\+Object (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})}
+
+
+
+Ensures the creation of a Game\+Objec. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_object_a384f1b162b685cbeb8f0c70c03392664}\label{class_game_object_a384f1b162b685cbeb8f0c70c03392664}} 
+\index{Game\+Object@{Game\+Object}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvector2_d}{vector2D}} Game\+Object\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get position of the object. 
+
+\begin{DoxyReturn}{Returns}
+position of the \mbox{\hyperlink{class_game_object}{Game\+Object}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_object_a2df595e48b25e0377757471f75d89e15}\label{class_game_object_a2df595e48b25e0377757471f75d89e15}} 
+\index{Game\+Object@{Game\+Object}!get\+Size@{get\+Size}}
+\index{get\+Size@{get\+Size}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{get\+Size()}{getSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classvector2_d}{vector2D}} Game\+Object\+::get\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get size of the object. 
+
+\begin{DoxyReturn}{Returns}
+size of object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_object_a70800bd43cf0b786bf6d0f172072b682}\label{class_game_object_a70800bd43cf0b786bf6d0f172072b682}} 
+\index{Game\+Object@{Game\+Object}!get\+Speed@{get\+Speed}}
+\index{get\+Speed@{get\+Speed}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{get\+Speed()}{getSpeed()}}
+{\footnotesize\ttfamily float Game\+Object\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get speed of the object. 
+
+\begin{DoxyReturn}{Returns}
+speed of the object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_object_a0c8139d67c763ff80cd384000b908a36}\label{class_game_object_a0c8139d67c763ff80cd384000b908a36}} 
+\index{Game\+Object@{Game\+Object}!ID@{ID}}
+\index{ID@{ID}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{I\+D()}{ID()}}
+{\footnotesize\ttfamily Object\+ID Game\+Object\+::\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+get ID of the object 
+
+\begin{DoxyReturn}{Returns}
+ID of the object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_object_a4a33322fbd4fe9d0d99b56ce872f7d4b}\label{class_game_object_a4a33322fbd4fe9d0d99b56ce872f7d4b}} 
+\index{Game\+Object@{Game\+Object}!is\+Dead@{is\+Dead}}
+\index{is\+Dead@{is\+Dead}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{is\+Dead()}{isDead()}}
+{\footnotesize\ttfamily bool Game\+Object\+::is\+Dead (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check the existance of the object in the Game. 
+
+\begin{DoxyReturn}{Returns}
+boolean is\+Dead 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_game_object_a2ba7a56d4fa8a002fb150989287d6b43}\label{class_game_object_a2ba7a56d4fa8a002fb150989287d6b43}} 
+\index{Game\+Object@{Game\+Object}!set\+Object\+ID@{set\+Object\+ID}}
+\index{set\+Object\+ID@{set\+Object\+ID}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{set\+Object\+I\+D()}{setObjectID()}}
+{\footnotesize\ttfamily void Game\+Object\+::set\+Object\+ID (\begin{DoxyParamCaption}\item[{Object\+ID}]{o\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set the object ID 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o\+ID} & ID of the Object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_object_aa8b57a053c1fee8d3d14912dd9e320c8}\label{class_game_object_aa8b57a053c1fee8d3d14912dd9e320c8}} 
+\index{Game\+Object@{Game\+Object}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Game\+Object\+::set\+Position (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position }\end{DoxyParamCaption})}
+
+
+
+set Position of object in the Game 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & of the object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_object_aeb29555a9bb5cebab57da1960a5085f1}\label{class_game_object_aeb29555a9bb5cebab57da1960a5085f1}} 
+\index{Game\+Object@{Game\+Object}!set\+Size@{set\+Size}}
+\index{set\+Size@{set\+Size}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{set\+Size()}{setSize()}}
+{\footnotesize\ttfamily void Game\+Object\+::set\+Size (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set the size of the object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_game_object}{Game\+Object}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_object_a80309e81b799b423a25e180044207114}\label{class_game_object_a80309e81b799b423a25e180044207114}} 
+\index{Game\+Object@{Game\+Object}!set\+Speed@{set\+Speed}}
+\index{set\+Speed@{set\+Speed}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{set\+Speed()}{setSpeed()}}
+{\footnotesize\ttfamily void Game\+Object\+::set\+Speed (\begin{DoxyParamCaption}\item[{float}]{speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+set moving speed of the object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & of the \mbox{\hyperlink{class_game_object}{Game\+Object}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_game_object_a77c7875aa47e873967324113060ed2e9}\label{class_game_object_a77c7875aa47e873967324113060ed2e9}} 
+\index{Game\+Object@{Game\+Object}!update\+State@{update\+State}}
+\index{update\+State@{update\+State}!Game\+Object@{Game\+Object}}
+\subsubsection{\texorpdfstring{update\+State()}{updateState()}}
+{\footnotesize\ttfamily void Game\+Object\+::update\+State (\begin{DoxyParamCaption}\item[{State}]{state }\end{DoxyParamCaption})}
+
+
+
+Indicate current state of object in the game(dead or alive?) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & of the \mbox{\hyperlink{class_game_object}{Game\+Object}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_game_object_8h}{Game\+Object.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Game\+Object.\+cpp\end{DoxyCompactItemize}

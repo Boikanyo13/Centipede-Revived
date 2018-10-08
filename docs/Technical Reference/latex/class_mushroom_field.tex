@@ -1,0 +1,118 @@
+\hypertarget{class_mushroom_field}{}\section{Mushroom\+Field Class Reference}
+\label{class_mushroom_field}\index{Mushroom\+Field@{Mushroom\+Field}}
+
+
+{\ttfamily \#include $<$Mushroom\+Field.\+h$>$}
+
+Inheritance diagram for Mushroom\+Field\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_mushroom_field}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_mushroom_field_af2fe64e9f63e8fcec6a5bbae644de4cb}{Mushroom\+Field}} (int \mbox{\hyperlink{class_game_object_container_a4502e18e58c774b681e7ef8e6319910d}{size}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ \mbox{\hyperlink{class_mushroom_field_a478cc3df9deaf0e7a0b48fd2d128eeb8}{segment}} (int i) const override
+\begin{DoxyCompactList}\small\item\em Return a \mbox{\hyperlink{class_mushroom}{Mushroom}} at index i. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_mushroom_field_aa182f3e0d33fccac34c7237e7994ecb7}{transform}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$ centi\+Seg\+\_\+ptr)
+\begin{DoxyCompactList}\small\item\em Transform centipe segment to \mbox{\hyperlink{class_mushroom}{Mushroom}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_field_a244cff4ad63184c6c41e1e4bac007a2a}\label{class_mushroom_field_a244cff4ad63184c6c41e1e4bac007a2a}} 
+virtual void \mbox{\hyperlink{class_mushroom_field_a244cff4ad63184c6c41e1e4bac007a2a}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Regenerate field. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_mushroom_field_ac3918d58b61d0f51e851cb02964f0d73}\label{class_mushroom_field_ac3918d58b61d0f51e851cb02964f0d73}} 
+virtual \mbox{\hyperlink{class_mushroom_field_ac3918d58b61d0f51e851cb02964f0d73}{$\sim$\+Mushroom\+Field}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mushroom_field_a18609a3ce909bc03f9d5b04a166e80ab}\label{class_mushroom_field_a18609a3ce909bc03f9d5b04a166e80ab}} 
+void \mbox{\hyperlink{class_mushroom_field_a18609a3ce909bc03f9d5b04a166e80ab}{generate\+Field}} ()
+\begin{DoxyCompactList}\small\item\em Generate random field of Mushrooms. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_mushroom_field_a8fc5cfef80a4e3e738179f6314603d8d}\label{class_mushroom_field_a8fc5cfef80a4e3e738179f6314603d8d}} 
+int {\bfseries original\+\_\+size\+\_\+}
+\item 
+\mbox{\Hypertarget{class_mushroom_field_a15e1b4da78b48430eb6e59003af6446e}\label{class_mushroom_field_a15e1b4da78b48430eb6e59003af6446e}} 
+vector$<$ shared\+\_\+ptr$<$ \mbox{\hyperlink{class_mushroom}{Mushroom}} $>$ $>$ {\bfseries \+\_\+mushrooms\+\_\+ptr}
+\item 
+\mbox{\Hypertarget{class_mushroom_field_ae5604bf107ab35250250148c6a5cb378}\label{class_mushroom_field_ae5604bf107ab35250250148c6a5cb378}} 
+vector$<$ float $>$ {\bfseries y\+Positions\+\_\+}
+\item 
+\mbox{\Hypertarget{class_mushroom_field_a6997a1424b8217d589bca4e605ce5c6a}\label{class_mushroom_field_a6997a1424b8217d589bca4e605ce5c6a}} 
+vector$<$ float $>$ {\bfseries x\+Positions\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mushroom_field_af2fe64e9f63e8fcec6a5bbae644de4cb}\label{class_mushroom_field_af2fe64e9f63e8fcec6a5bbae644de4cb}} 
+\index{Mushroom\+Field@{Mushroom\+Field}!Mushroom\+Field@{Mushroom\+Field}}
+\index{Mushroom\+Field@{Mushroom\+Field}!Mushroom\+Field@{Mushroom\+Field}}
+\subsubsection{\texorpdfstring{Mushroom\+Field()}{MushroomField()}}
+{\footnotesize\ttfamily Mushroom\+Field\+::\+Mushroom\+Field (\begin{DoxyParamCaption}\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mushroom_field_a478cc3df9deaf0e7a0b48fd2d128eeb8}\label{class_mushroom_field_a478cc3df9deaf0e7a0b48fd2d128eeb8}} 
+\index{Mushroom\+Field@{Mushroom\+Field}!segment@{segment}}
+\index{segment@{segment}!Mushroom\+Field@{Mushroom\+Field}}
+\subsubsection{\texorpdfstring{segment()}{segment()}}
+{\footnotesize\ttfamily virtual shared\+\_\+ptr$<$\mbox{\hyperlink{class_game_object}{Game\+Object}}$>$ Mushroom\+Field\+::segment (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Return a \mbox{\hyperlink{class_mushroom}{Mushroom}} at index i. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & iteratotr to container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+segment of the \mbox{\hyperlink{class_mushroom_field}{Mushroom\+Field}} 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_game_object_container_affa50b43ca7b82d54055b6499e024aba}{Game\+Object\+Container}}.
+
+\mbox{\Hypertarget{class_mushroom_field_aa182f3e0d33fccac34c7237e7994ecb7}\label{class_mushroom_field_aa182f3e0d33fccac34c7237e7994ecb7}} 
+\index{Mushroom\+Field@{Mushroom\+Field}!transform@{transform}}
+\index{transform@{transform}!Mushroom\+Field@{Mushroom\+Field}}
+\subsubsection{\texorpdfstring{transform()}{transform()}}
+{\footnotesize\ttfamily void Mushroom\+Field\+::transform (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_game_object}{Game\+Object}} $>$}]{centi\+Seg\+\_\+ptr }\end{DoxyParamCaption})}
+
+
+
+Transform centipe segment to \mbox{\hyperlink{class_mushroom}{Mushroom}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em centi\+Seg\+\_\+ptr} & the corresponding \mbox{\hyperlink{class_centi_segment}{Centi\+Segment}} to be transformed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_mushroom_field_8h}{Mushroom\+Field.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Mushroom\+Field.\+cpp\end{DoxyCompactItemize}

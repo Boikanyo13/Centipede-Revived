@@ -1,0 +1,141 @@
+\hypertarget{class_spaceship}{}\section{Spaceship Class Reference}
+\label{class_spaceship}\index{Spaceship@{Spaceship}}
+
+
+{\ttfamily \#include $<$Spaceship.\+h$>$}
+
+Inheritance diagram for Spaceship\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_spaceship}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_spaceship_a3fe713cbac3c0c20c298ab1d1aa13a71}{Spaceship}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_spaceship}{Spaceship}} Class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_ad82228c11cdc42ce2279756de72e134b}\label{class_spaceship_ad82228c11cdc42ce2279756de72e134b}} 
+virtual void \mbox{\hyperlink{class_spaceship_ad82228c11cdc42ce2279756de72e134b}{Move}} () override
+\begin{DoxyCompactList}\small\item\em Game Object moves is not used for \mbox{\hyperlink{class_spaceship}{Spaceship}}. \end{DoxyCompactList}\item 
+std\+::tuple$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} $>$, int $>$ \mbox{\hyperlink{class_spaceship_aa8f630847912cacefb0f3494ae8d0480}{fired\+Lazer\+Shot}} (int i) const
+\begin{DoxyCompactList}\small\item\em Return fired lazer shot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_ac14518da6eb7c15d5e34d65a9929dcdd}\label{class_spaceship_ac14518da6eb7c15d5e34d65a9929dcdd}} 
+void \mbox{\hyperlink{class_spaceship_ac14518da6eb7c15d5e34d65a9929dcdd}{load}} ()
+\begin{DoxyCompactList}\small\item\em Load the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} gun of the \mbox{\hyperlink{class_spaceship}{Spaceship}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_af29256d4fa2c28f773dd26ce74c22d15}\label{class_spaceship_af29256d4fa2c28f773dd26ce74c22d15}} 
+void \mbox{\hyperlink{class_spaceship_af29256d4fa2c28f773dd26ce74c22d15}{shoot}} ()
+\begin{DoxyCompactList}\small\item\em Fire at the at the target. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_a47911214849b05082ee0876a3b8bac7a}\label{class_spaceship_a47911214849b05082ee0876a3b8bac7a}} 
+virtual void \mbox{\hyperlink{class_spaceship_a47911214849b05082ee0876a3b8bac7a}{collision\+Response}} () override
+\begin{DoxyCompactList}\small\item\em Explode the \mbox{\hyperlink{class_spaceship}{Spaceship}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_a8f1eabe7d82fe9d517266ce5f111d421}\label{class_spaceship_a8f1eabe7d82fe9d517266ce5f111d421}} 
+void \mbox{\hyperlink{class_spaceship_a8f1eabe7d82fe9d517266ce5f111d421}{lost\+Life}} ()
+\begin{DoxyCompactList}\small\item\em Decreement the number of lives. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_spaceship_a5b7b351757965153332a4e66ef8e0b61}{Lives}} ()
+\begin{DoxyCompactList}\small\item\em Get number of lives. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_spaceship_a02a31fd44b5b9f60743d1e04f10fa113}{Lives}} (int lives)
+\begin{DoxyCompactList}\small\item\em Set Number of lives. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_a78bb6c136c35d3f43f3937732ccb1de2}\label{class_spaceship_a78bb6c136c35d3f43f3937732ccb1de2}} 
+virtual void \mbox{\hyperlink{class_spaceship_a78bb6c136c35d3f43f3937732ccb1de2}{reset}} () override
+\begin{DoxyCompactList}\small\item\em Reset \mbox{\hyperlink{class_spaceship}{Spaceship}} to inital conditions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_spaceship_aaf51352795ea2382e2aaea4b9a058804}\label{class_spaceship_aaf51352795ea2382e2aaea4b9a058804}} 
+virtual \mbox{\hyperlink{class_spaceship_aaf51352795ea2382e2aaea4b9a058804}{$\sim$\+Spaceship}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_spaceship_ac8fad23e2d21d360fbbcd3f13a650a6e}\label{class_spaceship_ac8fad23e2d21d360fbbcd3f13a650a6e}} 
+int {\bfseries lives\+\_\+} = 3
+\item 
+\mbox{\Hypertarget{class_spaceship_ae2d6c0ce59cd20a0445c02686a3e8b16}\label{class_spaceship_ae2d6c0ce59cd20a0445c02686a3e8b16}} 
+int {\bfseries no\+Of\+Lazer\+Shots\+\_\+} = 0
+\item 
+\mbox{\Hypertarget{class_spaceship_a1ab5797ea77593a72c11e4825e000856}\label{class_spaceship_a1ab5797ea77593a72c11e4825e000856}} 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} $>$ $>$ {\bfseries lazer\+Shots\+Gun\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_spaceship_a3fe713cbac3c0c20c298ab1d1aa13a71}\label{class_spaceship_a3fe713cbac3c0c20c298ab1d1aa13a71}} 
+\index{Spaceship@{Spaceship}!Spaceship@{Spaceship}}
+\index{Spaceship@{Spaceship}!Spaceship@{Spaceship}}
+\subsubsection{\texorpdfstring{Spaceship()}{Spaceship()}}
+{\footnotesize\ttfamily Spaceship\+::\+Spaceship (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of the \mbox{\hyperlink{class_spaceship}{Spaceship}} Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the \mbox{\hyperlink{class_spaceship}{Spaceship}} \\
+\hline
+{\em position} & of the \mbox{\hyperlink{class_spaceship}{Spaceship}} \\
+\hline
+{\em speed} & of the \mbox{\hyperlink{class_spaceship}{Spaceship}} \\
+\hline
+{\em objectid} & ID of the \mbox{\hyperlink{class_spaceship}{Spaceship}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_spaceship_aa8f630847912cacefb0f3494ae8d0480}\label{class_spaceship_aa8f630847912cacefb0f3494ae8d0480}} 
+\index{Spaceship@{Spaceship}!fired\+Lazer\+Shot@{fired\+Lazer\+Shot}}
+\index{fired\+Lazer\+Shot@{fired\+Lazer\+Shot}!Spaceship@{Spaceship}}
+\subsubsection{\texorpdfstring{fired\+Lazer\+Shot()}{firedLazerShot()}}
+{\footnotesize\ttfamily std\+::tuple$<$std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}}$>$,int$>$ Spaceship\+::fired\+Lazer\+Shot (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return fired lazer shot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & iterator to Lazer\+Shots Container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_spaceship_a5b7b351757965153332a4e66ef8e0b61}\label{class_spaceship_a5b7b351757965153332a4e66ef8e0b61}} 
+\index{Spaceship@{Spaceship}!Lives@{Lives}}
+\index{Lives@{Lives}!Spaceship@{Spaceship}}
+\subsubsection{\texorpdfstring{Lives()}{Lives()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int Spaceship\+::\+Lives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get number of lives. 
+
+\begin{DoxyReturn}{Returns}
+numver of lives 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_spaceship_a02a31fd44b5b9f60743d1e04f10fa113}\label{class_spaceship_a02a31fd44b5b9f60743d1e04f10fa113}} 
+\index{Spaceship@{Spaceship}!Lives@{Lives}}
+\index{Lives@{Lives}!Spaceship@{Spaceship}}
+\subsubsection{\texorpdfstring{Lives()}{Lives()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Spaceship\+::\+Lives (\begin{DoxyParamCaption}\item[{int}]{lives }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set Number of lives. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lives} & is the number of lives to be set \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_spaceship_8h}{Spaceship.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Spaceship.\+cpp\end{DoxyCompactItemize}

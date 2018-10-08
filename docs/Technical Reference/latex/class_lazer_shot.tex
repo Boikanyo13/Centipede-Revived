@@ -1,0 +1,88 @@
+\hypertarget{class_lazer_shot}{}\section{Lazer\+Shot Class Reference}
+\label{class_lazer_shot}\index{Lazer\+Shot@{Lazer\+Shot}}
+
+
+{\ttfamily \#include $<$Lazer\+Shot.\+h$>$}
+
+Inheritance diagram for Lazer\+Shot\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lazer_shot}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_lazer_shot_a16416eaac233433aae4e95edb48b129d}{Lazer\+Shot}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&size, const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position, float speed, Object\+ID objectid)
+\begin{DoxyCompactList}\small\item\em Constructor of the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} Class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_lazer_shot_a361cd2740db7f69f92a4938c06e5e46c}{Load}} (const \mbox{\hyperlink{classvector2_d}{vector2D}} \&position)
+\begin{DoxyCompactList}\small\item\em Load Lazershot to player. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lazer_shot_a7f41ca3cb80b80c1eacea35c2d3f0d61}\label{class_lazer_shot_a7f41ca3cb80b80c1eacea35c2d3f0d61}} 
+virtual void \mbox{\hyperlink{class_lazer_shot_a7f41ca3cb80b80c1eacea35c2d3f0d61}{Move}} () override
+\begin{DoxyCompactList}\small\item\em move the Lazershot \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lazer_shot_aee471cae1fb2ac98db353812d8b4f812}\label{class_lazer_shot_aee471cae1fb2ac98db353812d8b4f812}} 
+void \mbox{\hyperlink{class_lazer_shot_aee471cae1fb2ac98db353812d8b4f812}{Fire}} ()
+\begin{DoxyCompactList}\small\item\em move the Lazershot \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lazer_shot_aa45b3c708990784379403fea5f1c7b1d}\label{class_lazer_shot_aa45b3c708990784379403fea5f1c7b1d}} 
+virtual void \mbox{\hyperlink{class_lazer_shot_aa45b3c708990784379403fea5f1c7b1d}{reset}} () override
+\begin{DoxyCompactList}\small\item\em destroy Lazershot \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lazer_shot_a890ffaf8ff5af439e67c33805f7a7b06}\label{class_lazer_shot_a890ffaf8ff5af439e67c33805f7a7b06}} 
+virtual void \mbox{\hyperlink{class_lazer_shot_a890ffaf8ff5af439e67c33805f7a7b06}{collision\+Response}} () override
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_collision}{Collision}} response of Lazer\+Shoot. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_lazer_shot_a67497615bb40710e312817d500f78b1e}\label{class_lazer_shot_a67497615bb40710e312817d500f78b1e}} 
+virtual \mbox{\hyperlink{class_lazer_shot_a67497615bb40710e312817d500f78b1e}{$\sim$\+Lazer\+Shot}} ()
+\begin{DoxyCompactList}\small\item\em Destroy \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyDate}{Date}
+08/10/2018 
+\end{DoxyDate}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_lazer_shot_a16416eaac233433aae4e95edb48b129d}\label{class_lazer_shot_a16416eaac233433aae4e95edb48b129d}} 
+\index{Lazer\+Shot@{Lazer\+Shot}!Lazer\+Shot@{Lazer\+Shot}}
+\index{Lazer\+Shot@{Lazer\+Shot}!Lazer\+Shot@{Lazer\+Shot}}
+\subsubsection{\texorpdfstring{Lazer\+Shot()}{LazerShot()}}
+{\footnotesize\ttfamily Lazer\+Shot\+::\+Lazer\+Shot (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{size,  }\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position,  }\item[{float}]{speed,  }\item[{Object\+ID}]{objectid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} Class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & of the Lazer\+Shots \\
+\hline
+{\em position} & of the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} \\
+\hline
+{\em speed} & of the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} \\
+\hline
+{\em objectid} & ID of the \mbox{\hyperlink{class_lazer_shot}{Lazer\+Shot}} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lazer_shot_a361cd2740db7f69f92a4938c06e5e46c}\label{class_lazer_shot_a361cd2740db7f69f92a4938c06e5e46c}} 
+\index{Lazer\+Shot@{Lazer\+Shot}!Load@{Load}}
+\index{Load@{Load}!Lazer\+Shot@{Lazer\+Shot}}
+\subsubsection{\texorpdfstring{Load()}{Load()}}
+{\footnotesize\ttfamily void Lazer\+Shot\+::\+Load (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classvector2_d}{vector2D}} \&}]{position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Load Lazershot to player. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & of the \mbox{\hyperlink{class_player}{Player}} \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/\mbox{\hyperlink{_lazer_shot_8h}{Lazer\+Shot.\+h}}\item 
+C\+:/\+Users/bvrad/\+Dropbox/\+Boikanyo/elen3009/\+P\+R\+O\+J\+E\+C\+T/2018-\/project-\/1386807-\/\+Radiokana-\/1427726-\/\+Sepuru/game-\/source-\/code/Lazer\+Shot.\+cpp\end{DoxyCompactItemize}
