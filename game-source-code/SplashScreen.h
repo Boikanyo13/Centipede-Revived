@@ -11,7 +11,14 @@
 #include <vector>
 
 enum class ScreenObjectID{START, HELP, BACK, EXIT, LOGO, BACKGROUND1, BACKGROUND2, LIFE};
-//class FileNotFound{};
+
+/**
+ * @class SplashScreen
+ * @author bvrad
+ * @date 08/10/2018
+ * @file SplashScreen.h
+ * @brief This class presents the userInterface  of the Game
+ */
 
 
 class SplashScreen
@@ -20,30 +27,62 @@ public:
     
     
     SplashScreen(shared_ptr<Display> display_ptr);
-    //Draws the opening screen 
+    /**
+     * @brief Draws the opening screen 
+     */
     void OpeningScreen();
-    //Draws the helpscreen
+    /**
+     * @brief Draws the helpscreen
+     */
     void HelpScreen();
-    //Draws the game over screen
+    /**
+     * @brief Draws the game over screen
+     * @param score to be drawn on the window
+     */
     void YouLoose(int score);
-    //Draws the Background of the gamescreen
+    /**
+     * @brief Draws the Background of the gamescreen
+     * @param score_ptr to be drawn to window
+     * @param lives to be drawn to window
+     */
     void GameScreen(shared_ptr<Score> score_ptr, int lives);
-    //Pause Message
+    /**
+     * @brief Pause Message
+     */
     void Pause();
-    //In between Message
+    /**
+     * @brief In between Message
+     */
     void getReady();
-    //Detects which button in the screen is being pressed
+    /**
+     * @brief Detects which button in the screen is being pressed
+     * @return ID of Button
+     */
     ScreenObjectID DetectButton();
     ~SplashScreen(){}
    
 private:
 
-    //Gets dimensions  of the buttons
+    /**
+     * @brief Gets dimensions  of the buttons
+     * @param button to be drawn
+     * @return button dimensions
+     */
    std::tuple <float, float, float, float> ButtonDimension (sf::RectangleShape button);
+   //Window
    shared_ptr<sf::RenderWindow> window_;
-   //Makes buttons
-   sf::RectangleShape DrawScreenObject(const vector2D& size,const vector2D& position, ScreenObjectID ID);
-   //Draws high scores
+   /**
+    * @brief Makes buttons
+    * @param size of button
+    * @param position of button
+    * @param ID of button
+    * @return created sf::Rectangle button
+    */
+    sf::RectangleShape DrawScreenObject(const vector2D& size,const vector2D& position, ScreenObjectID ID);
+    /**
+     * @brief Draws high scores
+     * @param score to be drawn
+     */
     void HighScores(int score);
    //Stores button textures
    std::vector<sf::Texture> screenObjectTextures_;
@@ -55,7 +94,7 @@ private:
    sf::Text gameText;
    
    bool blink_ = true;
-   
+   //Where files are obtained
    GameFiles gamefile_;
   
 

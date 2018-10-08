@@ -22,28 +22,54 @@ using std::make_shared;
 using std::make_unique;
 using std::unique_ptr;
 
+/**
+ * @class GameLoop 
+ * @date 08/10/2018
+ * @file GameLoop.h
+ * @brief This class is the main controller of the Game, it is the Game Engine
+ */
+
 class GameLoop
 {
 public:
+     /**
+      * @brief Default constructor
+      */
     GameLoop();
-    //play game
+    /**
+     * @brief play game
+     */
     void PlayGame();
-    //Show the opening window
+    /**
+     * @brief Show the opening window
+     */
     void Opening();
-    //pause game
+    /**
+     * @brief pause game
+     */
     void pause();
-    //The entire game
+    /**
+     * @brief The entire game 
+     */
     void CentipedeGame();
-    //show instructions window
+    /**
+     * @brief show instructions window
+     */
     void Help();
-    //show game over window
+    /**
+     * @brief show game over window
+     */
     void GameOver();
+    /**
+     * @brief Destroy the Loop
+     */
     ~GameLoop(){};
     
 private:
     
     //Draw all the GameObjects
     void render();
+    //GameLoop Objects
     shared_ptr<Spaceship> spaceship_ptr;
     shared_ptr<Display> display_ptr;
     shared_ptr<UserInputs> userinput_ptr;

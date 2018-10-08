@@ -3,28 +3,60 @@
 #include "GameFiles.h"
 #include <memory>
 
+/**
+ * @class Score
+ * @author bvrad
+ * @date 08/10/2018
+ * @file Score.h
+ * @brief This class is responsible keeping score
+ */
+
 class Score
 {
 public:
+    /**
+     * @brief Default constructor
+     */
     Score();
-    //incremenet score by 10 
+    /**
+     * @brief incremenet score by 10 
+     */
     void centibodyDestroyed();
-    //incremenet score by 100 
+    /**
+     * @brief incremenet score by 100 
+     */
     void centiheadDestroyed();
-    //incremenet score by 1
+    /**
+     * @brief incremenet score by 1
+     */
     void mushroomDestroyed();
-    //increment score by 300
+    /**
+     * @brief increment score by 300
+     */
     void spiderDestroyed();
-    //increment score by 1000
+    /**
+     * @brief increment score by 1000
+     */
     void scorpionDestroyed();
-    //get score
+    /**
+     * @brief get score
+     * @return current score
+     */
     int score() const;
-    //reset score 
+    /**
+     * @brief reset score 
+     */
     void reset();
-    //update high score
+    /**
+     * @brief update high score
+     */
     void updateHighscore();
+    /**
+      Destroy Score object
+     */
     ~Score();
 private:
+        //score keeper
         int score_;
 
 };

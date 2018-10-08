@@ -9,26 +9,48 @@ using std::string;
 
 class FileNotFound{};
 
+/**
+ * @class GameFiles
+ * @date 08/10/2018
+ * @file GameFiles.h
+ * @brief  Database for all the game's classes
+ */
 class GameFiles
 {
 public:
+   /**
+    * @brief default constructor
+    */
     GameFiles();
-    //return Image files corresponding to ObjectID
-    std::vector<string> objectImages() const;
-    //return Audio files corresponding to ObjectID
-    string audio(ObjectID ID) const;
-    //return Button files corresponding to ObjectID
+    /**
+     * @brief returns object images files
+     * @return vector of objectImages
+     */
+     std::vector<string> objectImages() const;
+    /**
+     * @brief return screen images files
+     * @return vector of screenImages
+     */
     std::vector<string> screenImages() const;
-     //return Font files corresponding to ObjectID
+    /**
+     * @brief return Font files corresponding to ObjectID
+     * @return game font file
+     */
     string font() const;
-    //return the previous high scores
+    /**
+     * @brief  return the previous high scores
+     * @return vector of top 5 scores
+     */
     std::vector<int> scorefile();
-    //store the high scores
+     /**
+      * @brief store the high scores
+      * @param score to be store in the highscore file
+      */
     void scorefile(std::vector<int> score);
     ~GameFiles();
 
 private:
-    
+    //Game Files
     std::vector<string> objectImages_;
     std::vector<string> screenImages_;
 };

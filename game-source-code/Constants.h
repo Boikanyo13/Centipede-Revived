@@ -3,6 +3,12 @@
 #include "GameTypes.h"
 #include <string>
 
+
+/**
+ * @date 08/10/18
+ * @file Constants.h
+ * @brief The file contains all constanst used in the Game
+*/
 const auto ORIGINAL_SCREEN_WIDTH = 540.0f;
 const auto ORIGINAL_SCREEN_HEIGHT = 640.0f;
 

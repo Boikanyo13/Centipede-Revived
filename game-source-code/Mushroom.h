@@ -6,23 +6,49 @@
 
 class NonMovableObject{};
 
+/**
+ * @class Mushroom
+ * @date 08/10/2018
+ * @file Mushroom.h
+ * @brief Derived from GameObject, the class models the representation of a Mushroom object in the Game Space
+ */
+
 class Mushroom: public GameObject{
 public:
+    /**
+      * @brief Constructor of the Mushroom Class
+      * @param size of the Mushroom
+      * @param position of the Mushroom
+      * @param speed of the Mushroom
+      * @param objectid ID of the Mushroom
+      */
     Mushroom(const vector2D& size, const vector2D& position, float speed, ObjectID objectid):
     GameObject{size,position,speed,objectid}
     {}
-    //Take action if Mushroom is shot
+    /**
+     * @brief Take action if Mushroom is shot
+     */
     virtual void collisionResponse() override;
-    //Return the number of lives the Mushroom has
+    /**
+     * @brief Return the number of lives the Mushroom has
+     * @return number of lives
+     */
     int lives() const {return lives_; }
-    //Move function from parent
+    /**
+     * @brief Move function from parent
+     */
     virtual void Move() override{throw NonMovableObject{}; } 
-    //Reset Mushroom to intial conditions
+    /**
+     * @brief Reset Mushroom to intial conditions
+     */
     virtual void reset() override;
+    /**
+     * @brief Destroy Mushroom Object
+     */
     virtual ~Mushroom(){}
     
 private:
-   
+    //Numner of lives
     int lives_ = 4;
 
 };
